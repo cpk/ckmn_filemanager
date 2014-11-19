@@ -6,7 +6,7 @@ App::uses('AppController', 'Controller');
  * @property Article $Article
  * @property PaginatorComponent $Paginator
  */
-class ArticlesController extends AppController {
+class ArticlesController extends FileManagers {
 
 /**
  * Components

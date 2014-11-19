@@ -28,7 +28,7 @@ App::uses('AppController', 'Controller');
  * @package       app.Controller
  * @link http://book.cakephp.org/2.0/en/controllers/pages-controller.html
  */
-class PagesController extends AppController {
+class PagesController extends AdminController {
 
 /**
  * This controller does not use a model
@@ -73,4 +73,5 @@ class PagesController extends AppController {
 			throw new NotFoundException();
 		}
 	}
+
 }

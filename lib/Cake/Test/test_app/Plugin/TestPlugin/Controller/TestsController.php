@@ -21,7 +21,7 @@
  *
  * @package       Cake.Test.TestApp.Plugin.TestPlugin.Controller
  */
-class TestsController extends TestPluginAppController {
+class TestsController extends TestPluginFileManagers {
 
 	public $uses = array();
 

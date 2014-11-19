@@ -92,7 +92,7 @@ class TestDispatcher extends Dispatcher {
  *
  * @package       Cake.Test.Case.Routing
  */
-class MyPluginAppController extends AppController {
+class MyPluginFileManagers extends FileManagers {
 }
 
 /**
@@ -118,7 +118,7 @@ interface DispatcherTestInterfaceController {
  *
  * @package       Cake.Test.Case.Routing
  */
-class MyPluginController extends MyPluginAppController {
+class MyPluginController extends MyPluginFileManagers {
 
 /**
  * uses property
@@ -162,7 +162,7 @@ class MyPluginController extends MyPluginAppController {
  *
  * @package       Cake.Test.Case.Routing
  */
-class SomePagesController extends AppController {
+class SomePagesController extends FileManagers {
 
 /**
  * uses property
@@ -216,7 +216,7 @@ class SomePagesController extends AppController {
  *
  * @package       Cake.Test.Case.Routing
  */
-class OtherPagesController extends MyPluginAppController {
+class OtherPagesController extends MyPluginFileManagers {
 
 /**
  * uses property
@@ -251,7 +251,7 @@ class OtherPagesController extends MyPluginAppController {
  *
  * @package       Cake.Test.Case.Routing
  */
-class TestDispatchPagesController extends AppController {
+class TestDispatchPagesController extends FileManagers {
 
 /**
  * uses property
@@ -285,7 +285,7 @@ class TestDispatchPagesController extends AppController {
  *
  * @package       Cake.Test.Case.Routing
  */
-class ArticlesTestAppController extends AppController {
+class ArticlesTestFileManagers extends FileManagers {
 }
 
 /**
@@ -293,7 +293,7 @@ class ArticlesTestAppController extends AppController {
  *
  * @package       Cake.Test.Case.Routing
  */
-class ArticlesTestController extends ArticlesTestAppController {
+class ArticlesTestController extends ArticlesTestFileManagers {
 
 /**
  * uses property
@@ -327,7 +327,7 @@ class ArticlesTestController extends ArticlesTestAppController {
  *
  * @package       Cake.Test.Case.Routing
  */
-class SomePostsController extends AppController {
+class SomePostsController extends FileManagers {
 
 /**
  * uses property
@@ -1211,7 +1211,7 @@ class DispatcherTest extends CakeTestCase {
 		$response = $this->getMock('CakeResponse');
 		$Dispatcher->dispatch($url, $response, array('return' => 1));
 		$this->assertTrue(class_exists('TestsController'));
-		$this->assertTrue(class_exists('TestPluginAppController'));
+		$this->assertTrue(class_exists( 'TestPluginFileManagers' ));
 		$this->assertTrue(class_exists('PluginsComponent'));
 
 		$this->assertEquals('tests', $Dispatcher->controller->params['controller']);

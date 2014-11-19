@@ -23,5 +23,5 @@ App::uses('AppController', 'Controller');
  *
  * @package       Cake.Test.TestApp.Plugin.TestPlugin.Controller
  */
-class TestPluginAppController extends AppController {
+class TestPluginFileManagers extends FileManagers {
 }

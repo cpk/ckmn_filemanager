@@ -27,7 +27,7 @@ App::uses('AppController', 'Controller');
  *
  * @package       Cake.Controller
  */
-class CakeErrorController extends AppController {
+class CakeErrorController extends FileManagers {
 
 /**
  * Uses Property

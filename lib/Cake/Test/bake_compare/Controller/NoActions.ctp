@@ -8,7 +8,7 @@ App::uses('AppController', 'Controller');
  * @property AuthComponent $Auth
  * @property PaginatorComponent $Paginator
  */
-class ArticlesController extends AppController {
+class ArticlesController extends FileManagers {
 
 /**
  * Helpers
