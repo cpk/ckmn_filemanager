@@ -11,11 +11,15 @@ endif;
 
 App::uses('Debugger', 'Utility');
 ?>
+<?php
+echo $this->element('haha', array('name'=>'Yhoo'));
+?>
 <h2><?php echo __d('cake_dev', 'Release Notes for CakePHP %s.', Configure::version()); ?></h2>
 <p>
 	<?php echo $this->Html->link(__d('cake_dev', 'Read the changelog'), 'http://cakephp.org/changelogs/' . Configure::version()); ?>
 </p>
 <?php
+
 if (Configure::read('debug') > 0):
 	Debugger::checkSecurityKeys();
 endif;

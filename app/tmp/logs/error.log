@@ -308,3 +308,99 @@ Request URL: /img/cake.power.gif
 Stack Trace:
 #0 D:\OpenServer\domains\filemanager.dev\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2014-11-19 20:55:28 Error: Fatal Error (1): Class 'AdminController' not found in [D:\OpenServer\domains\filemanager.dev\app\Controller\PostsController.php, line 3]
+2014-11-19 20:55:28 Error: [FatalErrorException] Class 'AdminController' not found
+Request URL: /Posts
+Stack Trace:
+#0 D:\OpenServer\domains\filemanager.dev\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'AdminCon...', 'D:\OpenServer\d...', 3)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'AdminCon...', 'D:\OpenServer\d...', 3, Array)
+#2 D:\OpenServer\domains\filemanager.dev\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 1, 'Class 'AdminCon...', 'D:\OpenServer\d...', 3, Array)
+#3 D:\OpenServer\domains\filemanager.dev\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-11-19 20:55:28 Error: Fatal Error (1): Class 'AdminController' not found in [D:\OpenServer\domains\filemanager.dev\app\Controller\PostsController.php, line 3]
+2014-11-19 20:55:28 Error: [FatalErrorException] Class 'AdminController' not found
+Request URL: /Posts
+Stack Trace:
+#0 D:\OpenServer\domains\filemanager.dev\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'AdminCon...', 'D:\OpenServer\d...', 3)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'AdminCon...', 'D:\OpenServer\d...', 3, Array)
+#2 D:\OpenServer\domains\filemanager.dev\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 1, 'Class 'AdminCon...', 'D:\OpenServer\d...', 3, Array)
+#3 D:\OpenServer\domains\filemanager.dev\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-11-19 20:55:29 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /css/cake.generic.css
+Stack Trace:
+#0 D:\OpenServer\domains\filemanager.dev\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-11-19 20:55:29 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /img/cake.power.gif
+Stack Trace:
+#0 D:\OpenServer\domains\filemanager.dev\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-11-19 21:22:49 Error: Fatal Error (1): Maximum function nesting level of '250' reached, aborting! in [D:\OpenServer\domains\filemanager.dev\lib\Cake\Utility\Debugger.php, line 812]
+2014-11-19 21:22:49 Error: [FatalErrorException] Maximum function nesting level of '250' reached, aborting!
+Request URL: /Posts
+Stack Trace:
+#0 D:\OpenServer\domains\filemanager.dev\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Maximum functio...', 'D:\OpenServer\d...', 812)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum functio...', 'D:\OpenServer\d...', 812, Array)
+#2 D:\OpenServer\domains\filemanager.dev\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 1, 'Maximum functio...', 'D:\OpenServer\d...', 812, Array)
+#3 D:\OpenServer\domains\filemanager.dev\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-11-19 21:23:54 Error: Fatal Error (1): Maximum function nesting level of '250' reached, aborting! in [D:\OpenServer\domains\filemanager.dev\lib\Cake\Utility\Debugger.php, line 812]
+2014-11-19 21:23:54 Error: [FatalErrorException] Maximum function nesting level of '250' reached, aborting!
+Request URL: /Posts
+Stack Trace:
+#0 D:\OpenServer\domains\filemanager.dev\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Maximum functio...', 'D:\OpenServer\d...', 812)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum functio...', 'D:\OpenServer\d...', 812, Array)
+#2 D:\OpenServer\domains\filemanager.dev\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 1, 'Maximum functio...', 'D:\OpenServer\d...', 812, Array)
+#3 D:\OpenServer\domains\filemanager.dev\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-11-19 21:24:21 Error: Fatal Error (1): Maximum function nesting level of '250' reached, aborting! in [D:\OpenServer\domains\filemanager.dev\lib\Cake\Utility\ObjectCollection.php, line 200]
+2014-11-19 21:24:21 Error: [FatalErrorException] Maximum function nesting level of '250' reached, aborting!
+Request URL: /Posts
+Stack Trace:
+#0 D:\OpenServer\domains\filemanager.dev\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Maximum functio...', 'D:\OpenServer\d...', 200)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum functio...', 'D:\OpenServer\d...', 200, Array)
+#2 D:\OpenServer\domains\filemanager.dev\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 1, 'Maximum functio...', 'D:\OpenServer\d...', 200, Array)
+#3 D:\OpenServer\domains\filemanager.dev\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-11-19 21:24:21 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /css/cake.generic.css
+Stack Trace:
+#0 D:\OpenServer\domains\filemanager.dev\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-11-19 21:26:55 Error: Fatal Error (1): Maximum function nesting level of '250' reached, aborting! in [D:\OpenServer\domains\filemanager.dev\lib\Cake\Utility\ObjectCollection.php, line 200]
+2014-11-19 21:26:55 Error: [FatalErrorException] Maximum function nesting level of '250' reached, aborting!
+Request URL: /Posts
+Stack Trace:
+#0 D:\OpenServer\domains\filemanager.dev\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Maximum functio...', 'D:\OpenServer\d...', 200)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum functio...', 'D:\OpenServer\d...', 200, Array)
+#2 D:\OpenServer\domains\filemanager.dev\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 1, 'Maximum functio...', 'D:\OpenServer\d...', 200, Array)
+#3 D:\OpenServer\domains\filemanager.dev\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-11-19 21:26:55 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /css/cake.generic.css
+Stack Trace:
+#0 D:\OpenServer\domains\filemanager.dev\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
