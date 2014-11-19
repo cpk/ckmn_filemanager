@@ -270,3 +270,41 @@ Stack Trace:
 #3 D:\OpenServer\domains\filemanager.dev\lib\Cake\Core\App.php(904): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+2014-11-19 19:14:00 Error: Fatal Error (1): Class 'AdminController' not found in [D:\OpenServer\domains\filemanager.dev\app\Controller\PagesController.php, line 31]
+2014-11-19 19:14:00 Error: [FatalErrorException] Class 'AdminController' not found
+Request URL: /
+Stack Trace:
+#0 D:\OpenServer\domains\filemanager.dev\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'AdminCon...', 'D:\OpenServer\d...', 31)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'AdminCon...', 'D:\OpenServer\d...', 31, Array)
+#2 D:\OpenServer\domains\filemanager.dev\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 1, 'Class 'AdminCon...', 'D:\OpenServer\d...', 31, Array)
+#3 D:\OpenServer\domains\filemanager.dev\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-11-19 19:14:01 Error: Fatal Error (1): Class 'AdminController' not found in [D:\OpenServer\domains\filemanager.dev\app\Controller\PagesController.php, line 31]
+2014-11-19 19:14:01 Error: [FatalErrorException] Class 'AdminController' not found
+Request URL: /
+Stack Trace:
+#0 D:\OpenServer\domains\filemanager.dev\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Class 'AdminCon...', 'D:\OpenServer\d...', 31)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'AdminCon...', 'D:\OpenServer\d...', 31, Array)
+#2 D:\OpenServer\domains\filemanager.dev\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 1, 'Class 'AdminCon...', 'D:\OpenServer\d...', 31, Array)
+#3 D:\OpenServer\domains\filemanager.dev\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-11-19 19:14:01 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /css/cake.generic.css
+Stack Trace:
+#0 D:\OpenServer\domains\filemanager.dev\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-11-19 19:14:02 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /img/cake.power.gif
+Stack Trace:
+#0 D:\OpenServer\domains\filemanager.dev\app\webroot\index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
