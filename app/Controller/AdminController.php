@@ -1,5 +1,6 @@
 <?php
 App::uses( 'Controller', 'Controller' );
+App::uses( 'Tree', 'Lib' );
 
 class AdminController extends Controller {
 	public $layout = 'Sentir';
