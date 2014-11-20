@@ -1,19 +1,24 @@
 <div class="sidebar-left sidebar-nicescroller">
     <ul class="sidebar-menu">
         <li>
+            <?php echo $this->Html->link('Admin', array('controller' => 'admin', 'action' => 'index')); ?>
+            <!--
             <a href="#">
                 <i class="fa fa-dashboard icon-sidebar"></i>
-                Menu Item 1
                 <span class="label label-success span-sidebar">UPDATED</span>
             </a>
+            -->
         </li>
         <li>
+            <?php echo $this->Html->link('User', array('controller' => 'users', 'action' => 'index')); ?>
+            <!--
             <a href="#">
                 <i class="fa fa-bomb icon-sidebar"></i>
-                Menu Item 2
                 <span class="label label-danger span-sidebar">NEW</span>
             </a>
+            -->
         </li>
+<!--
         <li>
             <a href="#">
                 <i class="fa fa-flask icon-sidebar"></i>
@@ -34,7 +39,6 @@
                 <li><a href="#">Menu Sub Item 4<span class="label label-danger span-sidebar">NEW</span></a></li>
             </ul>
         </li>
-
         <li class="static">SYSTEM SETTING</li>
         <li class="text-content">
             <div class="switch">
@@ -84,5 +88,7 @@
             </div>
             Remember this computer
         </li>
+
+-->
     </ul>
 </div>
