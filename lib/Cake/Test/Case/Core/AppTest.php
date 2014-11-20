@@ -543,7 +543,7 @@ class AppTest extends CakeTestCase {
 
 		$result = App::import('Controller', 'TestPlugin.Tests');
 		$this->assertTrue($result);
-		$this->assertTrue(class_exists( 'TestPluginFileManagers' ));
+		$this->assertTrue(class_exists('TestPluginAppController'));
 		$this->assertTrue(class_exists('TestsController'));
 
 		$result = App::import('Lib', 'TestPlugin.TestPluginLibrary');

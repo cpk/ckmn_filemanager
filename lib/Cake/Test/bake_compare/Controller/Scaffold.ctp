@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
  * Articles Controller
  *
  */
-class ArticlesController extends FileManagers {
+class ArticlesController extends AppController {
 
 /**
  * Scaffold

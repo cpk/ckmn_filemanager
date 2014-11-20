@@ -21,7 +21,7 @@
  *
  * @package       Cake.Test.TestApp.Controller
  */
-class TestsAppsPostsController extends FileManagers {
+class TestsAppsPostsController extends AppController {
 
 	public $uses = array('Post');
 

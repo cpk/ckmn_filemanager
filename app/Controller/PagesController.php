@@ -18,7 +18,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-App::uses('AdminController', 'Controller');
+App::uses('AppController', 'Controller');
 
 /**
  * Static content controller
@@ -28,7 +28,7 @@ App::uses('AdminController', 'Controller');
  * @package       app.Controller
  * @link http://book.cakephp.org/2.0/en/controllers/pages-controller.html
  */
-class PagesController extends AdminController {
+class PagesController extends AppController {
 
 /**
  * This controller does not use a model
@@ -73,5 +73,4 @@ class PagesController extends AdminController {
 			throw new NotFoundException();
 		}
 	}
-
 }

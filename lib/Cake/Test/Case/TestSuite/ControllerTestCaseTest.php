@@ -69,7 +69,7 @@ if (!class_exists('PostsController')) {
  *
  * @package       Cake.Test.Case.TestSuite
  */
-	class PostsController extends FileManagers {
+	class PostsController extends AppController {
 
 	/**
 	 * Components array
@@ -89,7 +89,7 @@ if (!class_exists('PostsController')) {
  *
  * @package       Cake.Test.Case.TestSuite
  */
-class ControllerTestCaseTestController extends FileManagers {
+class ControllerTestCaseTestController extends AppController {
 
 /**
  * Uses array
