@@ -8,10 +8,11 @@ class AdminController extends AppController {
     public $layout = 'Sentir';
 
     public function beforeFilter() {
+        parent::beforeFilter();
         if ($this->Auth->loggedIn()) {
             $this->layout = 'admin';
         } else {
-            $this->redirect(array('controller' => 'user', 'action' => 'login'));
+            $this->redirect(array('controller' => 'users', 'action' => 'login'));
         }
 //        $tree = new Tree();
 //        $tree->setData($this->getMenus());
@@ -42,6 +43,14 @@ class AdminController extends AppController {
     }
 
     public function index() {
+        
+    }
+
+    public function create() {
+        
+    }
+
+    public function update() {
         
     }
 

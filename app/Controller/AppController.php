@@ -40,6 +40,7 @@ class AppController extends Controller {
     public static $uploadPath = 'img/uploads/';
     public static $imgExts = array('jpg', 'png');
     public $components = array(
+        'CheckPermission',
         'Session',
         'Auth' => array(
             'loginRedirect' => array('controller' => 'admin', 'action' => 'index'),
@@ -49,6 +50,11 @@ class AppController extends Controller {
     
     public function beforeFilter() {
         $this->Auth->authenticate = array('Custom');
+        $this->currentUser = $this->Session->read('Auth.User');
+        $this->set('currentUser', $this->currentUser);
+        if(!$this->CheckPermission->checkPermission($this->currentUser['id'], $this->params['controller'], $this->params['action'])){
+            $this->redirect(array('controller' => 'home', 'action' => 'denied'));
+        }
     }
     function beforeRender() {        
         $this->Auth->authenticate = array('Custom');

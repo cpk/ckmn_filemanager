@@ -13,9 +13,23 @@ App::uses('AppController', 'Controller');
  * @author Khoa
  */
 class HomeController extends AppController {
-    var $layout = 'default';
-    public function index() {
-        
+    var $layout = 'admin';
+    var $fullAccess = array('home.denied');
+    
+    public function beforeFilter() {
+        if ($this->Auth->loggedIn()) {
+            $this->layout = 'admin';
+        } else {
+            $this->redirect(array('controller' => 'users', 'action' => 'login'));
+        }
+//        var_dump($this->controller);die();
+        if(!$this->CheckPermission->checkAccessFull($this->fullAccess, $this->params['controller'], $this->params['action'])){
+            parent::beforeFilter();
+        }        
+    }
+    
+    public function denied() {
+        $this->layout = 'admin';
     }
 
 }
