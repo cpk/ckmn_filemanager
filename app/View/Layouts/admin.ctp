@@ -50,7 +50,7 @@
 				
 				
 				<!-- BEGIN FOOTER -->
-				
+				<?php echo $this->element('footer'); ?>
 				<!-- END FOOTER -->
 				
 				
