@@ -8,12 +8,19 @@
 App::uses('CakeEmail', 'Network/Email');
 App::uses('AppController', 'Controller');
 
-
 /**
  * CakePHP usersController
  * @author Khoa
  */
-class usersController extends AppController {
+class usersController extends AppController {    
+    
+    var $fullAccess = array('users.login', 'users.logout');
+
+    public function beforeFilter() {
+        if (!$this->CheckPermission->checkAccessFull($this->fullAccess, $this->params['controller'], $this->params['action'])) {
+            parent::beforeFilter();
+        }
+    }
 
     public function index() {
         
@@ -21,8 +28,8 @@ class usersController extends AppController {
 
     public function login() {
         $this->layout = 'login';
-        
-        if ($this->request->is('post')) {            
+
+        if ($this->request->is('post')) {
             if ($this->Auth->login()) {
                 //$this->User->afterLogin(); // Record login action into audit log
                 if ($this->Session->read('lastUrl')) {
@@ -32,15 +39,14 @@ class usersController extends AppController {
                     // Redirect to default page when login successfully
                     $this->redirect($this->Auth->loginRedirect);
                 }
-            } else {    
+            } else {
                 //$this->FlashMessage->error(__('Invalid username or password, try again'));
             }
         }
     }
-    
-     public function logout() {;
+
+    public function logout() {
         $this->redirect($this->Auth->logout());
     }
-    
 
 }

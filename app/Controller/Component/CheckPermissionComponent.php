@@ -13,8 +13,7 @@ class CheckPermissionComponent extends Component {
         $rolesModel = ClassRegistry::init('roles');
         $usersRolesModel = ClassRegistry::init('users_roles');
         if ($userId == null) {
-            $user = $this->currentUser;
-            $userId = $user['id'];
+            return null;
         }
         $options = array(
             'joins' => array(
@@ -36,8 +35,7 @@ class CheckPermissionComponent extends Component {
         $permissionsModel = ClassRegistry::init('permissions');
         $usersPermissionsModel = ClassRegistry::init('users_permissions');
         if ($userId == null) {
-            $user = $this->currentUser;
-            $userId = $user['id'];
+            return null;
         }
         $options = array(
             'joins' => array(
