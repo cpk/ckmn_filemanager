@@ -15261,3 +15261,12 @@ Request URL: /file_alpha/css/bootstrap-responsive.css
 Stack Trace:
 #0 C:\xampp\htdocs\file_alpha\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2014-11-20 15:34:43 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /file_alpha/css/bootstrap-responsive.css
+Stack Trace:
+#0 C:\xampp\htdocs\file_alpha\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
