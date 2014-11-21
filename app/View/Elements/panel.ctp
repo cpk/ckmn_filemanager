@@ -218,6 +218,6 @@
             </div>
         </div>
         <button class="btn btn-block btn-primary btn-sm" id="btn-reset">Reset to default</button>
-        <a href="http://themeforest.net/item/sentir-responsive-admin-and-dashboard-ui-kits/7700260?ref=arirusmanto" class="btn btn-block btn-danger btn-sm" id="btn-reset"><i class="fa fa-shopping-cart"></i> Buy this template</a>
+        
     </div>
 </div>

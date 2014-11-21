@@ -1,24 +1,24 @@
-<div class="top-navbar">
+<div class="top-navbar dark-color">
     <div class="top-navbar-inner">
 
         <!-- Begin Logo brand -->
         <div class="logo-brand">
-            <a href="index-2.html"><img src="<?php echo $webroot; ?>/img/sentir-logo-primary.png" alt="Sentir logo"></a>
+            <a href="#"><img src="<?php echo $webroot; ?>/img/sentir-logo-primary.png" alt="Sentir logo"></a>
         </div><!-- /.logo-brand -->
         <!-- End Logo brand -->
 
-        <div class="top-nav-content">
+        <div class="top-nav-content main-top-nav-layout">
 
             <!-- Begin button sidebar left toggle -->
-            <div class="btn-collapse-sidebar-left">
+            <div class="btn-collapse-main-navigation" data-toggle="collapse" data-target="#top-main-navigation">
                 <i class="fa fa-bars"></i>
             </div><!-- /.btn-collapse-sidebar-left -->
             <!-- End button sidebar left toggle -->
 
             <!-- Begin button sidebar right toggle -->
-            <div class="btn-collapse-sidebar-right">
+<!--            <div class="btn-collapse-sidebar-right">
                 <i class="fa fa-bullhorn"></i>
-            </div><!-- /.btn-collapse-sidebar-right -->
+            </div> /.btn-collapse-sidebar-right -->
             <!-- End button sidebar right toggle -->
 
             <!-- Begin button nav toggle -->
@@ -33,16 +33,13 @@
                 <li class="dropdown">
                     <a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="<?php echo $webroot; ?>/img/avatar/avatar-1.jpg" class="avatar img-circle" alt="Avatar">
-                        Hi, <strong>Paris Hawker</strong>
+                        Hi, <strong><?php echo $currentUser['username']; ?></strong>
                     </a>
                     <ul class="dropdown-menu square primary margin-list-rounded with-triangle">
-                        <li><a href="#fakelink">Account setting</a></li>
-                        <li><a href="#fakelink">Payment setting</a></li>
-                        <li><a href="#fakelink">Change password</a></li>
-                        <li><a href="#fakelink">My public profile</a></li>
+                        <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'account_setting')); ?>">Account setting</a></li>
+                        <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'change_password')); ?>">Change password</a></li>
                         <li class="divider"></li>
-                        <li><a href="lock-screen.html">Lock screen</a></li>
-                        <li><a href="login.html">Log out</a></li>
+                        <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'logout')); ?>">Log out</a></li>
                     </ul>
                 </li>
             </ul>
@@ -178,7 +175,7 @@
                                             </a></li>
                                     </ul>
                                 </div><!-- /.nav-dropdown-content scroll-nav-dropdown -->
-                                <button class="btn btn-primary btn-square btn-block">See all task</button>
+                                <button class="btn btn-primary btn-square btn-block">See all notifications</button>
                             </li>
                         </ul>
                     </li>

@@ -17,11 +17,12 @@ class AdminController extends AppController {
     }
 
     public function index() {
-        
+        $this->redirect(array('controller' => 'admin', 'action' => 'dashboard'));
     }
 
-    public function create() {
-        
+    public function dashboard() {        
+        $this->set('heading', 'Dashboard');
+        $this->set('subHeading', '');
     }
 
     public function update() {

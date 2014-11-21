@@ -23,7 +23,9 @@ class usersController extends AppController {
     }
 
     public function index() {
-        
+        $this->layout = 'admin';
+        $this->set('heading', 'List Users');
+        $this->set('subHeading', '');
     }
 
     public function login() {
@@ -47,6 +49,18 @@ class usersController extends AppController {
 
     public function logout() {
         $this->redirect($this->Auth->logout());
+    }
+
+    public function account_setting() {
+        $this->layout = 'admin';
+        $this->set('heading', 'My Account');
+        $this->set('subHeading', '');
+    }
+
+    public function change_password() {
+        $this->layout = 'admin';
+        $this->set('heading', 'Change Password');
+        $this->set('subHeading', '');
     }
 
 }

@@ -81,6 +81,7 @@ class CheckPermissionComponent extends Component {
         }
         $permissions = $this->getPermissionFromUserId($userId);
         $roles = $this->getRole($userId);
+//        var_dump($permissions);die();
         for($i=0; $i<count($roles); $i++){
             $permissions = array_merge($permissions, $this->getPermissionFromRoleId($roles[$i]['roles']['id']));
         }
