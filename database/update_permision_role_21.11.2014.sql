@@ -1,0 +1,10 @@
+UPDATE `demo_alpha`.`permissions` SET `name` = 'admin.dashboard' WHERE `permissions`.`id` = 2;
+INSERT INTO `demo_alpha`.`permissions` (`id`, `name`, `description`, `section`, `module`, `status`, `created`, `modified`) VALUES (NULL, 'roles.index', NULL, '', '', NULL, '', '');
+INSERT INTO `demo_alpha`.`permissions` (`id`, `name`, `description`, `section`, `module`, `status`, `created`, `modified`) VALUES (NULL, 'permissions.index', NULL, '', '', NULL, '', '');
+INSERT INTO `demo_alpha`.`permissions` (`id`, `name`, `description`, `section`, `module`, `status`, `created`, `modified`) VALUES (NULL, 'users.account_setting', NULL, '', '', NULL, '', '');
+INSERT INTO `demo_alpha`.`permissions` (`id`, `name`, `description`, `section`, `module`, `status`, `created`, `modified`) VALUES (NULL, 'users.change_password', NULL, '', '', NULL, '', '');
+INSERT INTO `demo_alpha`.`roles_permissions` (`id`, `role_id`, `permission_id`, `created`, `modified`) VALUES (NULL, '1', '1', '', '');
+INSERT INTO `demo_alpha`.`roles_permissions` (`id`, `role_id`, `permission_id`, `created`, `modified`) VALUES (NULL, '1', '4', '', '');
+INSERT INTO `demo_alpha`.`roles_permissions` (`id`, `role_id`, `permission_id`, `created`, `modified`) VALUES (NULL, '1', '5', '', '');
+INSERT INTO `demo_alpha`.`roles_permissions` (`id`, `role_id`, `permission_id`, `created`, `modified`) VALUES (NULL, '1', '6', '', '');
+INSERT INTO `demo_alpha`.`roles_permissions` (`id`, `role_id`, `permission_id`, `created`, `modified`) VALUES (NULL, '1', '7', '', '');
