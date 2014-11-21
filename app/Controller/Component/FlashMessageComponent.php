@@ -26,4 +26,5 @@ class FlashMessageComponent extends SessionComponent{
         }
         parent::setFlash($message, $element, $param, $key);
     }
+
 }
