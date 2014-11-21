@@ -63,3 +63,4 @@
 <!-- MAIN APPS JS -->
 <script src="<?php echo $webroot; ?>/js/apps.js"></script>
 <script src="<?php echo $webroot; ?>/js/demo-panel.js"></script>
+<script src="<?php echo $webroot; ?>/js/applycation.js"></script>

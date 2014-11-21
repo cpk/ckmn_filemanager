@@ -46,13 +46,18 @@
                 <div class="container-fluid">	
 
                     <!-- Begin page heading -->
-                    
+
                     <!-- End page heading -->
                     <?php echo $this->element('heading'); ?>
                     <!-- Begin breadcrumb -->
                     <?php echo $this->element('breadcrumb'); ?>
                     <!-- End breadcrumb -->
-                    
+                    <!--
+                    ===========================================================
+                    Placed at the end of the document so the pages load faster
+                    ===========================================================
+                    -->
+                    <?php echo $this->element('js'); ?>
                     <!-- Begin content -->
                     <?php echo $content_for_layout ?>
                     <!-- End content -->
@@ -84,11 +89,6 @@
         END PAGE
         ===========================================================
         -->
-        <!--
-        ===========================================================
-        Placed at the end of the document so the pages load faster
-        ===========================================================
-        -->
-        <?php echo $this->element('js'); ?>
+
     </body>
 </html>
