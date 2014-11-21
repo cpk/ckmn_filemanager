@@ -85,6 +85,7 @@ class CheckPermissionComponent extends Component {
         for($i=0; $i<count($roles); $i++){
             $permissions = array_merge($permissions, $this->getPermissionFromRoleId($roles[$i]['roles']['id']));
         }
+        if(is_array($permissions))
         foreach($permissions as $permission){
             $permissionName = $controller.'.'.$action;
             if($permission['permissions']['name'] == $permissionName){
