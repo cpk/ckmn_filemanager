@@ -45,14 +45,13 @@ class AppController extends Controller {
         'Auth' => array(
             'loginRedirect' => array('controller' => 'admin', 'action' => 'index'),
             'logoutRedirect' => array('controller' => 'users', 'action' => 'index')
-        )
+        ),
     );
     
     public function beforeFilter() {
         $this->Auth->authenticate = array('Custom');
         $this->currentUser = $this->Session->read('Auth.User');
         $this->set('currentUser', $this->currentUser);
-//        var_dump($this->CheckPermission->checkPermission($this->currentUser['id'], $this->params['controller'], $this->params['action']));
         if(!$this->CheckPermission->checkPermission($this->currentUser['id'], $this->params['controller'], $this->params['action'])){
             $this->redirect(array('controller' => 'home', 'action' => 'denied'));
         }
