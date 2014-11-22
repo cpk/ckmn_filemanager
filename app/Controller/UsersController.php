@@ -67,16 +67,15 @@ class usersController extends AppController {
         $this->loadModel('Permission');
         $this->loadModel('UsersPermission');
 
-        if (!$this->User->exists($id)) {
-            throw new NotFoundException(__('Invalid Role'));
-        }
-
         $this->User->id = $id;
 
         // Get data
         $user = $this->User->find('first', array(
             'conditions' => array('User.id' => $id),
         ));
+        if ($user == NULL) {
+            $this->redirect(array('controller' => 'users', 'action' => 'index'));
+        }
         $options = array(
             'conditions' => array('UsersRole.user_id' => $user['User']['id'])
         );
@@ -116,7 +115,8 @@ class usersController extends AppController {
             $permission = $this->Permission->find('first', $options);
             $permissions[] = $permission['Permission'];
         }
-        $permissions = $this->Common->subval_sort($permissions, 'name');
+        if(is_array($permissions))
+            $permissions = $this->Common->subval_sort($permissions, 'name');
         if ($user != NULL) {
             $this->set('user', $user);
             $this->set('roles', $roles);            
@@ -135,16 +135,15 @@ class usersController extends AppController {
         $this->loadModel('RolesPermission');
         $this->loadModel('Permission');
         $this->loadModel('UsersPermission');
-        if (!$this->Role->exists($id)) {
-            throw new NotFoundException(__('Invalid Role'));
-        }
 
         $this->User->id = $id;
-
         // Get data
         $user = $this->User->find('first', array(
             'conditions' => array('User.id' => $id),
         ));
+        if ($user == NULL) {
+            $this->redirect(array('controller' => 'users', 'action' => 'index'));
+        }
         $options = array(
             'conditions' => array('UsersRole.user_id' => $user['User']['id'])
         );
