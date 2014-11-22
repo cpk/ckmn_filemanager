@@ -5,7 +5,7 @@
         <table class="table table-striped table-hover" id="datatable-example">
             <thead class="the-box dark full">
                 <tr>
-                    <th class="center">#</th>
+                    <th class="center" width="30px">#</th>
                     <th>Name</th>
                     <th>Description</th>
                     <th style="display: none;">Permissions</th>

@@ -28,3 +28,4 @@
 <link href="<?php echo $webroot; ?>/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <link href="<?php echo $webroot; ?>/css/style.css" rel="stylesheet">
 <link href="<?php echo $webroot; ?>/css/style-responsive.css" rel="stylesheet">
+<link href="<?php echo $webroot; ?>/css/applycation.css" rel="stylesheet">

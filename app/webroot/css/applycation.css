@@ -1,0 +1,73 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 22, 2014, 6:03:05 PM
+    Author     : Khoa
+*/
+
+.float-left {
+    float: left;
+    margin-right: 10px;
+}
+
+.toolbar {
+    margin-bottom: 60px;
+}
+
+.clear {
+    clear: both;
+}
+
+.boxPermission {
+    width: 100%;
+    border: #0e90d2 solid 1px;
+    margin-top: 10px !important;    
+    margin-bottom: 30px !important;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    -ms-transition: .5s;
+    -o-transition: .5s;
+    transition: .5s;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.titlePermission {
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    -ms-transition: .5s;
+    -o-transition: .5s;
+    transition: .5s;
+    background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);
+    background-repeat: no-repeat;
+    color: #ffffff;
+    background-color: #2fa4e7;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.1);
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 500;
+    display: inline-block;
+    margin-bottom: 10px !important;
+    font-weight: normal;
+    text-align: center;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 8px 12px;
+    line-height: 0.5;
+    -webkit-user-select: none;
+    z-index: 100;
+    width: 150px;
+    float: left;
+    margin-top: -35px;
+    margin-left: 10px;
+    border-radius: 4px;
+}
+.radio input[type=radio], .radio-inline input[type=radio], .checkbox input[type=checkbox], .checkbox-inline input[type=checkbox] {
+margin-left: 0px !important; 
+}

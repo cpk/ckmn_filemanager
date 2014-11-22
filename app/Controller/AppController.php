@@ -46,6 +46,8 @@ class AppController extends Controller {
             'loginRedirect' => array('controller' => 'admin', 'action' => 'index'),
             'logoutRedirect' => array('controller' => 'users', 'action' => 'index')
         ),
+        'CSV',
+        'Common'
     );
     
     public function beforeFilter() {

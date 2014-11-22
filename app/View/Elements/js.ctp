@@ -69,4 +69,5 @@ $tmp_webroot = rtrim( $webroot, '/\\' );
 <script src="<?php echo $tmp_webroot; ?>/js/demo-panel.js"></script>
 <script src="<?php echo $tmp_webroot; ?>/js/applycation.js"></script>
 <script src="<?php echo $tmp_webroot; ?>/js/madnh_app.js"></script>
+<script type="text/javascript"> var webroot = '<?php echo $webroot ?>'; </script>
 

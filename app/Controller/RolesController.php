@@ -45,7 +45,6 @@ class RolesController extends AppController {
             $role['Role']['Permission'] = $permissions;
             $roles[$key] = $role;
         }
-//        var_dump($roles);die();
         $this->set('roles', $roles);
     }
     
