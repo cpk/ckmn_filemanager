@@ -33,6 +33,13 @@
                         </a>
                     </li>
 
+	                <li>
+		                <a href="<?php echo $this->Html->url(array('controller' => 'filemanagers', 'action' => 'index')); ?>">
+			                <span class="hidden-xs"><i class="fa fa-folder"></i></span>
+			                <span class="hidden-xs">&#32;&#32;File Manager</span></a>
+		                </a>
+	                </li>
+
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

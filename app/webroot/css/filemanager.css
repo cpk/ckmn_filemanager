@@ -1,0 +1,200 @@
+#myfiles_wrap{
+    background-color: #fff;
+}
+
+
+/*
+* Empty Folder Upload Drag & Drop
+*/
+#emptyfolder_upload {
+    background: url('/img/filemanager/drag_drop.png') no-repeat scroll center 166px transparent;
+    text-align: center;
+    margin: 45px 0px 0px;
+    border: 5px dashed rgba(148, 173, 174, 1);
+    position: relative;
+    border-radius: 5px;
+    min-height: 410px;
+    font-size: 18px;
+    display: none;
+}
+
+#emptyfolder_upload .dragFileContainer {
+    width: 550px;
+    height: 150px;
+    position: absolute;
+    top: 165px;
+    left: 50%;
+    margin-left: -275px;
+}
+
+.dragFile {
+    background: url('/img/filemanager/dragFile.png') no-repeat scroll center center transparent;
+    width: 58px;
+    height: 46px;
+    position: absolute;
+    opacity: 0;
+    left: 430px;
+    top: 70px;
+    animation: 5s ease 0s normal none infinite running dragFile;
+}
+
+@keyframes dragFile {
+    0% {
+        left: 430px;
+        opacity: 0;
+    }
+
+    25% {
+        left: 400px;
+        opacity: 1;
+    }
+
+    50% {
+        left: 130px;
+        opacity: 1;
+    }
+
+    100% {
+        left: 130px;
+        opacity: 0;
+    }
+}
+
+/* Firefox */
+@-moz-keyframes dragFile {
+    0% {
+        left: 430px;
+        opacity: 0;
+    }
+
+    25% {
+        left: 400px;
+        opacity: 1;
+    }
+
+    50% {
+        left: 130px;
+        opacity: 1;
+    }
+
+    100% {
+        left: 130px;
+        opacity: 0;
+    }
+
+}
+
+/* Safari and Chrome */
+@-webkit-keyframes dragFile {
+    0% {
+        left: 430px;
+        opacity: 0;
+    }
+
+    25% {
+        left: 400px;
+        opacity: 1;
+    }
+
+    50% {
+        left: 130px;
+        opacity: 1;
+    }
+
+    100% {
+        left: 130px;
+        opacity: 0;
+    }
+
+}
+
+/* Opera */
+@-o-keyframes dragFile {
+    0% {
+        left: 430px;
+        opacity: 0;
+    }
+
+    25% {
+        left: 400px;
+        opacity: 1;
+    }
+
+    50% {
+        left: 130px;
+        opacity: 1;
+    }
+
+    100% {
+        left: 130px;
+        opacity: 0;
+    }
+
+}
+
+/*
+*  End Empty Folder Upload Drag & Drop
+*/
+
+/*
+* Loading panel
+*/
+
+#loading_content {
+    background: url('/img/filemanager/loading_content.gif') no-repeat scroll center center transparent;
+    margin: 45px 0px 0px;
+    position: relative;
+    min-height: 410px;
+    display: none;
+}
+
+
+#myfiles_wrap.loading #loading_content{
+    display: block;
+}
+#myfiles_wrap.empty #emptyfolder_upload{
+    display: block;
+}
+#myfiles_wrap.loading .table-contents, #myfiles_wrap.empty .table-contents{
+    display: none;
+}
+
+/*
+* End Loading panel
+*/
+
+/*
+* Items
+*/
+
+.folder-item span.thumbnail{
+    display: inline-block;
+    background: url('/img/filemanager/archive-v3.png') no-repeat -3px 0;
+    width: 27px; height: 34px;
+}
+
+
+
+
+/*
+* End Items
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
