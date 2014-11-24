@@ -1,5 +1,21 @@
-
-<script src="<?php echo $webroot; ?>/js/role.js"></script>
+<script src="<?php echo $webroot; ?>js/role.js"></script>
+<div class="toolbar">
+    <div class="float-left">
+        <a href="<?php echo $this->Html->url(array('controller' => 'roles', 'action' => 'create')); ?>">
+            <i class="fa fa-plus"></i> Create
+        </a>
+    </div>
+    <div class="float-left">
+        <a href="<?php echo $this->Html->url(array('controller' => 'roles', 'action' => 'export')); ?>">
+            <i class="fa fa-share-square-o"></i> Export
+        </a>
+    </div>
+    <div class="float-left">
+        <a href="#" onclick="return printElem('.table', 'List role');">
+            <i class="fa fa-print"></i> Print
+        </a>
+    </div>
+</div>
 <div class="the-box">
     <div class="table-responsive">
         <table class="table table-striped table-hover" id="datatable-example">
