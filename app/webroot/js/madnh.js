@@ -215,7 +215,7 @@
         return Math.max(min, Math.min(variable, max));
     };
     MaDnh.Helper.progressAjaxAction = function (data) {
-        if (MaDnh.Helper.isSystemJSON(data)) {
+        if (MaDnh.Helper.isProcessResult(data)) {
             var actions = data.getActions();
             var i;
             console.log(actions);

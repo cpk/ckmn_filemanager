@@ -34,7 +34,7 @@
                     </li>
 
 	                <li>
-		                <a href="<?php echo $this->Html->url(array('controller' => 'filemanagers', 'action' => 'index')); ?>">
+		                <a href="<?php echo $this->Html->url(array('controller' => 'fileManagers', 'action' => 'index')); ?>">
 			                <span class="hidden-xs"><i class="fa fa-folder"></i></span>
 			                <span class="hidden-xs">&#32;&#32;File Manager</span></a>
 		                </a>

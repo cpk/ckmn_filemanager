@@ -9,7 +9,6 @@
 #emptyfolder_upload {
     background: url('/img/filemanager/drag_drop.png') no-repeat scroll center 166px transparent;
     text-align: center;
-    margin: 45px 0px 0px;
     border: 5px dashed rgba(148, 173, 174, 1);
     position: relative;
     border-radius: 5px;
