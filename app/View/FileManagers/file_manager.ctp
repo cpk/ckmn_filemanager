@@ -220,7 +220,7 @@
 						</tbody>
 					</table>
 
-					<div class="drag_drop">
+					<div id="drag_drop" style="margin: 10px auto; text-align: center; padding: 50px 0px; border: 5px dashed #aaa;">
 						<p>Kéo và thả các tập tin vào đây để tải lên</p>
 					</div>
 
@@ -238,7 +238,7 @@
 							<button class="btn btn-inverse empty_list" title="Xóa danh sách" style="display:none;">
 								<span class="fa fa-refresh"></span>
 							</button>
-							<button class="btn btn-inverse stop_upload">
+							<button class="btn btn-inverse stop_upload" data-dismiss="modal">
 								<span>Dừng tải lên</span>
 							</button>
 							<button class="btn btn-primary start_upload">

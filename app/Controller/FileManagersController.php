@@ -196,6 +196,7 @@ class FileManagersController extends AppController {
 			$parent_id = 0;
 		}
 
+		$result->addData('files', $_FILES);
 		if ( ! $result->hasWarning() ) {
 			$upload    = ! empty( $_FILES[ $this->options['param_name'] ] ) ? $_FILES[ $this->options['param_name'] ] : null;
 			$file_name = ! empty( $_POST["name"] ) ? $_POST["name"] : null;

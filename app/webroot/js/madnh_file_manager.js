@@ -50,7 +50,7 @@
             file_item_name: 'uploader_item',
             item_list_selector: '.item_list',
             add_file_selector: 'add-files',
-            drag_drop_selector: '.drag_drop',
+            drag_drop_selector: 'drag_drop',
             start_selector: ".start_upload",
             empty_list_selector: ".empty_list",
             stop_selector: ".stop_upload",
@@ -191,12 +191,12 @@
 
 
         if (option_template.drag_drop_selector) {
-            option.drop_element = uploader_id + ' ' + option_template.drag_drop_selector;
+            option.drop_element = option_template.drag_drop_selector;
         }
 
 
         if (option_template.drag_drop_selector) {
-            option.drop_element = option.id + ' ' + option_template.drag_drop_selector;
+            option.drop_element = option_template.drag_drop_selector;
         }
 
         option.file_data_name = uploader_config.file_data_name;
@@ -272,7 +272,7 @@
             if (option_template.file_item_name && MaDnh.Template.hasTemplate(option_template.file_item_name)) {
                 fileList.append(MaDnh.Template.render(option_template.file_item_name, file));
                 $('#' + option.id + ' ' + option_template.item_list_selector).show();
-                $('#' + option.id + ' ' + option_template.drag_drop_selector).hide();
+                $('#' + option.id + ' #' + option_template.drag_drop_selector).hide();
                 handleStatus(file, option);
                 $('#' + file.id + ' td.status button').click(function (e) {
                     $('#' + option.id + ' #' + file.id).remove();
@@ -289,7 +289,7 @@
         updateTotalProgress(uploader, option, option_template);
 
         if (!uploader.files.length && uploader.features.dragdrop && uploader.settings.dragdrop) {
-            $('#' + option.id + ' ' + option_template.drag_drop_selector).show();
+            $('#' + option.id + ' #' + option_template.drag_drop_selector).show();
         }
     }
 
@@ -353,7 +353,7 @@
                 }
                 e.preventDefault();
             });
-            $('#' + option.id + ' ' + option_template.drag_drop_selector).click(function (e) {
+            $('#' + option.id + ' #' + option_template.drag_drop_selector).click(function (e) {
                 $('#' + option_template.add_file_selector).trigger('click');
                 e.preventDefault();
             });
@@ -368,7 +368,7 @@
         uploader.bind("PostInit", function (up) {
             console.log('PostInit');
             if (option.dragdrop && up.features.dragdrop) {
-                $('#' + option.id + ' ' + option_template.drag_drop_selector).show();
+                $('#' + option.id + ' #' + option_template.drag_drop_selector).show();
             }
         });
         uploader.bind("UploadComplete", function (up, files) {
@@ -437,11 +437,34 @@
 
 
         uploader.bind('FileUploaded', function (up, file, response) {
+            console.log('FileUploaded', file, response);
             response.response = $.parseJSON(response.response);
-            if (response.response.result == 'error') {
-                file.status = plupload.FAILED;
-                file.error = response.response.message;
+            var result = new MaDnh.ProcessResult();
+            if(MaDnh.Helper.isSystemJSON(response.response)){
+                result.addData('json_result_info', response.response.info);
+
+                //import data
+                __.each(response.response.process_data, function (value, key) {
+                    result.addData(key, value);
+                });
+                //import info
+                __.each(response.response.process_info, function (value) {
+                    result.addInfo(value.content, value.type, value.code);
+                });
+                //import action
+                __.each(response.response.process_action, function (value) {
+                    result.addAction(value);
+                });
+
+                if (result.isError()) {
+                    file.status = plupload.FAILED;
+                    file.error = __.first(result.getInfos())['content'];
+                }
             }
+
+            console.log('result', result);
+
+
             handleStatus(file, option);
             if (!__.isNull(option.uploaded_callback)) {
                 MaDnh.Helper.callFunctionDynamic(option.uploaded_callback, file);
@@ -478,24 +501,14 @@
         MaDnhFileManager.uploaders[uploader_id] = uploader;
         uploader.init();
         $('#' + uploader_id).modal({show: true, backdrop: 'static', keyboard: false});
+        $('#' + uploader_id).on('hidden.bs.modal', function (e) {
+            uploader.unbindAll();
+            uploader.destroy();
+            MaDnhFileManager.uploaders = __.omit(MaDnhFileManager.uploaders,uploader_id);
+        })
     };
 
-    MaDnhFileManager.loadUploader3 = function () {
-        var dialog = new MaDnh.BootstrapDialog();
-        var uploader_id = 'uploader_' + MaDnh.Helper.randomString(10);
-        var uploader, option;
 
-        option = createOption(uploader_id);
-        //console.log('option', option);
-
-        uploader = new plupload.Uploader(option);
-        uploader = uploaderBinds(uploader, option);
-        MaDnhFileManager.uploaders[uploader_id] = uploader;
-        MaDnh.Helper.formDialog(createUploaderTemplate(option));
-        uploader.init();
-
-
-    }
 
 
 }).call(this);
