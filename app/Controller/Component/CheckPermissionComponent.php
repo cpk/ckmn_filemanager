@@ -75,6 +75,8 @@ class CheckPermissionComponent extends Component {
     }
     
     public function checkPermission($userId = null, $controller, $action){
+        //full access
+        return true;
         if ($userId == null) {
             $user = $this->currentUser;
             $userId = $user['id'];
@@ -96,6 +98,8 @@ class CheckPermissionComponent extends Component {
     }
 
     public function checkAccessFull($fullAccess, $controller, $action){
+        //full access
+        return true;
         $access = false;
         foreach($fullAccess as $permission){
             $permissionName = $controller.'.'.$action;
