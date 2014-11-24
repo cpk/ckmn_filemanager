@@ -11,24 +11,23 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Dumping structure for table demo_alpha.files
-DROP TABLE IF EXISTS `files`;
 CREATE TABLE IF NOT EXISTS `files` (
-  `file_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `file_name` text NOT NULL,
   `file_code` varchar(200) NOT NULL,
   `file_password` varchar(32) NOT NULL,
   `file_size` int(11) NOT NULL DEFAULT '0',
   `file_create_time` int(11) NOT NULL,
   `file_downloads` int(11) NOT NULL DEFAULT '0',
-  `file_folder_ower_id` int(11) NOT NULL DEFAULT '0',
-  `file_user_ower_id` int(11) NOT NULL,
-  PRIMARY KEY (`file_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
+  `folder_id` int(11) NOT NULL DEFAULT '0',
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- Dumping data for table demo_alpha.files: 64 rows
 DELETE FROM `files`;
 /*!40000 ALTER TABLE `files` DISABLE KEYS */;
-INSERT INTO `files` (`file_id`, `file_name`, `file_code`, `file_password`, `file_size`, `file_create_time`, `file_downloads`, `file_folder_ower_id`, `file_user_ower_id`) VALUES
+INSERT INTO `files` (`id`, `file_name`, `file_code`, `file_password`, `file_size`, `file_create_time`, `file_downloads`, `folder_id`, `user_id`) VALUES
 	(1, 'test1.doc', '', '', 1220, 2231231, 20, 26, 15),
 	(2, 'test2', '', '', 100, 2231231, 20, 27, 15),
 	(3, 'sefsdf', '', '', 342, 232132, 23, 33, 15),
@@ -97,21 +96,20 @@ INSERT INTO `files` (`file_id`, `file_name`, `file_code`, `file_password`, `file
 
 
 -- Dumping structure for table demo_alpha.folders
-DROP TABLE IF EXISTS `folders`;
 CREATE TABLE IF NOT EXISTS `folders` (
-  `folder_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `folder_name` varchar(200) CHARACTER SET utf8 NOT NULL,
-  `folder_user_owner_id` int(11) NOT NULL,
-  `folder_parent_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `folder_id` int(11) NOT NULL,
   `folder_size` bigint(11) NOT NULL DEFAULT '0',
   `folder_create_time` int(11) NOT NULL,
-  PRIMARY KEY (`folder_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
--- Dumping data for table demo_alpha.folders: ~94 rows (approximately)
+-- Dumping data for table demo_alpha.folders: ~102 rows (approximately)
 DELETE FROM `folders`;
 /*!40000 ALTER TABLE `folders` DISABLE KEYS */;
-INSERT INTO `folders` (`folder_id`, `folder_name`, `folder_user_owner_id`, `folder_parent_id`, `folder_size`, `folder_create_time`) VALUES
+INSERT INTO `folders` (`id`, `folder_name`, `user_id`, `folder_id`, `folder_size`, `folder_create_time`) VALUES
 	(26, 'Cái gì thế này???', 15, 0, 0, 1363261205),
 	(27, 'fse', 15, 26, 0, 1363261217),
 	(28, 'fse', 15, 0, 0, 1363261217),
@@ -205,12 +203,19 @@ INSERT INTO `folders` (`folder_id`, `folder_name`, `folder_user_owner_id`, `fold
 	(116, 'awf', 15, 111, 0, 1416593255),
 	(117, 'asfaw', 15, 111, 0, 1416593270),
 	(118, 'rtee', 15, 113, 0, 1416594262),
-	(119, 'thruru', 15, 118, 0, 1416594293);
+	(119, 'thruru', 15, 118, 0, 1416594293),
+	(120, '', 0, 0, 0, 0),
+	(121, 'hihi', 1, 0, 0, 0),
+	(122, 'sasfsfaf', 1, 0, 0, 1416799125),
+	(123, 'dfsdg egw gw', 1, 123, 0, 1416799242),
+	(124, 'Tôi bị điên', 1, 0, 0, 1416800160),
+	(125, '<b>asdwa</b>', 1, 0, 0, 1416803412),
+	(126, 'Tao bị khùng', 1, 0, 0, 1416803694),
+	(127, 'Chào các cậu', 1, 0, 0, 1416867966);
 /*!40000 ALTER TABLE `folders` ENABLE KEYS */;
 
 
 -- Dumping structure for table demo_alpha.permissions
-DROP TABLE IF EXISTS `permissions`;
 CREATE TABLE IF NOT EXISTS `permissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
@@ -221,9 +226,9 @@ CREATE TABLE IF NOT EXISTS `permissions` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
--- Dumping data for table demo_alpha.permissions: ~21 rows (approximately)
+-- Dumping data for table demo_alpha.permissions: ~22 rows (approximately)
 DELETE FROM `permissions`;
 /*!40000 ALTER TABLE `permissions` DISABLE KEYS */;
 INSERT INTO `permissions` (`id`, `name`, `description`, `section`, `module`, `actived`, `created`, `modified`) VALUES
@@ -245,14 +250,15 @@ INSERT INTO `permissions` (`id`, `name`, `description`, `section`, `module`, `ac
 	(16, 'users.show', NULL, '', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 	(17, 'users.edit', NULL, '', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 	(18, 'users.create', NULL, '', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-	(19, 'fileManagers.folderItems', NULL, '', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-	(20, 'fileManagers.getFolderTree', NULL, '', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-	(21, 'fileManagers.createFolder', NULL, '', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+	(19, 'FileManagers.folderItems', NULL, '', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+	(20, 'FileManagers.getFolderTree', NULL, '', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+	(21, 'FileManagers.createFolder', NULL, '', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+	(22, 'FileManagers.getFileManager', NULL, '', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+	(23, 'FileManagers.upload', NULL, '', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `permissions` ENABLE KEYS */;
 
 
 -- Dumping structure for table demo_alpha.roles
-DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -272,7 +278,6 @@ INSERT INTO `roles` (`id`, `name`, `level`, `description`, `actived`) VALUES
 
 
 -- Dumping structure for table demo_alpha.roles_permissions
-DROP TABLE IF EXISTS `roles_permissions`;
 CREATE TABLE IF NOT EXISTS `roles_permissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) NOT NULL,
@@ -280,9 +285,9 @@ CREATE TABLE IF NOT EXISTS `roles_permissions` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
--- Dumping data for table demo_alpha.roles_permissions: ~21 rows (approximately)
+-- Dumping data for table demo_alpha.roles_permissions: ~22 rows (approximately)
 DELETE FROM `roles_permissions`;
 /*!40000 ALTER TABLE `roles_permissions` DISABLE KEYS */;
 INSERT INTO `roles_permissions` (`id`, `role_id`, `permission_id`, `created`, `modified`) VALUES
@@ -306,12 +311,13 @@ INSERT INTO `roles_permissions` (`id`, `role_id`, `permission_id`, `created`, `m
 	(18, 1, 18, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 	(19, 1, 19, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 	(20, 1, 20, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-	(21, 1, 21, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+	(21, 1, 21, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+	(22, 1, 22, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+	(23, 1, 23, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `roles_permissions` ENABLE KEYS */;
 
 
 -- Dumping structure for table demo_alpha.users
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL,
@@ -333,7 +339,6 @@ INSERT INTO `users` (`id`, `username`, `password`, `actived`, `first_name`, `las
 
 
 -- Dumping structure for table demo_alpha.users_permissions
-DROP TABLE IF EXISTS `users_permissions`;
 CREATE TABLE IF NOT EXISTS `users_permissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -350,7 +355,6 @@ DELETE FROM `users_permissions`;
 
 
 -- Dumping structure for table demo_alpha.users_roles
-DROP TABLE IF EXISTS `users_roles`;
 CREATE TABLE IF NOT EXISTS `users_roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
