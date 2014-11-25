@@ -95,8 +95,10 @@ class PermissionsController extends AppController {
             $this->Permission->saveField('section', $this->request->data['Permission']['section']);
             $this->Permission->saveField('module', $this->request->data['Permission']['module']);
             $this->Permission->saveField('actived',$this->request->data['Permission']['actived']);
-            $this->Permission->saveField('modified',$now->format('Y-m-d H:i:s'));
-            $this->redirect(array('action' => 'show', $this->Permission->id));
+            $this->Permission->saveField('modified',$now->format('Y-m-d H:i:s'));D
+            if ($this->Permission->save()) {
+                 $this->redirect(array('action' => 'show', $this->Permission->id));
+             }
         } else {
             // $this->FlashMessage->error(__('The Role could not be saved. Please, try again.'));
         }
