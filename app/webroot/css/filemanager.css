@@ -1,7 +1,6 @@
-#myfiles_wrap{
+#myfiles_wrap {
     background-color: #fff;
 }
-
 
 /*
 * Empty Folder Upload Drag & Drop
@@ -147,14 +146,15 @@
     display: none;
 }
 
+#myfiles_wrap.loading #loading_content {
+    display: block;
+}
 
-#myfiles_wrap.loading #loading_content{
+#myfiles_wrap.empty #emptyfolder_upload {
     display: block;
 }
-#myfiles_wrap.empty #emptyfolder_upload{
-    display: block;
-}
-#myfiles_wrap.loading .table-contents, #myfiles_wrap.empty .table-contents{
+
+#myfiles_wrap.loading .table-contents, #myfiles_wrap.empty .table-contents {
     display: none;
 }
 
@@ -166,19 +166,117 @@
 * Items
 */
 
-.folder-item span.thumbnail{
+.folder-item span.thumbnail {
     display: inline-block;
     background: url('/img/filemanager/archive-v3.png') no-repeat -3px 0;
-    width: 27px; height: 34px;
+    width: 27px;
+    height: 34px;
 }
-
-
-
 
 /*
 * End Items
 */
 
+/*
+Folder Nav
+*/
+
+/* fOLDER NAV */
+#folder_nav {
+    overflow: auto;
+    padding-left: 7px;
+    background: #FFF;
+}
+
+#folder_nav li {
+    margin-left: 12px;
+    position: relative;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    background: #FFF;
+}
+
+#folder_nav li > ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+#folder_nav li > a {
+    background: url("/img/filemanager/folder-sm.png") no-repeat scroll 17px 4px transparent;
+    border-bottom: 1px solid #FFFFFF;
+    border-top: 1px solid #FFFFFF;
+    color: #4F504F;
+    display: block;
+    overflow: hidden;
+    padding: 2px 0 2px 45px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#folder_nav li a:hover {
+    background-color: #f0f0f0 !important;
+}
+
+#folder_nav li a.folder_arrow {
+    background: url("/img/filemanager/smArrow.png") no-repeat transparent;
+    border: medium none;
+    display: block;
+    height: 12px;
+    left: 2px;
+    opacity: 0.4;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    top: 8px;
+    width: 12px;
+}
+
+#folder_nav li a.folder_name {
+
+    background: url("/img/filemanager/folder-sm.png") no-repeat scroll 17px 4px transparent;
+    border-bottom: 1px solid #FFFFFF;
+    border-top: 1px solid #FFFFFF;
+    color: #4F504F;
+    display: block;
+    font-size: 14px;
+    overflow: hidden;
+    padding: 2px 0 2px 45px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.expanded .folder_arrow {
+    background-position: -13px -3px !important;
+}
+
+.collapsed .folder_arrow {
+    background-position: -3px -1px !important;
+}
+
+.expanded > ul {
+    display: block;
+}
+
+.collapsed > ul {
+    display: none;
+}
+
+#folder_nav li.curent {
+    background: #FFF;
+}
+
+#folder_nav li.curent > a {
+    font-weight: bold;
+    border: none;
+}
+
+#folder_nav li.curent > a.folder_name {
+    background: url("/img/filemanager/folder-sm-active.png") no-repeat scroll 17px 4px transparent;
+    background-color: #f0f0f0;
+    border-top: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
+}
 
 
 

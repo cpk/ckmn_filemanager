@@ -13,10 +13,12 @@
     var previousMaDnhFileManager = root.MaDnhFileManager;
     var __ = _;
 
-    MaDnhFileManager.uploaders = {};
+    MaDnhFileManager.uploader = null;
     MaDnhFileManager._config = {
         fetch_item_url: '',
         create_folder_url: '',
+        folder_tree_url: '',
+        folder_tree_selector: '#folder_tree',
         container_selector: '#myfiles_wrap',
         folder_content_holder: '#folder_items',
         loading_selector: '#loading_content',
@@ -100,7 +102,7 @@
                     console.log(items);
                     if (__.size(items)) {
                         __.each(items, function (item) {
-                            var template_name = 'folder_content2_';
+                            var template_name = 'folder_content_';
                             if (item.item_type && MaDnh.Template.hasTemplate(template_name + item.item_type)) {
                                 template_name += item.item_type;
                             } else {
@@ -205,7 +207,7 @@
         option.headers = uploader_config.headers;
         option.max_retries = uploader_config.max_retries;
         option.multipart = uploader_config.multipart;
-        option.multipart_params = uploader_config.send_data;
+        option.multipart_params = __.extend({parent_id: MaDnhFileManager._config.current_folder}, uploader_config.send_data);
         option.multi_selection = uploader_config.multi_selection;
         option.silverlight_xap_url = uploader_config.silverlight_xap_url;
         option.unique_names = uploader_config.unique_names;
@@ -378,7 +380,7 @@
             if (option_template.progress_selector) {
                 $('#' + option.id + ' ' + option_template.progress_selector).hide();
             }
-            $('#' + option.id + ' .close-uploader'  ).show();
+            $('#' + option.id + ' .close-uploader').show();
         });
 
         uploader.bind("Error", function (up, err) {
@@ -440,7 +442,7 @@
             console.log('FileUploaded', file, response);
             response.response = $.parseJSON(response.response);
             var result = new MaDnh.ProcessResult();
-            if(MaDnh.Helper.isSystemJSON(response.response)){
+            if (MaDnh.Helper.isSystemJSON(response.response)) {
                 result.addData('json_result_info', response.response.info);
 
                 //import data
@@ -489,26 +491,54 @@
         return uploader;
     }
 
+    function createFolderTree(tree) {
+        return MaDnh.Template.render('folder_nav_item_nested', tree);
+    }
+
+    function updateTree(template) {
+        $(MaDnhFileManager._config.folder_tree_selector).html(template);
+    }
+
     MaDnhFileManager.loadUploader = function () {
         var uploader_id = 'uploader_' + MaDnh.Helper.randomString(10);
-        var uploader, option;
+        var option;
 
         option = createOption(uploader_id);
         //console.log('option', option);
         $('body').append(createUploaderTemplate(option));
-        uploader = new plupload.Uploader(option);
-        uploader = uploaderBinds(uploader, option);
-        MaDnhFileManager.uploaders[uploader_id] = uploader;
-        uploader.init();
+        if (__.isNull(MaDnhFileManager.uploader)) {
+            MaDnhFileManager.uploader = new plupload.Uploader(option);
+        }
+        MaDnhFileManager.uploader = uploaderBinds(MaDnhFileManager.uploader, option);
+
+        MaDnhFileManager.uploader.init();
         $('#' + uploader_id).modal({show: true, backdrop: 'static', keyboard: false});
         $('#' + uploader_id).on('hidden.bs.modal', function (e) {
-            uploader.unbindAll();
-            uploader.destroy();
-            MaDnhFileManager.uploaders = __.omit(MaDnhFileManager.uploaders,uploader_id);
+            MaDnhFileManager.uploader.unbindAll();
+            MaDnhFileManager.uploader.destroy();
+            MaDnhFileManager.uploaders = __.omit(MaDnhFileManager.uploaders, uploader_id);
         })
     };
 
+    MaDnhFileManager.loadFolderTree = function () {
+        var ajax = new MaDnh.AJAXWorker();
 
+        ajax.option({
+            requestPath: MaDnhFileManager._config.folder_tree_url,
+
+            successFunc: function (data) {
+                if (MaDnh.Helper.isProcessResult(data)) {
+                    updateTree(createFolderTree(data.getData('tree')));
+                } else {
+                    updateTree('');
+                }
+            },
+            errorFunc: function () {
+                updateTree('');
+            }
+        });
+        ajax.request();
+    }
 
 
 }).call(this);

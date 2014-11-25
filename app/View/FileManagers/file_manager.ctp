@@ -1,173 +1,127 @@
-<div class="well" style="background-color:#fff;">
-	<div class="btn-toolbar">
-		<div class="btn-group">
-			<button type="button" class="btn btn-danger" id="upload_button" data-toggle="tooltip"
-			        title="Upload dữ liệu" onclick="MaDnhFileManager.loadUploader()">
-				<i class="fa fa-upload"></i> Upload
-			</button>
+<div class="row">
+	<div class="span3" id="folder_nav">
 
-		</div>
-		<div class="btn-group">
-			<button type="button" class="btn btn-success" data-toggle="tooltip" title="Tạo thư mục"
-			        onclick="MaDnhFileManager.createFolder()">
-				<i class="fa fa-plus"></i> Tạo thư mục
-			</button>
-
-		</div>
-
-		<div class="btn-group" data-toggle="tooltip" title="Load lại dữ liệu">
-			<button type="button" class="btn btn-info" onclick="MaDnhFileManager.loadItems()">
-				<i class="fa fa-refresh"></i>
-			</button>
-		</div>
-
-		<div class="btn-group">
-			<button type="button" class="btn btn-info" data-toggle="tooltip" title="Sao chép">
-				<i class="fa fa-copy"></i>
-			</button>
-			<button type="button" class="btn btn-info" data-toggle="tooltip" title="Cắt">
-				<i class="fa fa-cut"></i>
-			</button>
-			<button type="button" class="btn btn-info" data-toggle="tooltip" title="Dán">
-				<i class="fa fa-paste"></i>
-			</button>
-			<button type="button" class="btn btn-danger" data-toggle="tooltip" title="Xóa">
-				<i class="fa fa-trash-o"></i>
-			</button>
-		</div>
-		<div class="btn-group">
-			<button type="button" class="btn btn-info" data-toggle="tooltip" title="Chia sẻ">
-				<i class="fa fa-send-o"></i>
-			</button>
-		</div>
-
-
-		<div class="btn-group">
-			<button type="button" class="btn btn-info">Action</button>
-			<button type="button" class="btn btn-info active dropdown-toggle" data-toggle="dropdown">
-				<span class="caret"></span>
-				<span class="sr-only">Toggle Dropdown</span>
-			</button>
-			<ul class="dropdown-menu info" role="menu">
-				<li><a href="#fakelink">Tên</a></li>
-				<li><a href="#fakelink">Kích thước</a></li>
-			</ul>
-		</div>
-	</div>
-</div>
-<div class="well" id="myfiles_wrap">
-	<!-- Slide Right -->
-	<div id="loading_content" class="text-center"></div>
-	<!-- End Empty data -->
-	<table class="table table-th-block table-contents">
-		<thead>
-		<tr>
-			<th width="20">
-				<input type="checkbox" id="check_all"/>
-			</th>
-			<th>Tên</th>
-			<th>Size</th>
-			<th>Date</th>
-			<th>Action</th>
-		</tr>
-		</thead>
-		<tbody id="folder_items">
-
-		</tbody>
-
-
-	</table>
-	<div id="emptyfolder_upload" class="text-center">
-		<!-- Empty data -->
-		<h3>Thư mục này hiện rỗng</h3>
-		<h4>Tải lên hay tạo dữ liệu mới bằng menu "Thêm tập tin"
-			<br/>
-			hoặc kéo và thả dữ liệu từ máy tính của bạn. </h4>
-
-		<div class="emptyArrow"></div>
-		<div class="dragFileContainer">
-			<div class="dragFile"></div>
-		</div>
 	</div>
 
+	<div class="col-xs-12 col-sm-3" id="folder_nav">
+		<!-- Navigation folder -->
+		<ul class="unstyled">
+			<li id="myfiles" class="expanded curent" data-folderid="0">
+				<a href="javascript:void(0);" class="folder_arrow"></a>
+				<a href="javascript:void(0);" class="folder_name" title="My Files">My Files</a>
+				<ul class="unstyled" id="folder_tree"></ul>
+			</li>
+
+		</ul>
+	</div>
+	<!--	Folder items-->
+	<div class="col-xs-12 col-sm-9">
+		<div class="well" style="background-color:#fff;">
+			<div class="btn-toolbar">
+				<div class="btn-group">
+					<button type="button" class="btn btn-danger" id="upload_button" data-toggle="tooltip"
+					        title="Upload dữ liệu" onclick="MaDnhFileManager.loadUploader()">
+						<i class="fa fa-upload"></i> Upload
+					</button>
+
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn btn-success" data-toggle="tooltip" title="Tạo thư mục"
+					        onclick="MaDnhFileManager.createFolder()">
+						<i class="fa fa-plus"></i> Tạo thư mục
+					</button>
+
+				</div>
+
+				<div class="btn-group" data-toggle="tooltip" title="Load lại dữ liệu">
+					<button type="button" class="btn btn-info" onclick="MaDnhFileManager.loadItems()">
+						<i class="fa fa-refresh"></i>
+					</button>
+				</div>
+
+				<div class="btn-group">
+					<button type="button" class="btn btn-info" data-toggle="tooltip" title="Sao chép">
+						<i class="fa fa-copy"></i>
+					</button>
+					<button type="button" class="btn btn-info" data-toggle="tooltip" title="Cắt">
+						<i class="fa fa-cut"></i>
+					</button>
+					<button type="button" class="btn btn-info" data-toggle="tooltip" title="Dán">
+						<i class="fa fa-paste"></i>
+					</button>
+					<button type="button" class="btn btn-danger" data-toggle="tooltip" title="Xóa">
+						<i class="fa fa-trash-o"></i>
+					</button>
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn btn-info" data-toggle="tooltip" title="Chia sẻ">
+						<i class="fa fa-send-o"></i>
+					</button>
+				</div>
+
+
+				<div class="btn-group">
+					<button type="button" class="btn btn-info">Action</button>
+					<button type="button" class="btn btn-info active dropdown-toggle" data-toggle="dropdown">
+						<span class="caret"></span>
+						<span class="sr-only">Toggle Dropdown</span>
+					</button>
+					<ul class="dropdown-menu info" role="menu">
+						<li><a href="#fakelink">Tên</a></li>
+						<li><a href="#fakelink">Kích thước</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="well" id="myfiles_wrap">
+			<!-- Slide Right -->
+			<div id="loading_content" class="text-center"></div>
+			<!-- End Empty data -->
+			<table class="table table-th-block table-contents">
+				<thead>
+				<tr>
+					<th width="20">
+						<input type="checkbox" id="check_all"/>
+					</th>
+					<th>Tên</th>
+					<th>Size</th>
+					<th>Date</th>
+					<th>Action</th>
+				</tr>
+				</thead>
+				<tbody id="folder_items">
+
+				</tbody>
+
+
+			</table>
+			<div id="emptyfolder_upload" class="text-center">
+				<!-- Empty data -->
+				<h3>Thư mục này hiện rỗng</h3>
+				<h4>Tải lên hay tạo dữ liệu mới bằng menu "Thêm tập tin"
+					<br/>
+					hoặc kéo và thả dữ liệu từ máy tính của bạn. </h4>
+
+				<div class="emptyArrow"></div>
+				<div class="dragFileContainer">
+					<div class="dragFile"></div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!--	End Folder items-->
 </div>
 
 
 <script id="template_folder_content_item" type="text/x-handlebars-template">
-	<li class="cf" data-created="{{item_create_time}}" data-downloads="{{item_downloads}}" data-size="{{item_size}}"
-	    data-type="{{item_type}}" data-id="{{item_id}}" title="Tập tin {{{item_name}}}">
-		<a href="?{{item_id}}" class="thumbnailClickArea" title="{{{item_name}}}" target="_blank"></a>
-
-		<div class="grip_column">
-			<div class="checkbox-custom" title="Select/Deselect Item"></div>
-			<img class="dragfile_icon" width="30" height="45" src="/img/1x1_transparent.gif" border="0">
-		</div>
-		<div class="filetype_column">
-			<div class="filetype-{{item_type}}"></div>
-		</div>
-		<div class="file_maindetails">
-			<span class="created">{{item_human_create_time}}</span>
-			<span class="size">{{item_human_size}}</span>
-		<span class="downloads">
-			{{#if item_downloads}}
-				{{item_downloads}}
-			{{else}}
-			--
-			{{/if}}
-		</span>
-		</div>
-		<div class="info cf">
-			<div class="filename_outer">
-				<a class="foldername" href="/{{item_id}}" target="_blank">
-					<span class="info-name">{{{item_name}}}</span>
-					<span class="extraInfo">{{{item_extra_info}}}</span>
-				</a>
-				<input type="text" value="{{{item_name}}}" id="rename-{{item_id}}" class="updatename"
-				       style="display:none;">
-
-				<div class="itemStatus"></div>
-			</div>
-		</div>
-	</li>
-</script>
-
-<script id="template_folder_content_folder" type="text/x-handlebars-template">
-	<li class="cf" data-created="{{item_create_time}}" data-downloads="{{item_downloads}}" data-size="{{item_size}}"
-	    data-type="{{item_type}}" data-id="{{item_id}}" title="Thư mục {{{item_name}}}">
-		<a href="?{{item_id}}" class="thumbnailClickArea" title="{{item_name}}" target="_blank"></a>
-
-		<div class="grip_column">
-			<div class="checkbox-custom" title="Select/Deselect Item"></div>
-			<img class="dragfile_icon" width="30" height="45" src="/img/1x1_transparent.gif" border="0">
-		</div>
-		<div class="filetype_column">
-			<div class="filetype-{{item_type}}"></div>
-		</div>
-		<div class="file_maindetails">
-			<span class="created">{{item_human_create_time}}</span>
-			<span class="size">{{item_human_size}}</span>
-		</div>
-		<div class="info cf">
-			<div class="filename_outer">
-				<a class="foldername" href="#" target="_self">
-					<span class="info-name">{{{item_name}}}</span>
-					<span class="extraInfo">{{{item_extra_info}}}</span>
-				</a>
-
-				<div class="itemStatus"></div>
-			</div>
-		</div>
-	</li>
-</script>
-
-
-<script id="template_folder_content2_item" type="text/x-handlebars-template">
-	<tr>
+	<tr id="folder_item_{{item_id}}" data-type="{{item_type}}" data-item-id="{{item_id}}">
 		<td>
 			<input type="checkbox" name="item[]" value="{{item_id}}"/>
 		</td>
 		<td>
-			<img src="/img/filemanager/files/archive-v3.png" class="avatar">{{{item_name}}}
+			<img src="/img/filemanager/files/archive-v3.png" class="avatar">
+			<a href="javascript:;">{{{item_name}}}</a>
 		</td>
 		<td>
 			{{item_human_size}}
@@ -177,13 +131,14 @@
 	</tr>
 </script>
 
-<script id="template_folder_content2_folder" type="text/x-handlebars-template">
-	<tr>
+<script id="template_folder_content_folder" type="text/x-handlebars-template">
+	<tr id="folder_item_{{item_id}}" data-type="{{item_type}}" data-item-id="{{item_id}}">
 		<td>
 			<input type="checkbox" class="item-checkbox" name="item[]" value="{{item_id}}"/>
 		</td>
 		<td>
-			<img src="/img/filemanager/files/folder-v5.png" class="avatar">{{{item_name}}}
+			<img src="/img/filemanager/files/folder-v5.png" class="avatar">
+			<a href="javascript:;">{{{item_name}}}</a>
 		</td>
 		<td>
 			&nbsp;
@@ -220,7 +175,8 @@
 						</tbody>
 					</table>
 
-					<div id="drag_drop" style="margin: 10px auto; text-align: center; padding: 50px 0px; border: 5px dashed #aaa;">
+					<div id="drag_drop"
+					     style="margin: 10px auto; text-align: center; padding: 50px 0px; border: 5px dashed #aaa;">
 						<p>Kéo và thả các tập tin vào đây để tải lên</p>
 					</div>
 
@@ -244,7 +200,9 @@
 							<button class="btn btn-primary start_upload">
 								<span>Bắt đầu tải lên</span>
 							</button>
-							<button type="button" class="btn btn-default close-uploader" data-dismiss="modal" style="display: none;">Đóng</button>
+							<button type="button" class="btn btn-default close-uploader" data-dismiss="modal"
+							        style="display: none;">Đóng
+							</button>
 						</div>
 					</div>
 
@@ -277,10 +235,93 @@
 
 </script>
 
+<script id="template_folder_nav_item_nested" type="text/x-handlebars-template">
+	{{#each this}}
+	{{#if sub_folders}}
+	<li data-folderid="{{id}}" class="collapsed">
+		<a href="javascript:void(0);" class="folder_arrow"></a>
+		<a href="javascript:void(0);" class="folder_name" title="Thu muc {{&folder_name}}">
+			{{&folder_name}}
+		</a>
+		<ul class="unstyled">
+			{{&folderNavItemWithNested sub_folders}}
+		</ul>
+
+	</li>
+	{{else}}
+	<li data-folderid="{{id}}">
+		<a href="javascript:void(0);" class="folder_name" title="Thu muc {{&folder_name}}">
+			{{{folder_name}}}
+		</a>
+	</li>
+	{{/if}}
+	{{/each}}
+</script>
+<script id="template_folder_nav_item" type="text/x-handlebars-template" charset="utf-8">
+	<li data-folderid="{{id}}">
+		<a href="javascript:void(0);" class="folder_name" title="Thu muc {{folder_name}}">{{{folder_name}}}</a>
+	</li>
+</script>
+
 
 <script>
 	MaDnh.Template.compileAll();
+	Handlebars.registerHelper('folderNavItemWithNested', function (info) {
+		return MaDnh.Template.render('folder_nav_item_nested', info);
+	});
+
+	MaDnhFileManager.loadFolderTree();
 	MaDnhFileManager.loadItems();
+
+	$("#folder_nav>ul").delegate('li>a.folder_name', "click", function (e) {
+		e.stopPropagation();
+		$("#folder_nav>ul").find('li.curent').removeClass('curent');
+		$(this).parent().addClass('curent');
+		MaDnhFileManager._config.current_folder = $(this).parent().data('folderid');
+		MaDnhFileManager._config.send_data = {parent_id: $(this).parent().data('folderid')};
+		MaDnhFileManager.loadItems();
+		e.preventDefault();
+	}).delegate('li>a.folder_arrow', 'click', function (e) {
+		if ($(this).parent().hasClass('expanded')) {
+			$(this).parent().removeClass('expanded').addClass('collapsed').children('ul').first().slideUp('slow');
+		} else if ($(this).parent().hasClass('collapsed')) {
+			$(this).parent().removeClass('collapsed').addClass('expanded').children('ul').first().slideDown('slow');
+		}
+		e.preventDefault();
+
+	});
+
+	/*
+	 Add click event to Main list item
+	 */
+	$('#folder_items').delegate('li', 'click', function (e) {
+		e.stopPropagation();
+		var $this = $(this),
+			id = $this.data('id');
+		if (id) {
+			console.log(id);
+			$this.toggleClass('selected');
+		}
+
+
+	}).delegate('td a', 'click', function (e) {
+		e.stopPropagation();
+		var $this = $(this), row = $this.parents('tr').first(), id = row.data('item-id'), folderNavItem;
+		console.log('td a', id, row.data(), row.data('type') == 'folder');
+		if (row.data('type') == 'folder' && id) {
+			console.log('OK');
+			e.preventDefault();
+			window.location.hash = '#' + id;
+			folderNavItem = $('#folder_nav>ul li[data-folderid="' + id + '"]>a.folder_name');
+			folderNavItem.parents('li').removeClass('collapsed').addClass('expanded');
+			folderNavItem.trigger('click');
+			console.log(folderNavItem);
+		} else {
+			console.log('NO');
+		}
+
+	});
+
 	$('#check_all').on('change', function () {
 		MaDnh.DOM.setTableCheckboxsStatus('.table-contents', $(this).prop('checked'))
 	});

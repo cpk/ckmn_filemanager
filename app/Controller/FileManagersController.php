@@ -2,6 +2,7 @@
 
 App::uses( 'AppController', 'Controller' );
 App::uses( 'Tree', 'Lib' );
+App::uses( 'ArrayHelper', 'Lib' );
 App::uses( 'MadnhJson', 'Lib' );
 App::uses( 'ProcessResult', 'Lib' );
 App::uses( 'Filesystem', 'Lib' );
@@ -12,19 +13,17 @@ class FileManagersController extends AppController {
 	protected $options = array(
 		'accept_file_types'                => '/.+zip|rar|tar|gz|taz.gr|aif|iff|m3u|m4u|mid|mp3|ra|wav|wma|3g2|3gp|asf|asx|avi|flv|mov|mpg|rm|srt|swf|vob|wmv|wmv|mkv|avis|jpg|txt|file$/i',
 		'script_url'                       => '/',
-		'upload_dir'                       => '',
+		'upload_dir'                       => 'uploads',
 		'mkdir_mode'                       => '0755',
 		'param_name'                       => 'file',
 		'access_control_allow_origin'      => '*',
 		'access_control_allow_credentials' => false,
 		'access_control_allow_methods'     => array( 'POST' ),
 		'access_control_allow_headers'     => array( 'Content-Type', 'Content-Range', 'Content-Disposition' ),
-		'max_file_size'                    => - 1,
+		'max_file_size'                    => 0,
 		'min_file_size'                    => 1,
 		'max_number_of_files'              => null,
 		'discard_aborted_uploads'          => true,
-
-
 	);
 	protected $error_messages = array(
 		1                     => 'The uploaded file exceeds the upload_max_filesize directive in php.ini',
@@ -44,27 +43,39 @@ class FileManagersController extends AppController {
 	public function index() {
 		$this->layout = 'admin';
 
+		$yahoo = Cache::read( 'yahoo' );
+		if ( ! $yahoo ) {
+			$yahoo = 'Tôi bị điesdasd';
+			Cache::write( 'yahoo', $yahoo );
+		}
+
+		$this->set( 'yahoo', $yahoo );
+
 	}
 
-	public function folderItems( $folder_id = null ) {
+	public function folderItems() {
 		$this->autoRender = false;
 		$this->layout     = false;
 		$this->response->type( 'json' );
 		App::import( 'Helper', 'Number' );
 		$number_helper = new NumberHelper( new View( $this ) );
 
+		$folder_id = $this->request->data( 'folder_id' );
+		if ( ! $folder_id ) {
+			$folder_id = 0;
+		}
 
 		$folders = $this->Folder->find( 'all', array(
 			'conditions' => array(
 				'Folder.user_id'   => $this->currentUser['id'],
-				'Folder.folder_id' => empty( $folder_id ) ? 0 : $folder_id,
+				'Folder.folder_id' => $folder_id,
 			),
 			'order'      => array( 'Folder.folder_name ASC' ),
 		) );
 		$files   = $this->File->find( 'all', array(
 			'conditions' => array(
 				'File.user_id'   => $this->currentUser['id'],
-				'File.folder_id' => empty( $folder_id ) ? 0 : $folder_id,
+				'File.folder_id' => $folder_id,
 			),
 			'order'      => array( 'File.file_name ASC' ),
 		) );
@@ -119,20 +130,28 @@ class FileManagersController extends AppController {
 		$view         = new View( $this );
 		$view->layout = false;
 		$result->addData( 'content', $view->render( 'file_manager' ) );
+		$result->addData( 'upload_path', $this->get_upload_path( 'abc.com' ) );
+		$result->addData( 'post_max', ini_get( 'post_max_size' ) );
+		$result->addData( 'post_max2', $this->get_config_bytes( ini_get( 'post_max_size' ) ) );
 
 		return MadnhJson::output( $result );
 	}
 
 	public function getFolderTree() {
 		$this->autoRender = false;
-
-		$user_id = 1;
-
+		$this->layout     = false;
+		$this->response->type( 'json' );
 		$result = new ProcessResult();
-		$result->addData( 'sadw', $_SERVER );
-		$result->addData( 'user_id', $user_id );
-		$result->addData( 'is_ajax', $this->request->is( 'ajax' ) );
 
+
+		$tree_result = Cache::read( 'folder_tree_' . $this->currentUser['id'] );
+		if ( ! is_array( $tree_result ) ) {
+			$this->cache_folder_tree();
+			$tree_result = Cache::read( 'folder_tree_' . $this->currentUser['id'] );
+		}
+		$tree_result = ArrayHelper::toArray( $tree_result );
+
+		$result->addData( 'tree', $tree_result );
 
 		return MadnhJson::output( $result );
 	}
@@ -168,6 +187,7 @@ class FileManagersController extends AppController {
 				$this->Folder->set( 'folder_create_time', time() );
 				if ( $this->Folder->save() ) {
 					$result->addInfo( 'Tạo thư mục thành công', ProcessResult::PROCESS_SUCCESS );
+					$this->cache_folder_tree();
 				} else {
 					$result->addInfo( 'Tạo thư mục không thành công', ProcessResult::PROCESS_ERROR );
 				}
@@ -196,7 +216,9 @@ class FileManagersController extends AppController {
 			$parent_id = 0;
 		}
 
-		$result->addData('files', $_FILES);
+		$result->addData( 'files', $_FILES );
+		$result->addData( 'parent_id', $parent_id );
+
 		if ( ! $result->hasWarning() ) {
 			$upload    = ! empty( $_FILES[ $this->options['param_name'] ] ) ? $_FILES[ $this->options['param_name'] ] : null;
 			$file_name = ! empty( $_POST["name"] ) ? $_POST["name"] : null;
@@ -262,9 +284,33 @@ class FileManagersController extends AppController {
 	}
 
 
+	protected function cache_folder_tree() {
+		$folders = $this->Folder->find( 'all', array(
+			'conditions' => array(
+				'Folder.user_id' => $this->currentUser['id'],
+			),
+		) );
+		$data    = array();
+		foreach ( $folders as $item ) {
+			$item                = $item['Folder'];
+			$item['folder_name'] = htmlspecialchars( $item['folder_name'] );
+			$data[]              = $item;
+		}
+		$tree = new Tree();
+		$tree->setData( $data );
+		$tree->parent_item_field = 'folder_id';
+		$tree->item_id_field     = 'id';
+		$tree->item_info_fields  = array( 'id', 'folder_id', 'folder_name' );
+		$tree->sub_items_string  = 'sub_folders';
+
+		$tree_result = $tree->getChildrensTree( '0' );
+
+		Cache::write( 'folder_tree_' . $this->currentUser['id'], $tree_result );
+
+	}
+
 	protected function get_upload_path( $file_name = '' ) {
-		return $_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR.$file_name;
-		return $this->options['upload_dir'] . $file_name;
+		return $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . trim( $this->options['upload_dir'], '\\/' ) . DIRECTORY_SEPARATOR . $file_name;
 	}
 
 
@@ -318,13 +364,10 @@ class FileManagersController extends AppController {
 		switch ( $last ) {
 			case 'g' :
 				$val *= 1024;
-				break;
 			case 'm' :
 				$val *= 1024;
-				break;
 			case 'k' :
 				$val *= 1024;
-				break;
 		}
 
 		return $this->fix_integer_overflow( $val );
@@ -340,6 +383,7 @@ class FileManagersController extends AppController {
 		//Kiểm tra dung lượng file upload được phép trong php.ini
 		$content_length = $this->fix_integer_overflow( intval( $_SERVER['CONTENT_LENGTH'] ) );
 		$post_max_size  = $this->get_config_bytes( ini_get( 'post_max_size' ) );
+
 		if ( $post_max_size && ( $content_length > $post_max_size ) ) {
 			$file->error = $this->get_error_message( 'post_max_size' );
 
@@ -437,7 +481,13 @@ class FileManagersController extends AppController {
 		$file->id       = $file_id;
 		$file->realName = $name;
 		//$file->name = $this->get_file_name($name, $type, $index, $content_range);
-		$file->name     = $this->get_file_name( ( ! empty( $file->id ) ) ? $file->id . '.file' : $name, $type, $index, $content_range );
+		if ( ! empty( $file_id ) ) {
+			$tmp_name = $file_id;
+		} else {
+			$tmp_name = $name;
+		}
+		$tmp_name       = md5( $this->currentUser['id'] . $parentId . $tmp_name ) . '.file';
+		$file->name     = $this->get_file_name( $tmp_name, $type, $index, $content_range );
 		$file->size     = $this->fix_integer_overflow( intval( $size ) );
 		$file->type     = $type;
 		$file->parentId = $parentId;

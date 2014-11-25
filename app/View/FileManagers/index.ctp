@@ -2,23 +2,18 @@
 echo $this->Html->css( 'jsTree/default/style.min' );
 echo $this->Html->css( 'filemanager' );
 ?>
-<div class="row">
-	<div class="col-xs-12 col-sm-2">
-		<div id="jstree_demo_div">
-			<ul>
-				<li>Root node 1</li>
-				<li>Root node 2</li>
-			</ul>
-		</div>
-	</div>
-	<div class="col-xs-12 col-sm-10" id="file_manager_content">
-		<div class="progress no-rounded progress-striped active">
-			<div class="progress-bar progress-bar-info" style="width: 60%">
-				<span class="sr-only">Loading...</span>
+<div id="file_manager_content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="progress no-rounded progress-striped active">
+				<div class="progress-bar progress-bar-info" style="width: 60%">
+					<span class="sr-only">Loading...</span>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
 
 <?php
 echo $this->Html->script( 'handlebars' );
@@ -35,6 +30,7 @@ echo $this->Html->script( 'madnh_file_manager' );
 		MaDnhFileManager.config({
 			fetch_item_url: '<?php echo Router::url(array('controller' => $this->name, 'action' => 'folderItems')); ?>',
 			create_folder_url: '<?php echo Router::url(array('controller' => $this->name, 'action' => 'createFolder')); ?>',
+			folder_tree_url: '<?php echo Router::url(array('controller' => $this->name, 'action' => 'getFolderTree')); ?>',
 			folder_content_holder: '#folder_items'
 		});
 
