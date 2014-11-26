@@ -40,6 +40,22 @@
 		                </a>
 	                </li>
 
+	                <li>
+		                <a href="<?php echo $this->Html->url(array('controller' => 'ThongBao', 'action' => 'index')); ?>">
+			                <span class="hidden-xs"><i class="fa fa-file"></i></span>
+			                <span class="hidden-xs">&#32;&#32;Thông báo</span></a>
+		                </a>
+	                </li>
+
+	                <li>
+		                <a href="<?php echo $this->Html->url(array('controller' => 'BaoCao', 'action' => 'index')); ?>">
+			                <span class="hidden-xs"><i class="fa fa-file"></i></span>
+			                <span class="hidden-xs">&#32;&#32;Báo cáo</span></a>
+		                </a>
+	                </li>
+
+
+
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
