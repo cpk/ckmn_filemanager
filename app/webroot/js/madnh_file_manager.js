@@ -472,7 +472,7 @@
 
 
     MaDnhFileManager.createFolder = function () {
-        MaDnh.Helper.prompt('Tạo thư mục', function (value) {
+        MaDnh.Helper.prompt('Tạo thư mục', '',function (value) {
             if (value === false) {
                 return;
             }
