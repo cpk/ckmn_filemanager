@@ -95,7 +95,7 @@ class PermissionsController extends AppController {
             $this->Permission->saveField('section', $this->request->data['Permission']['section']);
             $this->Permission->saveField('module', $this->request->data['Permission']['module']);
             $this->Permission->saveField('actived',$this->request->data['Permission']['actived']);
-            $this->Permission->saveField('modified',$now->format('Y-m-d H:i:s'));D
+            $this->Permission->saveField('modified',$now->format('Y-m-d H:i:s'));
             if ($this->Permission->save()) {
                  $this->redirect(array('action' => 'show', $this->Permission->id));
              }
