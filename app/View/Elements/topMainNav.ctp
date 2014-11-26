@@ -54,6 +54,15 @@
 		                </a>
 	                </li>
 
+	                <li>
+		                <a href="<?php echo $this->Html->url(array('controller' => 'Calendar', 'action' => 'index')); ?>">
+			                <span class="hidden-xs"><i class="fa fa-calendar"></i></span>
+			                <span class="hidden-xs">&#32;&#32;Calendar</span></a>
+		                </a>
+	                </li>
+
+
+
 
 
                 </ul>
