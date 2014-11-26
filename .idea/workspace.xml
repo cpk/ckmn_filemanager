@@ -1,27 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aec57abe-547f-4b2e-ac41-e79249bfb4c9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Model/Download.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/View/FileManagers/download.ctp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/webroot/css/home.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/View/Layouts/home.ctp" />
-      <change type="DELETED" beforePath="D:\OpenServer\domains\filemanager.dev\uploads\36e21cffc9a585579c50f5d535e1feea (1).file" afterPath="" />
-      <change type="DELETED" beforePath="D:\OpenServer\domains\filemanager.dev\uploads\d5d349be0a4cdadbef38f250434da260.file" afterPath="" />
-      <change type="DELETED" beforePath="D:\OpenServer\domains\filemanager.dev\uploads\fbd0a6b89a45f37b5d3caaf8ca170c28 (1).file" afterPath="" />
-      <change type="DELETED" beforePath="D:\OpenServer\domains\filemanager.dev\uploads\fbd0a6b89a45f37b5d3caaf8ca170c28 (2).file" afterPath="" />
-      <change type="DELETED" beforePath="D:\OpenServer\domains\filemanager.dev\uploads\fd05b765bed6da56e0e6bf6fdc29469e.file" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/File.php" afterPath="$PROJECT_DIR$/app/Model/File.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Controller/FileManagersController.php" afterPath="$PROJECT_DIR$/app/Controller/FileManagersController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/Folder.php" afterPath="$PROJECT_DIR$/app/Model/Folder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/View/FileManagers/file_manager.ctp" afterPath="$PROJECT_DIR$/app/View/FileManagers/file_manager.ctp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/View/FileManagers/index.ctp" afterPath="$PROJECT_DIR$/app/View/FileManagers/index.ctp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/webroot/js/jquery.validate.extended.js" afterPath="$PROJECT_DIR$/app/webroot/js/jquery.validate.extended.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/webroot/js/jquery.validate.min.js" afterPath="$PROJECT_DIR$/app/webroot/js/jquery.validate.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/webroot/js/madnh.js" afterPath="$PROJECT_DIR$/app/webroot/js/madnh.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/webroot/js/madnh_file_manager.js" afterPath="$PROJECT_DIR$/app/webroot/js/madnh_file_manager.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="aec57abe-547f-4b2e-ac41-e79249bfb4c9" name="Default" comment="" />
     <ignored path="filemanager.dev.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
