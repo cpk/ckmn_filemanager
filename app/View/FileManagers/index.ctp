@@ -22,6 +22,7 @@ echo $this->Html->script( 'plupload/plupload.full.min' );
 
 echo $this->Html->script( 'madnh_file_manager' );
 //echo $this->Html->script( 'myfiles' );
+
 ?>
 <script>
 	MaDnh.addInitCommand(function () {
@@ -31,6 +32,9 @@ echo $this->Html->script( 'madnh_file_manager' );
 			fetch_item_url: '<?php echo Router::url(array('controller' => $this->name, 'action' => 'folderItems')); ?>',
 			create_folder_url: '<?php echo Router::url(array('controller' => $this->name, 'action' => 'createFolder')); ?>',
 			folder_tree_url: '<?php echo Router::url(array('controller' => $this->name, 'action' => 'getFolderTree')); ?>',
+			delete_item_url: '<?php echo Router::url(array('controller' => $this->name, 'action' => 'delete')); ?>',
+			rename_item_url: '<?php echo Router::url(array('controller' => $this->name, 'action' => 'rename')); ?>',
+
 			folder_content_holder: '#folder_items'
 		});
 

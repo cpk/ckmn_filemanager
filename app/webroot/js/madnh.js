@@ -413,17 +413,19 @@
     /**
      * Prompt với 1 giá trị chuỗi
      * @param title
+     * @param old_value
      * @param callback
+     * @param option
      */
-    MaDnh.Helper.prompt = function (title, callback) {
-        var form = '<p>' + title + '</p>' + '<input class="form-control" name="prompt_data" type="text">';
+    MaDnh.Helper.prompt = function (title, old_value, callback, option) {
+        var form = '<p>' + title + '</p>' + '<input class="form-control" name="prompt_data" type="text" value="'+__.escape(old_value)+'"/>';
         MaDnh.Helper.formDialog(form, function (result) {
             if (__.has(result, 'prompt_data')) {
                 MaDnh.Helper.callFunctionDynamic(callback, result['prompt_data']);
             } else {
                 MaDnh.Helper.callFunctionDynamic(callback, false);
             }
-        });
+        }, option);
 
     };
 
@@ -431,8 +433,9 @@
      * Prompt với nhiều phần tử
      * @param contents
      * @param callback
+     * @param option
      */
-    MaDnh.Helper.prompts = function (contents, callback) {
+    MaDnh.Helper.prompts = function (contents, callback, option) {
         if (__.isUndefined(contents)) {
             contents = MaDnh.Helper.promptTextElement('prompt_data', '');
         }
@@ -443,7 +446,7 @@
 
         MaDnh.Helper.formDialog(contents, function (result) {
             MaDnh.Helper.callFunctionDynamic(callback, result);
-        });
+        }, option);
 
     };
 
@@ -458,7 +461,7 @@
         default_value = default_value || '';
         title = title || name;
 
-        return '<p>' + title + '<br /><input type="text" name="' + name + '" value="' + default_value + '" /></p>';
+        return '<p>' + title + '<br /><input type="text" name="' + __.escape(name) + '" value="' + __.escape(default_value) + '" /></p>';
     };
 
     /**
@@ -476,7 +479,7 @@
         checkbox_values = __.extend({}, checkbox_values, values);
 
         __.each(checkbox_values, function (value, key) {
-            content += '<label><input type="checkbox" name="' + name + '" value="' + key + '" /> ' + value + '</label><br />';
+            content += '<label><input type="checkbox" name="' + __.escape(name) + '" value="' + __.escape(key) + '" /> ' + value + '</label><br />';
         });
         return content + '</p>';
     };

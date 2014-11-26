@@ -16,8 +16,10 @@
     MaDnhFileManager.uploader = null;
     MaDnhFileManager._config = {
         fetch_item_url: '',
-        create_folder_url: '',
         folder_tree_url: '',
+        create_folder_url: '',
+        delete_item_url: '',
+        rename_item_url: '',
         folder_tree_selector: '#folder_tree',
         container_selector: '#myfiles_wrap',
         folder_content_holder: '#folder_items',
@@ -82,86 +84,6 @@
     MaDnhFileManager.configUploaderTemplate = function (config) {
         MaDnhFileManager._config.uploader_template = __.extend({}, MaDnhFileManager._config.uploader_template, config);
     };
-
-
-    MaDnhFileManager.loadItems = function (folder_id) {
-        var ajax = new MaDnh.AJAXWorker();
-        if (__.isUndefined(folder_id)) {
-            folder_id = MaDnhFileManager._config.current_folder;
-        }
-        $(MaDnhFileManager._config.container_selector).addClass('loading');
-        $(MaDnhFileManager._config.container_selector).removeClass('empty');
-        ajax.option({
-            requestPath: MaDnhFileManager._config.fetch_item_url,
-            requestData: {folder_id: folder_id},
-            requestType: 'POST',
-            successFunc: function (data) {
-                if (MaDnh.Helper.isProcessResult(data)) {
-                    var content = '';
-                    var items = __.extend({}, data.getData('items'));
-                    console.log(items);
-                    if (__.size(items)) {
-                        __.each(items, function (item) {
-                            var template_name = 'folder_content_';
-                            if (item.item_type && MaDnh.Template.hasTemplate(template_name + item.item_type)) {
-                                template_name += item.item_type;
-                            } else {
-                                template_name += 'item';
-                            }
-                            content += MaDnh.Template.render(template_name, item);
-                        });
-                        $(MaDnhFileManager._config.container_selector).removeClass('loading');
-                        $(MaDnhFileManager._config.folder_content_holder).html(content);
-                    } else {
-                        $(MaDnhFileManager._config.container_selector).removeClass('loading');
-                        $(MaDnhFileManager._config.container_selector).addClass('empty');
-                    }
-                }
-            },
-            errorFunc: function () {
-                MaDnh.Helper.alert('Tải dữ liệu không thành công!');
-            },
-            completeFunc: function () {
-                $(MaDnhFileManager._config.container_selector).removeClass('loading');
-            }
-        });
-        ajax.request();
-    };
-
-    MaDnhFileManager.createFolder = function () {
-        MaDnh.Helper.prompt('Tạo thư mục', function (value) {
-            if (value === false) {
-                return;
-            }
-            if (value) {
-                var ajax = new MaDnh.AJAXWorker();
-                $(MaDnhFileManager._config.container_selector).addClass('loading');
-                ajax.option({
-                    requestPath: MaDnhFileManager._config.create_folder_url,
-                    requestData: {folder_name: value, parent_id: MaDnhFileManager._config.current_folder},
-                    requestType: 'POST',
-                    successFunc: function (data) {
-                        if (MaDnh.Helper.isProcessResult(data) && !data.isError()) {
-                            if (data.isSuccess()) {
-                                MaDnhFileManager.loadItems(MaDnhFileManager._config.current_folder);
-                            } else {
-                                MaDnh.Helper.alertAjaxResult(data);
-                            }
-                        }
-                    },
-                    errorFunc: function () {
-                        MaDnh.Helper.alert('Tạo folder không thành công');
-                    },
-                    completeFunc: function () {
-                        $(MaDnhFileManager._config.container_selector).removeClass('loading');
-                    }
-                });
-                ajax.request();
-            } else {
-                MaDnh.Helper.alert('Tên thư mục không hợp lệ', null, {type: 'error'});
-            }
-        });
-    }
 
 
     function createUploaderTemplate(option) {
@@ -499,6 +421,93 @@
         $(MaDnhFileManager._config.folder_tree_selector).html(template);
     }
 
+    MaDnhFileManager.setCurrentFolder = function(id){
+        MaDnhFileManager._config.current_folder = id;
+        MaDnhFileManager._config.send_data = {parent_id: id};
+    };
+    MaDnhFileManager.loadItems = function (folder_id) {
+        var ajax = new MaDnh.AJAXWorker();
+        if (__.isUndefined(folder_id)) {
+            folder_id = MaDnhFileManager._config.current_folder;
+            MaDnhFileManager.setCurrentFolder(folder_id);
+        }
+        $(MaDnhFileManager._config.container_selector).addClass('loading');
+        $(MaDnhFileManager._config.container_selector).removeClass('empty');
+        ajax.option({
+            requestPath: MaDnhFileManager._config.fetch_item_url,
+            requestData: {folder_id: folder_id},
+            requestType: 'POST',
+            successFunc: function (data) {
+                if (MaDnh.Helper.isProcessResult(data)) {
+                    var content = '';
+                    var items = __.extend({}, data.getData('items'));
+                    console.log(items);
+                    if (__.size(items)) {
+                        __.each(items, function (item) {
+                            var template_name = 'folder_content_';
+                            if (item.item_type && MaDnh.Template.hasTemplate(template_name + item.item_type)) {
+                                template_name += item.item_type;
+                            } else {
+                                template_name += 'item';
+                            }
+                            content += MaDnh.Template.render(template_name, item);
+                        });
+                        $(MaDnhFileManager._config.container_selector).removeClass('loading');
+                        $(MaDnhFileManager._config.folder_content_holder).html(content);
+                    } else {
+                        $(MaDnhFileManager._config.container_selector).removeClass('loading');
+                        $(MaDnhFileManager._config.container_selector).addClass('empty');
+                    }
+                }
+            },
+            errorFunc: function () {
+                MaDnh.Helper.alert('Tải dữ liệu không thành công!');
+            },
+            completeFunc: function () {
+                $(MaDnhFileManager._config.container_selector).removeClass('loading');
+            }
+        });
+        ajax.request();
+    };
+
+
+    MaDnhFileManager.createFolder = function () {
+        MaDnh.Helper.prompt('Tạo thư mục', function (value) {
+            if (value === false) {
+                return;
+            }
+            if (value) {
+                var ajax = new MaDnh.AJAXWorker();
+                $(MaDnhFileManager._config.container_selector).addClass('loading');
+                ajax.option({
+                    requestPath: MaDnhFileManager._config.create_folder_url,
+                    requestData: {folder_name: value, parent_id: MaDnhFileManager._config.current_folder},
+                    requestType: 'POST',
+                    successFunc: function (data) {
+                        if (MaDnh.Helper.isProcessResult(data) && !data.isError()) {
+                            if (data.isSuccess()) {
+                                MaDnhFileManager.loadFolderTree();
+                                MaDnhFileManager.loadItems();
+                            } else {
+                                MaDnh.Helper.alertAjaxResult(data);
+                            }
+                        }
+                    },
+                    errorFunc: function () {
+                        MaDnh.Helper.alert('Tạo folder không thành công');
+                    },
+                    completeFunc: function () {
+                        $(MaDnhFileManager._config.container_selector).removeClass('loading');
+                    }
+                });
+                ajax.request();
+            } else {
+                MaDnh.Helper.alert('Tên thư mục không hợp lệ', null, {type: 'error'});
+            }
+        });
+    }
+
+
     MaDnhFileManager.loadUploader = function () {
         var uploader_id = 'uploader_' + MaDnh.Helper.randomString(10);
         var option;
@@ -535,9 +544,100 @@
             },
             errorFunc: function () {
                 updateTree('');
+            },
+            completeFunc: function(){
+                MaDnhFileManager.selectFolderTreeItem(MaDnhFileManager._config.current_folder);
             }
         });
         ajax.request();
+    };
+
+    MaDnhFileManager.selectFolderTreeItem = function (id) {
+        var folderNavItem = $('#folder_nav>ul li[data-folderid="' + id + '"]>a.folder_name');
+        $("#folder_nav>ul").find('li.curent').removeClass('curent');
+        folderNavItem.parent().addClass('curent');
+        folderNavItem.parents('li').removeClass('collapsed').addClass('expanded');
+        if(folderNavItem){
+            MaDnhFileManager.setCurrentFolder(id);
+        }
+    };
+
+    MaDnhFileManager.deleteItems = function () {
+
+        var checkboxs = $(MaDnhFileManager._config.folder_content_holder + ' input:checkbox:checked');
+
+
+        if (!checkboxs.length) {
+            return;
+        }
+
+        MaDnh.Helper.confirm('Bạn có chắc muốn xóa những nội dung này?', function (action) {
+            if (!action) {
+                return;
+            }
+            var folders = [];
+            var files = [];
+            var ajax = new MaDnh.AJAXWorker();
+            console.log('sadadad', checkboxs);
+
+            __.each(checkboxs, function (e) {
+                var row = $(e).parentsUntil('tr').parent();
+                if (row.data('type') && row.data('item-id')) {
+                    if (row.data('type') == 'folder') {
+                        folders.push(row.data('item-id'));
+                    } else {
+                        files.push(row.data('item-id'));
+                    }
+                }
+            });
+
+            ajax.option({
+                requestPath: MaDnhFileManager._config.delete_item_url,
+                requestData: {folders: folders, files: files},
+                requestType: 'POST',
+                successFunc: function (data) {
+                    MaDnhFileManager.loadItems();
+                    MaDnhFileManager.loadFolderTree();
+                },
+                errorFunc: function () {
+                    MaDnh.Helper.alert('Xóa nội dung không thành công');
+                }
+            });
+            ajax.request();
+        });
+    }
+
+
+    MaDnhFileManager.rename = function(type, id, old_name){
+        MaDnh.Helper.prompt('Nhập tên mới', old_name, function(data){
+            if(old_name != data){
+                var ajax = new MaDnh.AJAXWorker();
+
+                ajax.option({
+                    requestPath: MaDnhFileManager._config.rename_item_url,
+                    requestData: {type: type, id: id, new_name: data},
+                    requestType: 'POST',
+                    successFunc: function (data) {
+                        if(MaDnh.Helper.isProcessResult(data)){
+                            if(!data.isError()){
+                                if(type == 'folder'){
+                                    MaDnhFileManager.loadFolderTree();
+                                }
+                                MaDnhFileManager.loadItems();
+                            }else{
+                                MaDnh.Helper.alert('Đổi tên không thành công', {type:'error'});
+                            }
+                        }
+                    },
+                    errorFunc: function () {
+                        MaDnh.Helper.alert('Đổi tên không thành công',  {type:'error'});
+                    }
+                });
+                ajax.request();
+
+            }
+        }, {title: 'Đổi tên'});
+
     }
 
 
