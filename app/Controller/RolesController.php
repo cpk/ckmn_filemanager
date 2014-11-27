@@ -23,7 +23,7 @@ class RolesController extends AppController {
     
     public function index() {
         $this->layout = 'admin';
-        $this->set('heading', 'List Roles');
+        $this->set('heading', 'Danh sách nhóm');
         $this->set('subHeading', '');
         $this->loadModel('Role');
         $this->loadModel('RolesPermission');
