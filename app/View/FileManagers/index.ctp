@@ -29,11 +29,11 @@ echo $this->Html->script( 'madnh_file_manager' );
 		MaDnh.Template.compileAll();
 
 		MaDnhFileManager.config({
-			fetch_item_url: '<?php echo Router::url(array('controller' => $this->name, 'action' => 'folderItems')); ?>',
-			create_folder_url: '<?php echo Router::url(array('controller' => $this->name, 'action' => 'createFolder')); ?>',
-			folder_tree_url: '<?php echo Router::url(array('controller' => $this->name, 'action' => 'getFolderTree')); ?>',
-			delete_item_url: '<?php echo Router::url(array('controller' => $this->name, 'action' => 'delete')); ?>',
-			rename_item_url: '<?php echo Router::url(array('controller' => $this->name, 'action' => 'rename')); ?>',
+			fetch_item_url: '<?php echo Router::url(array('controller' => 'fileManagers', 'action' => 'folderItems')); ?>',
+			create_folder_url: '<?php echo Router::url(array('controller' => 'fileManagers', 'action' => 'createFolder')); ?>',
+			folder_tree_url: '<?php echo Router::url(array('controller' => 'fileManagers', 'action' => 'getFolderTree')); ?>',
+			delete_item_url: '<?php echo Router::url(array('controller' => 'fileManagers', 'action' => 'delete')); ?>',
+			rename_item_url: '<?php echo Router::url(array('controller' => 'fileManagers', 'action' => 'rename')); ?>',
 
 			folder_content_holder: '#folder_items'
 		});
