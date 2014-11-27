@@ -20,6 +20,7 @@ class PermissionsController extends AppController {
         if (!$this->CheckPermission->checkAccessFull($this->fullAccess, $this->params['controller'], $this->params['action'])) {
             parent::beforeFilter();
         }
+        parent::beforeFilter();
     }
     
     public function index() {

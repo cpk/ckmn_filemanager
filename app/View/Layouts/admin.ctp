@@ -57,7 +57,7 @@
                     <!-- End page heading -->
                     <?php echo $this->element('heading'); ?>
                     <!-- Begin breadcrumb -->
-                    <?php echo $this->element('breadcrumb'); ?>
+                    <?php // echo $this->element('breadcrumb'); ?>
                     <!-- End breadcrumb -->
                     <!--
                     ===========================================================

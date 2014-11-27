@@ -41,8 +41,8 @@
 	                </li>
 
 	                <li>
-		                <a href="<?php echo $this->Html->url(array('controller' => 'ThongBao', 'action' => 'index')); ?>">
-			                <span class="hidden-xs"><i class="fa fa-file"></i></span>
+		                <a href="<?php echo $this->Html->url(array('controller' => 'notification', 'action' => 'index')); ?>">
+			                <span class="hidden-xs"><i class="fa fa-bell"></i></span>
 			                <span class="hidden-xs">&#32;&#32;Thông báo</span></a>
 		                </a>
 	                </li>
