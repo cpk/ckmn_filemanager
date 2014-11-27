@@ -1,3 +1,4 @@
+<script src="<?php echo $webroot; ?>js/flashMessage.js"></script>
 dashboard page content
 <?php
 

@@ -9,7 +9,7 @@ App::uses( 'Filesystem', 'Lib' );
 
 class FileManagersController extends AppController {
 
-	public $uses = array( 'Folder', 'File' );
+	public $uses = array( 'Folder', 'File', 'Download' );
 	protected $options = array(
 		'accept_file_types'                => '/.+zip|rar|tar|gz|taz.gr|aif|iff|m3u|m4u|mid|mp3|ra|wav|wma|3g2|3gp|asf|asx|avi|flv|mov|mpg|rm|srt|swf|vob|wmv|wmv|mkv|avis|jpg|txt|file$/i',
 		'script_url'                       => '/',
@@ -51,6 +51,7 @@ class FileManagersController extends AppController {
 
 		$this->set( 'yahoo', $yahoo );
 
+
 	}
 
 	public function folderItems() {
@@ -58,7 +59,9 @@ class FileManagersController extends AppController {
 		$this->layout     = false;
 		$this->response->type( 'json' );
 		App::import( 'Helper', 'Number' );
-		$number_helper = new NumberHelper( new View( $this ) );
+		$number_helper         = new NumberHelper( new View( $this ) );
+		$this->Folder->user_id = $this->currentUser['id'];
+		$this->File->user_id   = $this->currentUser['id'];
 
 		$folder_id = $this->request->data( 'folder_id' );
 		if ( ! $folder_id ) {
@@ -76,6 +79,7 @@ class FileManagersController extends AppController {
 			'conditions' => array(
 				'File.user_id'   => $this->currentUser['id'],
 				'File.folder_id' => $folder_id,
+				"File.status != 'deleted'",
 			),
 			'order'      => array( 'File.file_name ASC' ),
 		) );
@@ -125,6 +129,8 @@ class FileManagersController extends AppController {
 		$this->autoRender = false;
 		$this->layout     = false;
 		$this->response->type( 'json' );
+		$this->Folder->user_id = $this->currentUser['id'];
+		$this->File->user_id   = $this->currentUser['id'];
 
 		$result       = new ProcessResult();
 		$view         = new View( $this );
@@ -141,12 +147,14 @@ class FileManagersController extends AppController {
 		$this->autoRender = false;
 		$this->layout     = false;
 		$this->response->type( 'json' );
-		$result = new ProcessResult();
+		$result                = new ProcessResult();
+		$this->Folder->user_id = $this->currentUser['id'];
+		$this->File->user_id   = $this->currentUser['id'];
 
 
 		$tree_result = Cache::read( 'folder_tree_' . $this->currentUser['id'] );
 		if ( ! is_array( $tree_result ) ) {
-			$this->cache_folder_tree();
+			$this->Folder->cacheFolderTree();
 			$tree_result = Cache::read( 'folder_tree_' . $this->currentUser['id'] );
 		}
 		$tree_result = ArrayHelper::toArray( $tree_result );
@@ -160,7 +168,8 @@ class FileManagersController extends AppController {
 		$this->autoRender = false;
 		$this->layout     = false;
 		$this->response->type( 'json' );
-
+		$this->Folder->user_id = $this->currentUser['id'];
+		$this->File->user_id   = $this->currentUser['id'];
 
 		$folder_name = $this->request->data( 'folder_name' );
 		$parent_id   = $this->request->data( 'parent_id' );
@@ -187,7 +196,7 @@ class FileManagersController extends AppController {
 				$this->Folder->set( 'folder_create_time', time() );
 				if ( $this->Folder->save() ) {
 					$result->addInfo( 'Tạo thư mục thành công', ProcessResult::PROCESS_SUCCESS );
-					$this->cache_folder_tree();
+					$this->Folder->cacheFolderTree();
 				} else {
 					$result->addInfo( 'Tạo thư mục không thành công', ProcessResult::PROCESS_ERROR );
 				}
@@ -204,7 +213,9 @@ class FileManagersController extends AppController {
 		$this->autoRender = false;
 		$this->layout     = false;
 		$this->response->type( 'json' );
-		$result = new ProcessResult();
+		$result                = new ProcessResult();
+		$this->Folder->user_id = $this->currentUser['id'];
+		$this->File->user_id   = $this->currentUser['id'];
 
 		$parent_id = $this->request->data( 'parent_id' );
 		if ( ! empty( $parent_id ) ) {
@@ -283,31 +294,129 @@ class FileManagersController extends AppController {
 		return MadnhJson::output( $result );
 	}
 
+	public function rename() {
+		$this->autoRender = false;
+		$this->layout     = false;
+		$this->response->type( 'json' );
 
-	protected function cache_folder_tree() {
-		$folders = $this->Folder->find( 'all', array(
-			'conditions' => array(
-				'Folder.user_id' => $this->currentUser['id'],
-			),
-		) );
-		$data    = array();
-		foreach ( $folders as $item ) {
-			$item                = $item['Folder'];
-			$item['folder_name'] = htmlspecialchars( $item['folder_name'] );
-			$data[]              = $item;
+		$this->Folder->user_id = $this->currentUser['id'];
+		$this->File->user_id   = $this->currentUser['id'];
+		$result                = new ProcessResult();
+
+		$type = $this->request->data( 'type' );
+		$id   = $this->request->data( 'id' );
+		$name = $this->request->data( 'new_name' );
+		$result->addData( 'name', $name );
+		$result->addData( 'type', $type );
+		$result->addData( 'id', $id );
+		$result->addData( 'a', empty( $type ) );
+		$result->addData( 'b', empty( $id ) );
+		$result->addData( 'c', empty( $name ) );
+		$result->addData( 'd', ! is_string( $name ) );
+
+
+		if ( empty( $type ) || empty( $id ) || empty( $name ) || ! is_string( $name ) ) {
+			$result->addInfo( 'Nội dung không đầy đủ', $result::PROCESS_ERROR );
 		}
-		$tree = new Tree();
-		$tree->setData( $data );
-		$tree->parent_item_field = 'folder_id';
-		$tree->item_id_field     = 'id';
-		$tree->item_info_fields  = array( 'id', 'folder_id', 'folder_name' );
-		$tree->sub_items_string  = 'sub_folders';
 
-		$tree_result = $tree->getChildrensTree( '0' );
+		if ( ! $result->hasWarning() ) {
+			if ( $type == 'folder' ) {
+				$folder = $this->Folder->findById( $id );
+				if ( ! $folder ) {
+					$result->addInfo( 'Thư mục không tồn tại', $result::PROCESS_ERROR );
+				} else {
+					$this->Folder->set( 'id', $id );
+					if ( $this->Folder->save( array(
+								'folder_name'          => $name,
+								'folder_modified_time' => time()
+							)
+						)
+					) {
+						$this->Folder->cacheFolderTree();
+						$result->addInfo( 'Đổi tên thư mục thành công', $result::PROCESS_SUCCESS );
+					} else {
+						$result->addInfo( 'Đổi tên thư mục không thành công', $result::PROCESS_ERROR );
+					}
+				}
+			} else {
+				$file = $this->File->findById( $id );
+				if ( ! $file ) {
+					$result->addInfo( 'Nội dung không tồn tại', $result::PROCESS_ERROR );
+				} else {
+					$this->File->set( 'id', $id );
+					if ( $this->File->save( array( 'file_name' => $name, 'file_modified_time' => time() ) ) ) {
+						$result->addInfo( 'Đổi tên nội dung thành công', $result::PROCESS_SUCCESS );
+					} else {
+						$result->addInfo( 'Đổi tên nội dung không thành công', $result::PROCESS_ERROR );
+					}
+				}
+			}
+		}
 
-		Cache::write( 'folder_tree_' . $this->currentUser['id'], $tree_result );
+		return MadnhJson::output( $result );
+	}
+
+	public function delete() {
+		$this->autoRender = false;
+		$this->layout     = false;
+		$this->response->type( 'json' );
+
+		$this->Folder->user_id = $this->currentUser['id'];
+		$this->File->user_id   = $this->currentUser['id'];
+
+		$result = new ProcessResult();
+
+		$folders = ArrayHelper::toArray( $this->request->data( 'folders' ) );
+		$files   = ArrayHelper::toArray( $this->request->data( 'files' ) );
+
+		foreach ( $folders as $k => $v ) {
+			if ( ! is_numeric( $v ) ) {
+				unset( $folders[ $k ] );
+			}
+		}
+		foreach ( $files as $k => $v ) {
+			if ( ! is_numeric( $v ) ) {
+				unset( $files[ $k ] );
+			}
+		}
+
+		$result->addData( 'files', $files );
+		$result->addData( 'folders', $folders );
+
+		if ( ! empty( $folders ) ) {
+			$this->Folder->deleteFolders( $folders, $this->get_upload_path() );
+		}
+
+
+		if ( ! empty( $files ) ) {
+			$result->addData( 'delete_files', $this->File->deleteFiles( $files, $this->get_upload_path() ) );
+		}
+
+
+		return MadnhJson::output( $result );
+	}
+
+	public function download( $key = null ) {
+		if ( empty( $key ) ) {
+			$this->response->location( '/' );
+
+			return $this->response;
+		}
+		$this->layout = 'home';
+
+		$info = new ProcessResult();
+
+		$download = $this->Download->findByKey( $key );
+		if ( ! $download ) {
+			$info->addInfo( 'Yêu cầu tải không hợp lệ', ProcessResult::PROCESS_ERROR );
+		}
+
+		$this->set( 'infos', $info->getInfos() );
+		$this->set( 'files', '' );
+
 
 	}
+
 
 	protected function get_upload_path( $file_name = '' ) {
 		return $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . trim( $this->options['upload_dir'], '\\/' ) . DIRECTORY_SEPARATOR . $file_name;

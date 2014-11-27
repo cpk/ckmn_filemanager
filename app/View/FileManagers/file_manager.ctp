@@ -5,11 +5,11 @@
 
 	<div class="col-xs-12 col-sm-3" id="folder_nav">
 		<!-- Navigation folder -->
-		<ul class="unstyled">
+		<ul class="list-unstyled">
 			<li id="myfiles" class="expanded curent" data-folderid="0">
 				<a href="javascript:void(0);" class="folder_arrow"></a>
-				<a href="javascript:void(0);" class="folder_name" title="My Files">My Files</a>
-				<ul class="unstyled" id="folder_tree"></ul>
+				<a href="javascript:void(0);" class="folder_name" title="My Files" onclick="MaDnhFileManager.setCurrentFolder(0);">My Files</a>
+				<ul class="list-unstyled" id="folder_tree"></ul>
 			</li>
 
 		</ul>
@@ -34,7 +34,7 @@
 				</div>
 
 				<div class="btn-group" data-toggle="tooltip" title="Load lại dữ liệu">
-					<button type="button" class="btn btn-info" onclick="MaDnhFileManager.loadItems()">
+					<button type="button" class="btn btn-info" onclick="MaDnhFileManager.loadFolderTree(); MaDnhFileManager.loadItems()">
 						<i class="fa fa-refresh"></i>
 					</button>
 				</div>
@@ -49,7 +49,8 @@
 					<button type="button" class="btn btn-info" data-toggle="tooltip" title="Dán">
 						<i class="fa fa-paste"></i>
 					</button>
-					<button type="button" class="btn btn-danger" data-toggle="tooltip" title="Xóa">
+					<button type="button" class="btn btn-danger" data-toggle="tooltip" title="Xóa"
+					        onclick="MaDnhFileManager.deleteItems()">
 						<i class="fa fa-trash-o"></i>
 					</button>
 				</div>
@@ -121,13 +122,26 @@
 		</td>
 		<td>
 			<img src="/img/filemanager/files/archive-v3.png" class="avatar">
-			<a href="javascript:;">{{{item_name}}}</a>
+			<a href="javascript:;" class="item-name">{{{item_name}}}</a>
 		</td>
 		<td>
 			{{item_human_size}}
 		</td>
 		<td>{{item_human_create_time}}</td>
-		<td>&nbsp;</td>
+		<td>
+			<div class="btn-group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					<i class="fa fa-cog"></i>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<li>
+						<a href="javascript:MaDnhFileManager.rename('{{item_type}}', '{{item_id}}', '{{{item_name}}}');">
+							<i class="fa fa-pencil"></i> Đổi tên
+						</a>
+					</li>
+				</ul>
+			</div>
+		</td>
 	</tr>
 </script>
 
@@ -138,13 +152,26 @@
 		</td>
 		<td>
 			<img src="/img/filemanager/files/folder-v5.png" class="avatar">
-			<a href="javascript:;">{{{item_name}}}</a>
+			<a href="javascript:;" class="item-name">{{{item_name}}}</a>
 		</td>
 		<td>
 			&nbsp;
 		</td>
 		<td>{{item_human_create_time}}</td>
-		<td>&nbsp;</td>
+		<td>
+			<div class="btn-group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					<i class="fa fa-cog"></i>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<li>
+						<a href="javascript:MaDnhFileManager.rename('{{item_type}}', '{{item_id}}', '{{{item_name}}}');">
+							<i class="fa fa-pencil"></i> Đổi tên
+						</a>
+					</li>
+				</ul>
+			</div>
+		</td>
 	</tr>
 </script>
 
@@ -243,7 +270,7 @@
 		<a href="javascript:void(0);" class="folder_name" title="Thu muc {{&folder_name}}">
 			{{&folder_name}}
 		</a>
-		<ul class="unstyled">
+		<ul class="list-unstyled">
 			{{&folderNavItemWithNested sub_folders}}
 		</ul>
 
@@ -275,12 +302,15 @@
 
 	$("#folder_nav>ul").delegate('li>a.folder_name', "click", function (e) {
 		e.stopPropagation();
+		e.preventDefault();
 		$("#folder_nav>ul").find('li.curent').removeClass('curent');
 		$(this).parent().addClass('curent');
-		MaDnhFileManager._config.current_folder = $(this).parent().data('folderid');
-		MaDnhFileManager._config.send_data = {parent_id: $(this).parent().data('folderid')};
-		MaDnhFileManager.loadItems();
-		e.preventDefault();
+		if ($(this).parent().data('folderid')) {
+			MaDnhFileManager.setCurrentFolder($(this).parent().data('folderid'));
+			MaDnhFileManager.loadItems($(this).parent().data('folderid'));
+		} else {
+			MaDnhFileManager.loadItems();
+		}
 	}).delegate('li>a.folder_arrow', 'click', function (e) {
 		if ($(this).parent().hasClass('expanded')) {
 			$(this).parent().removeClass('expanded').addClass('collapsed').children('ul').first().slideUp('slow');
@@ -294,28 +324,13 @@
 	/*
 	 Add click event to Main list item
 	 */
-	$('#folder_items').delegate('li', 'click', function (e) {
+	$('#folder_items').delegate('td a.item-name', 'click', function (e) {
 		e.stopPropagation();
-		var $this = $(this),
-			id = $this.data('id');
-		if (id) {
-			console.log(id);
-			$this.toggleClass('selected');
-		}
-
-
-	}).delegate('td a', 'click', function (e) {
-		e.stopPropagation();
-		var $this = $(this), row = $this.parents('tr').first(), id = row.data('item-id'), folderNavItem;
-		console.log('td a', id, row.data(), row.data('type') == 'folder');
+		var $this = $(this), row = $this.parents('tr').first(), id = row.data('item-id');
 		if (row.data('type') == 'folder' && id) {
-			console.log('OK');
 			e.preventDefault();
-			window.location.hash = '#' + id;
-			folderNavItem = $('#folder_nav>ul li[data-folderid="' + id + '"]>a.folder_name');
-			folderNavItem.parents('li').removeClass('collapsed').addClass('expanded');
-			folderNavItem.trigger('click');
-			console.log(folderNavItem);
+			MaDnhFileManager.selectFolderTreeItem(id);
+			MaDnhFileManager.loadItems(id);
 		} else {
 			console.log('NO');
 		}
