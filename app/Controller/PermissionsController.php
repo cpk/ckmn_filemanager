@@ -25,7 +25,7 @@ class PermissionsController extends AppController {
     
     public function index() {
         $this->layout = 'admin';
-        $this->set('heading', 'List Permissions');
+        $this->set('heading', 'Danh sách quyền truy cập');
         $this->set('subHeading', '');
         $this->loadModel('Permission');
         $permissions = $this->Permission->find('all',array('order' => "id ASC"));

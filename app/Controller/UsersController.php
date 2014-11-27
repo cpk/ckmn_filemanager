@@ -26,7 +26,7 @@ class usersController extends AppController {
 
     public function index() {
         $this->layout = 'admin';
-        $this->set('heading', 'List Users');
+        $this->set('heading', 'Danh sách người dùng');
         $this->set('subHeading', '');
         $this->loadModel('User');
         $this->loadModel('UsersRole');

@@ -21,7 +21,7 @@ class AdminController extends AppController {
     }
 
     public function dashboard() {        
-        $this->set('heading', 'Dashboard');
+        $this->set('heading', 'Trang chủ');
         $this->set('subHeading', '');
         
         $this->Session->setFlash(('warning nay.'),  'warning', array(), 'warning');
