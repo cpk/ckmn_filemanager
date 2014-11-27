@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/app/View/FileManagers/file_manager.ctp" line="361" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="aec57abe-547f-4b2e-ac41-e79249bfb4c9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Controller/CalendarController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/View/Calendar/index.ctp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/View/Elements/topMainNav.ctp" afterPath="$PROJECT_DIR$/app/View/Elements/topMainNav.ctp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/webroot/js/underscore-min.map" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\filemanager.dev\uploads\16494703e029373a1884fca1857af93a.file" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\filemanager.dev\uploads\dda77d95e6913a56cc98cf317e1aefb8.file" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\filemanager.dev\uploads\dea1292991ff1a910d11e8e3bf416f95.file" afterPath="" />
+      <change type="DELETED" beforePath="D:\OpenServer\domains\filemanager.dev\uploads\fbd0a6b89a45f37b5d3caaf8ca170c28.file" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Controller/FileManagersController.php" afterPath="$PROJECT_DIR$/app/Controller/FileManagersController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/View/FileManagers/file_manager.ctp" afterPath="$PROJECT_DIR$/app/View/FileManagers/file_manager.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/View/FileManagers/index.ctp" afterPath="$PROJECT_DIR$/app/View/FileManagers/index.ctp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/webroot/js/madnh.js" afterPath="$PROJECT_DIR$/app/webroot/js/madnh.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/webroot/js/madnh_file_manager.js" afterPath="$PROJECT_DIR$/app/webroot/js/madnh_file_manager.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="filemanager.dev.iws" />
@@ -30,61 +40,126 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="topMainNav.ctp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/View/Elements/topMainNav.ctp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.774194" vertical-offset="889" max-vertical-offset="1716">
-              <caret line="57" column="92" selection-start-line="57" selection-start-column="92" selection-end-line="57" selection-end-column="92" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.ctp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/View/BaoCao/index.ctp">
+        <entry file="file://$PROJECT_DIR$/app/View/FileManagers/index.ctp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.354838" vertical-offset="1241" max-vertical-offset="1782">
-              <caret line="71" column="129" selection-start-line="71" selection-start-column="129" selection-end-line="71" selection-end-column="129" />
+            <state vertical-scroll-proportion="-12.5161295" vertical-offset="712" max-vertical-offset="1276">
+              <caret line="69" column="10" selection-start-line="69" selection-start-column="10" selection-end-line="69" selection-end-column="10" />
+              <folding>
+                <element signature="e#735#2321#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="file_manager.ctp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/View/FileManagers/file_manager.ctp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4547135" vertical-offset="5408" max-vertical-offset="6358">
+              <caret line="363" column="44" selection-start-line="363" selection-start-column="44" selection-end-line="363" selection-end-column="44" />
+              <folding>
+                <element signature="n#style#0;n#span#0;n#button#2;n#div#4;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="tag#script#2" expanded="false" />
+                <element signature="tag#script#3" expanded="false" />
+                <element signature="tag#script#4" expanded="false" />
+                <element signature="tag#script#5" expanded="false" />
+                <element signature="e#10025#10093#0#HTML" expanded="true" />
+                <element signature="e#10246#10322#0#HTML" expanded="true" />
+                <element signature="e#10386#10427#0#HTML" expanded="true" />
+                <element signature="e#10490#10530#0#HTML" expanded="true" />
+                <element signature="e#10613#10992#0#HTML" expanded="true" />
+                <element signature="e#11053#11163#0#HTML" expanded="true" />
+                <element signature="e#11227#11338#0#HTML" expanded="true" />
+                <element signature="e#11433#11572#0#HTML" expanded="true" />
+                <element signature="e#13496#13582#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="madnh.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/webroot/js/madnh.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="5508" max-vertical-offset="8976">
+              <caret line="986" column="50" selection-start-line="986" selection-start-column="32" selection-end-line="986" selection-end-column="50" />
+              <folding>
+                <element signature="e#16926#17254#0" expanded="true" />
+                <element signature="e#17174#17246#0" expanded="true" />
+                <element signature="e#28394#28848#0" expanded="true" />
+                <element signature="e#28634#28840#0" expanded="true" />
+                <element signature="e#28915#29519#0" expanded="true" />
+                <element signature="e#29154#29510#0" expanded="true" />
+                <element signature="e#29574#30106#0" expanded="true" />
+                <element signature="e#29813#30098#0" expanded="true" />
+                <element signature="e#31352#31401#0" expanded="true" />
+                <element signature="e#31448#31574#0" expanded="true" />
+                <element signature="e#31613#31733#0" expanded="true" />
+                <element signature="e#32328#32383#0" expanded="true" />
+                <element signature="e#32428#32692#0" expanded="true" />
+                <element signature="e#32737#33002#0" expanded="true" />
+                <element signature="e#33214#33456#0" expanded="true" />
+                <element signature="e#33524#34177#0" expanded="true" />
+                <element signature="e#34239#35049#0" expanded="true" />
+                <element signature="e#40868#41766#0" expanded="false" />
+                <marker date="1417095654337" expanded="false" signature="46087:46117" placeholder="..." />
+                <marker date="1417095654337" expanded="false" signature="61793:61803" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="madnh_file_manager.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/webroot/js/madnh_file_manager.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3523" max-vertical-offset="5016">
+              <caret line="721" column="59" selection-start-line="721" selection-start-column="33" selection-end-line="721" selection-end-column="59" />
+              <folding>
+                <element signature="e#468#2115#0" expanded="false" />
+                <element signature="e#18478#20818#0" expanded="true" />
+                <element signature="e#19061#20513#0" expanded="true" />
+                <element signature="e#19366#19844#0" expanded="true" />
+                <element signature="e#20674#20776#0" expanded="true" />
+                <element signature="e#24743#25811#0" expanded="true" />
+                <element signature="e#24986#25254#0" expanded="true" />
+                <element signature="e#25500#25624#0" expanded="true" />
+                <element signature="e#25955#27098#0" expanded="true" />
+                <element signature="e#27214#27468#0" expanded="true" />
+                <element signature="e#27529#27782#0" expanded="true" />
+                <element signature="e#27841#27991#0" expanded="true" />
+                <element signature="e#28041#28110#0" expanded="true" />
+                <element signature="e#28159#28233#0" expanded="true" />
+                <element signature="e#28293#28434#0" expanded="true" />
+                <element signature="e#28559#28839#0" expanded="true" />
+                <element signature="e#28893#29147#0" expanded="true" />
+                <element signature="e#29412#29545#0" expanded="true" />
+                <element signature="e#29595#29666#0" expanded="true" />
+                <element signature="e#29714#29790#0" expanded="true" />
+                <element signature="e#29838#30099#0" expanded="true" />
+                <element signature="e#30015#30091#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileManagersController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Controller/FileManagersController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-19.290323" vertical-offset="4330" max-vertical-offset="5390">
+              <caret line="534" column="29" selection-start-line="534" selection-start-column="29" selection-end-line="534" selection-end-column="29" />
+              <folding>
+                <element signature="n#upload#0;n#FileManagersController#0;n#!!top" expanded="true" />
+                <element signature="n#rename#0;n#FileManagersController#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="File.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Model/File.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.225806" vertical-offset="612" max-vertical-offset="1166">
+              <caret line="66" column="24" selection-start-line="66" selection-start-column="15" selection-end-line="66" selection-end-column="24" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="read.ctp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/View/BaoCao/read.ctp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.516129" vertical-offset="1307" max-vertical-offset="2178">
-              <caret line="70" column="50" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#0;n#ul#0;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="read.ctp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/View/ThongBao/read.ctp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.387097" vertical-offset="1373" max-vertical-offset="2178">
-              <caret line="70" column="46" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#0;n#ul#0;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.ctp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/View/Calendar/index.ctp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.36462092" vertical-offset="62" max-vertical-offset="616">
-              <caret line="12" column="57" selection-start-line="12" selection-start-column="57" selection-end-line="12" selection-end-column="57" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -134,13 +209,8 @@
         <option value="$PROJECT_DIR$/app/Model/Download.php" />
         <option value="$PROJECT_DIR$/app/Model/File.php" />
         <option value="$PROJECT_DIR$/app/Model/Folder.php" />
-        <option value="$PROJECT_DIR$/app/webroot/js/madnh.js" />
-        <option value="$PROJECT_DIR$/app/webroot/js/madnh_file_manager.js" />
-        <option value="$PROJECT_DIR$/app/Controller/FileManagersController.php" />
-        <option value="$PROJECT_DIR$/app/View/FileManagers/file_manager.ctp" />
         <option value="$PROJECT_DIR$/app/Controller/ThongBao.php" />
         <option value="$PROJECT_DIR$/app/View/Layouts/admin2.ctp" />
-        <option value="$PROJECT_DIR$/app/View/FileManagers/index.ctp" />
         <option value="$PROJECT_DIR$/app/Controller/ThongBaoController.php" />
         <option value="$PROJECT_DIR$/app/View/Elements/heading.ctp" />
         <option value="$PROJECT_DIR$/app/View/ThongBao/index.ctp" />
@@ -151,6 +221,12 @@
         <option value="$PROJECT_DIR$/app/Controller/CalendarController.php" />
         <option value="$PROJECT_DIR$/app/View/Elements/topMainNav.ctp" />
         <option value="$PROJECT_DIR$/app/View/Calendar/index.ctp" />
+        <option value="$PROJECT_DIR$/app/View/FileManagers/index.ctp" />
+        <option value="$PROJECT_DIR$/app/Controller/FileManagersController.php" />
+        <option value="$PROJECT_DIR$/app/webroot/js/underscore-min.map" />
+        <option value="$PROJECT_DIR$/app/webroot/js/madnh.js" />
+        <option value="$PROJECT_DIR$/app/webroot/js/madnh_file_manager.js" />
+        <option value="$PROJECT_DIR$/app/View/FileManagers/file_manager.ctp" />
       </list>
     </option>
   </component>
@@ -236,6 +312,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="webroot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="filemanager.dev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="filemanager.dev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webroot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="filemanager.dev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="filemanager.dev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="View" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -258,7 +374,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Calendar" />
+              <option name="myItemId" value="FileManagers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="filemanager.dev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="filemanager.dev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -318,15 +452,15 @@
       <BehatRunner />
       <method />
     </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
       <tasks />
       <pass-parent-env-vars>false</pass-parent-env-vars>
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <list size="0" />
@@ -348,12 +482,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -363,13 +498,12 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -395,31 +529,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/View/Layouts/default.ctp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="462" max-vertical-offset="1232">
-          <caret line="34" column="36" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Controller/AdminController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="902">
-          <caret line="12" column="72" selection-start-line="12" selection-start-column="72" selection-end-line="12" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Cake/Controller/Controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4095" max-vertical-offset="5302">
-          <caret line="1090" column="5" selection-start-line="1089" selection-start-column="4" selection-end-line="1090" selection-end-column="5" />
-          <folding>
-            <element signature="e#32417#32703#0#PHP" expanded="true" />
-            <element signature="n#beforeFilter#0;n#Controller#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/View/Layouts/Emails/text/default.ctp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
@@ -624,13 +733,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/File.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.7075812" vertical-offset="1228" max-vertical-offset="1782">
-          <caret line="38" column="37" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/webroot/css/filemanager.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8871795" vertical-offset="5663" max-vertical-offset="6666">
@@ -639,132 +741,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/webroot/js/madnh.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8321678" vertical-offset="2582" max-vertical-offset="12408">
-          <caret line="481" column="109" selection-start-line="481" selection-start-column="109" selection-end-line="481" selection-end-column="109" />
-          <folding>
-            <element signature="e#69#231#0" expanded="false" />
-            <element signature="e#522#712#0" expanded="false" />
-            <element signature="e#4567#4870#0" expanded="false" />
-            <element signature="e#6011#6345#0" expanded="false" />
-            <element signature="e#12047#12180#0" expanded="false" />
-            <element signature="e#12253#12714#0" expanded="false" />
-            <element signature="e#12452#12697#0" expanded="false" />
-            <element signature="e#12721#12831#0" expanded="false" />
-            <element signature="e#12897#13263#0" expanded="false" />
-            <element signature="e#13171#13246#0" expanded="false" />
-            <element signature="e#13270#13452#0" expanded="false" />
-            <element signature="e#13528#13750#0" expanded="false" />
-            <element signature="e#16905#17215#0" expanded="false" />
-            <element signature="e#17153#17207#0" expanded="false" />
-            <element signature="e#21691#22081#0" expanded="false" />
-            <element signature="e#38206#42891#0" expanded="false" />
-            <element signature="e#38505#38520#0" expanded="false" />
-            <element signature="e#38716#38809#0" expanded="false" />
-            <element signature="e#38853#42884#0" expanded="false" />
-            <element signature="e#39732#41078#0" expanded="false" />
-            <element signature="e#41471#42709#0" expanded="false" />
-            <element signature="e#42766#42858#0" expanded="false" />
-            <element signature="e#42932#47190#0" expanded="false" />
-            <element signature="e#44365#44408#0" expanded="false" />
-            <element signature="e#48055#61411#0" expanded="false" />
-            <element signature="e#53836#54382#0" expanded="false" />
-            <element signature="e#55872#61215#0" expanded="false" />
-            <element signature="e#56248#56307#0" expanded="false" />
-            <element signature="e#59176#59350#0" expanded="false" />
-            <element signature="e#59237#59302#0" expanded="false" />
-            <marker date="1416976694956" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1416976694956" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Model/Folder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="2002">
           <caret line="25" column="35" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="35" />
-          <folding>
-            <element signature="n#cacheFolderTree#0;n#Folder#0;n#!!top" expanded="false" />
-            <element signature="n#subFolders#0;n#Folder#0;n#!!top" expanded="false" />
-            <element signature="n#deleteFolders#0;n#Folder#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/webroot/js/madnh_file_manager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34615386" vertical-offset="11198" max-vertical-offset="12232">
-          <caret line="612" column="33" selection-start-line="612" selection-start-column="33" selection-end-line="612" selection-end-column="33" />
-          <folding>
-            <element signature="e#79#274#0" expanded="false" />
-            <element signature="e#2047#2097#0" expanded="false" />
-            <element signature="e#2163#2249#0" expanded="false" />
-            <element signature="e#2311#2360#0" expanded="false" />
-            <element signature="e#2410#2501#0" expanded="false" />
-            <element signature="e#2559#2668#0" expanded="false" />
-            <element signature="e#2734#2861#0" expanded="false" />
-            <element signature="e#2909#3191#0" expanded="false" />
-            <element signature="e#3233#5284#0" expanded="false" />
-            <element signature="e#5326#6146#0" expanded="false" />
-            <element signature="e#6216#6644#0" expanded="false" />
-            <element signature="e#6705#9055#0" expanded="false" />
-            <element signature="e#6944#8467#0" expanded="false" />
-            <element signature="e#8269#8441#0" expanded="false" />
-            <element signature="e#9102#18010#0" expanded="false" />
-            <element signature="e#9263#9382#0" expanded="false" />
-            <element signature="e#9435#12216#0" expanded="false" />
-            <element signature="e#9826#11031#0" expanded="false" />
-            <element signature="e#10470#10552#0" expanded="false" />
-            <element signature="e#10575#11011#0" expanded="false" />
-            <element signature="e#11139#11496#0" expanded="false" />
-            <element signature="e#11615#11802#0" expanded="false" />
-            <element signature="e#11899#12027#0" expanded="false" />
-            <element signature="e#12120#12204#0" expanded="false" />
-            <element signature="e#12268#12476#0" expanded="false" />
-            <element signature="e#12540#12929#0" expanded="false" />
-            <element signature="e#12983#13739#0" expanded="false" />
-            <element signature="e#13793#14803#0" expanded="false" />
-            <element signature="e#14859#15575#0" expanded="false" />
-            <element signature="e#15648#16960#0" expanded="false" />
-            <element signature="e#16072#16139#0" expanded="false" />
-            <element signature="e#16245#16339#0" expanded="false" />
-            <element signature="e#16449#16513#0" expanded="false" />
-            <element signature="e#17024#17975#0" expanded="false" />
-            <element signature="e#18048#18125#0" expanded="false" />
-            <element signature="e#18161#18241#0" expanded="false" />
-            <element signature="e#19057#20294#0" expanded="false" />
-            <element signature="e#19362#19840#0" expanded="false" />
-            <element signature="e#20331#20415#0" expanded="false" />
-            <element signature="e#20455#20557#0" expanded="false" />
-            <element signature="e#20716#22198#0" expanded="false" />
-            <element signature="e#21255#21705#0" expanded="false" />
-            <element signature="e#21750#21848#0" expanded="false" />
-            <element signature="e#21896#22014#0" expanded="false" />
-            <element signature="e#22907#23109#0" expanded="false" />
-            <element signature="e#23346#23570#0" expanded="false" />
-            <element signature="e#23607#23654#0" expanded="false" />
-            <element signature="e#23692#23803#0" expanded="false" />
-            <element signature="e#24348#25819#0" expanded="false" />
-            <element signature="e#24611#25811#0" expanded="false" />
-            <element signature="e#24875#25254#0" expanded="false" />
-            <element signature="e#25500#25624#0" expanded="false" />
-            <element signature="e#25665#25757#0" expanded="false" />
-            <element signature="e#26304#26848#0" expanded="false" />
-            <element signature="e#26893#27005#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/View/FileManagers/file_manager.ctp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="792" max-vertical-offset="6908">
-          <caret line="36" column="107" selection-start-line="36" selection-start-column="107" selection-end-line="36" selection-end-column="107" />
-          <folding>
-            <marker date="1416979664869" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1416979664869" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1416979664869" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -772,7 +752,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="541">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -780,50 +759,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.0252707" vertical-offset="990" max-vertical-offset="2310">
           <caret line="96" column="23" selection-start-line="96" selection-start-column="23" selection-end-line="96" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Controller/FileManagersController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.387097" vertical-offset="0" max-vertical-offset="14960">
-          <caret line="9" column="51" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="51" />
-          <folding>
-            <element signature="n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#index#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#folderItems#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#getFileManager#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#getFolderTree#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#createFolder#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#upload#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#rename#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#delete#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#download#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#get_upload_path#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#fix_integer_overflow#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#get_file_size#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#is_valid_file_object#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#get_file_object#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#get_error_message#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#get_config_bytes#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#validate_upload_file#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#upcount_name#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="e#18101#18286#1#PHP" expanded="true" />
-            <element signature="n#get_unique_filename#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#trim_file_name#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#get_file_name#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#handle_form_data#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#handle_file_upload#0;n#FileManagersController#0;n#!!top" expanded="true" />
-            <element signature="n#create_headers#0;n#FileManagersController#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/View/FileManagers/index.ctp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.516129" vertical-offset="480" max-vertical-offset="1276">
-          <caret line="31" column="40" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="114" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -831,7 +766,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.7096774" vertical-offset="0" max-vertical-offset="176">
           <caret line="1" column="44" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -839,7 +773,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.354838" vertical-offset="924" max-vertical-offset="2266">
           <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -847,10 +780,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.064516" vertical-offset="1241" max-vertical-offset="1782">
           <caret line="72" column="151" selection-start-line="68" selection-start-column="12" selection-end-line="72" selection-end-column="151" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <marker date="1417008312151" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -858,9 +787,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.46718147" vertical-offset="0" max-vertical-offset="518">
           <caret line="11" column="98" selection-start-line="11" selection-start-column="98" selection-end-line="11" selection-end-column="98" />
-          <folding>
-            <element signature="n#index#0;n#BaoCaoController#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -868,38 +794,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.5161295" vertical-offset="0" max-vertical-offset="418">
           <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
-          <folding>
-            <element signature="n#index#0;n#ThongBaoController#0;n#!!top" expanded="true" />
-            <element signature="n#read#0;n#ThongBaoController#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/View/BaoCao/index.ctp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.354838" vertical-offset="1241" max-vertical-offset="1782">
-          <caret line="71" column="129" selection-start-line="71" selection-start-column="129" selection-end-line="71" selection-end-column="129" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/View/BaoCao/read.ctp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.516129" vertical-offset="1307" max-vertical-offset="2178">
-          <caret line="70" column="50" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#0;n#ul#0;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/View/Elements/topMainNav.ctp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.774194" vertical-offset="889" max-vertical-offset="1716">
-          <caret line="57" column="92" selection-start-line="57" selection-start-column="92" selection-end-line="57" selection-end-column="92" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -907,18 +801,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.23826715" vertical-offset="0" max-vertical-offset="554">
           <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/View/ThongBao/read.ctp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.387097" vertical-offset="1373" max-vertical-offset="2178">
-          <caret line="70" column="46" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#0;n#ul#0;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -926,8 +808,169 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36462092" vertical-offset="62" max-vertical-offset="616">
           <caret line="12" column="57" selection-start-line="12" selection-start-column="57" selection-end-line="12" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/View/ThongBao/read.ctp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30868763" vertical-offset="1373" max-vertical-offset="2178">
+          <caret line="70" column="46" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/View/BaoCao/read.ctp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4306839" vertical-offset="1307" max-vertical-offset="2178">
+          <caret line="70" column="50" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/View/BaoCao/index.ctp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.59334564" vertical-offset="1241" max-vertical-offset="1782">
+          <caret line="71" column="129" selection-start-line="71" selection-start-column="129" selection-end-line="71" selection-end-column="129" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/View/Elements/topMainNav.ctp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.67467654" vertical-offset="889" max-vertical-offset="1716">
+          <caret line="57" column="92" selection-start-line="57" selection-start-column="92" selection-end-line="57" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript5.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="1037" max-vertical-offset="1628">
+          <caret line="165" column="19" selection-start-line="165" selection-start-column="19" selection-end-line="165" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Model/File.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.225806" vertical-offset="612" max-vertical-offset="1166">
+          <caret line="66" column="24" selection-start-line="66" selection-start-column="15" selection-end-line="66" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/View/FileManagers/index.ctp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.5161295" vertical-offset="712" max-vertical-offset="1276">
+          <caret line="69" column="10" selection-start-line="69" selection-start-column="10" selection-end-line="69" selection-end-column="10" />
           <folding>
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#735#2321#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Controller/FileManagersController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.290323" vertical-offset="4330" max-vertical-offset="5390">
+          <caret line="534" column="29" selection-start-line="534" selection-start-column="29" selection-end-line="534" selection-end-column="29" />
+          <folding>
+            <element signature="n#upload#0;n#FileManagersController#0;n#!!top" expanded="true" />
+            <element signature="n#rename#0;n#FileManagersController#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/webroot/js/underscore-min.map">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="572">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMTraversalAndRange.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="1411" max-vertical-offset="2552">
+          <caret line="160" column="16" selection-start-line="160" selection-start-column="16" selection-end-line="160" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/webroot/js/madnh_file_manager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3523" max-vertical-offset="5016">
+          <caret line="721" column="59" selection-start-line="721" selection-start-column="33" selection-end-line="721" selection-end-column="59" />
+          <folding>
+            <element signature="e#468#2115#0" expanded="false" />
+            <element signature="e#18478#20818#0" expanded="true" />
+            <element signature="e#19061#20513#0" expanded="true" />
+            <element signature="e#19366#19844#0" expanded="true" />
+            <element signature="e#20674#20776#0" expanded="true" />
+            <element signature="e#24743#25811#0" expanded="true" />
+            <element signature="e#24986#25254#0" expanded="true" />
+            <element signature="e#25500#25624#0" expanded="true" />
+            <element signature="e#25955#27098#0" expanded="true" />
+            <element signature="e#27214#27468#0" expanded="true" />
+            <element signature="e#27529#27782#0" expanded="true" />
+            <element signature="e#27841#27991#0" expanded="true" />
+            <element signature="e#28041#28110#0" expanded="true" />
+            <element signature="e#28159#28233#0" expanded="true" />
+            <element signature="e#28293#28434#0" expanded="true" />
+            <element signature="e#28559#28839#0" expanded="true" />
+            <element signature="e#28893#29147#0" expanded="true" />
+            <element signature="e#29412#29545#0" expanded="true" />
+            <element signature="e#29595#29666#0" expanded="true" />
+            <element signature="e#29714#29790#0" expanded="true" />
+            <element signature="e#29838#30099#0" expanded="true" />
+            <element signature="e#30015#30091#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/webroot/js/madnh.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5508" max-vertical-offset="8976">
+          <caret line="986" column="50" selection-start-line="986" selection-start-column="32" selection-end-line="986" selection-end-column="50" />
+          <folding>
+            <element signature="e#16926#17254#0" expanded="true" />
+            <element signature="e#17174#17246#0" expanded="true" />
+            <element signature="e#28394#28848#0" expanded="true" />
+            <element signature="e#28634#28840#0" expanded="true" />
+            <element signature="e#28915#29519#0" expanded="true" />
+            <element signature="e#29154#29510#0" expanded="true" />
+            <element signature="e#29574#30106#0" expanded="true" />
+            <element signature="e#29813#30098#0" expanded="true" />
+            <element signature="e#31352#31401#0" expanded="true" />
+            <element signature="e#31448#31574#0" expanded="true" />
+            <element signature="e#31613#31733#0" expanded="true" />
+            <element signature="e#32328#32383#0" expanded="true" />
+            <element signature="e#32428#32692#0" expanded="true" />
+            <element signature="e#32737#33002#0" expanded="true" />
+            <element signature="e#33214#33456#0" expanded="true" />
+            <element signature="e#33524#34177#0" expanded="true" />
+            <element signature="e#34239#35049#0" expanded="true" />
+            <element signature="e#40868#41766#0" expanded="false" />
+            <marker date="1417095654337" expanded="false" signature="46087:46117" placeholder="..." />
+            <marker date="1417095654337" expanded="false" signature="61793:61803" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/View/FileManagers/file_manager.ctp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4547135" vertical-offset="5408" max-vertical-offset="6358">
+          <caret line="363" column="44" selection-start-line="363" selection-start-column="44" selection-end-line="363" selection-end-column="44" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#button#2;n#div#4;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="tag#script#2" expanded="false" />
+            <element signature="tag#script#3" expanded="false" />
+            <element signature="tag#script#4" expanded="false" />
+            <element signature="tag#script#5" expanded="false" />
+            <element signature="e#10025#10093#0#HTML" expanded="true" />
+            <element signature="e#10246#10322#0#HTML" expanded="true" />
+            <element signature="e#10386#10427#0#HTML" expanded="true" />
+            <element signature="e#10490#10530#0#HTML" expanded="true" />
+            <element signature="e#10613#10992#0#HTML" expanded="true" />
+            <element signature="e#11053#11163#0#HTML" expanded="true" />
+            <element signature="e#11227#11338#0#HTML" expanded="true" />
+            <element signature="e#11433#11572#0#HTML" expanded="true" />
+            <element signature="e#13496#13582#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

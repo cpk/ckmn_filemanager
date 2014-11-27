@@ -8,7 +8,8 @@
 		<ul class="list-unstyled">
 			<li id="myfiles" class="expanded curent" data-folderid="0">
 				<a href="javascript:void(0);" class="folder_arrow"></a>
-				<a href="javascript:void(0);" class="folder_name" title="My Files" onclick="MaDnhFileManager.setCurrentFolder(0);">My Files</a>
+				<a href="javascript:void(0);" class="folder_name" title="My Files"
+				   onclick="MaDnhFileManager.setCurrentFolder(0); ">My Files</a>
 				<ul class="list-unstyled" id="folder_tree"></ul>
 			</li>
 
@@ -26,59 +27,70 @@
 
 				</div>
 				<div class="btn-group">
-					<button type="button" class="btn btn-success" data-toggle="tooltip" title="Tạo thư mục"
-					        onclick="MaDnhFileManager.createFolder()">
+					<button type="button" class="btn btn-success" id="create_folder" data-toggle="tooltip"
+					        title="Tạo thư mục"
+					        onclick="MaDnh.triggerEvent('file_manager_create_folder')">
 						<i class="fa fa-plus"></i> Tạo thư mục
 					</button>
 
 				</div>
 
-				<div class="btn-group" data-toggle="tooltip" title="Load lại dữ liệu">
-					<button type="button" class="btn btn-info" onclick="MaDnhFileManager.loadFolderTree(); MaDnhFileManager.loadItems()">
-						<i class="fa fa-refresh"></i>
+				<div class="btn-group" data-toggle="tooltip" id="refresh_content" title="Làm mới dữ liệu">
+					<button type="button" class="btn btn-info"
+					        onclick="MaDnh.triggerEvent('file_manager_reload_content')">
+						<i class="fa fa-refresh"></i> Làm mới
 					</button>
 				</div>
 
 				<div class="btn-group">
-					<button type="button" class="btn btn-info" data-toggle="tooltip" title="Sao chép">
+					<button type="button" class="btn btn-info" id="copy_button" disabled="disabled"
+					        data-toggle="tooltip" title="Sao chép"
+					        onclick="MaDnh.triggerEvent('file_manager_copy_content')">
 						<i class="fa fa-copy"></i>
 					</button>
-					<button type="button" class="btn btn-info" data-toggle="tooltip" title="Cắt">
+					<button type="button" class="btn btn-info" id="cut_button" disabled="disabled" data-toggle="tooltip"
+					        title="Cắt"
+					        onclick="MaDnh.triggerEvent('file_manager_cut_content')">
 						<i class="fa fa-cut"></i>
 					</button>
-					<button type="button" class="btn btn-info" data-toggle="tooltip" title="Dán">
+					<button type="button" class="btn btn-info" id="paste_button" disabled="disabled"
+					        data-toggle="tooltip" title="Dán"
+					        onclick="MaDnh.triggerEvent('file_manager_paste_content')">
 						<i class="fa fa-paste"></i>
 					</button>
-					<button type="button" class="btn btn-danger" data-toggle="tooltip" title="Xóa"
-					        onclick="MaDnhFileManager.deleteItems()">
+					<button type="button" class="btn btn-danger" id="delete_button" disabled="disabled"
+					        data-toggle="tooltip" title="Xóa"
+					        onclick="MaDnh.triggerEvent('file_manager_delete_content')">
 						<i class="fa fa-trash-o"></i>
 					</button>
 				</div>
 				<div class="btn-group">
-					<button type="button" class="btn btn-info" data-toggle="tooltip" title="Chia sẻ">
+					<button type="button" class="btn btn-info" id="add_to_share_button" disabled="disabled"
+					        data-toggle="tooltip" title="Thêm nội dung vào lượt chia sẻ"
+					        onclick="MaDnhFileManager.addToShare()">
+						<i class="fa fa-plus"></i>
+					</button>
+					<button type="button" class="btn btn-info" id="refresh_share_button" disabled="disabled"
+					        data-toggle="tooltip" title="Hủy chia sẻ"
+					        onclick="MaDnhFileManager.refreshShareList()">
+						<i class="fa fa-refresh"></i>
+					</button>
+					<button type="button" class="btn btn-warning" id="share_button" disabled="disabled"
+					        data-toggle="tooltip" title="Chia sẻ"
+					        onclick="MaDnh.triggerEvent('file_manager_share')">
 						<i class="fa fa-send-o"></i>
+						<span class="badge badge-danger" id="share_content_count" style="display: none;">0</span>
 					</button>
 				</div>
 
 
-				<div class="btn-group">
-					<button type="button" class="btn btn-info">Action</button>
-					<button type="button" class="btn btn-info active dropdown-toggle" data-toggle="dropdown">
-						<span class="caret"></span>
-						<span class="sr-only">Toggle Dropdown</span>
-					</button>
-					<ul class="dropdown-menu info" role="menu">
-						<li><a href="#fakelink">Tên</a></li>
-						<li><a href="#fakelink">Kích thước</a></li>
-					</ul>
-				</div>
 			</div>
 		</div>
 		<div class="well" id="myfiles_wrap">
 			<!-- Slide Right -->
 			<div id="loading_content" class="text-center"></div>
 			<!-- End Empty data -->
-			<table class="table table-th-block table-contents">
+			<table class="table table-th-block table-hover table-contents">
 				<thead>
 				<tr>
 					<th width="20">
@@ -118,7 +130,8 @@
 <script id="template_folder_content_item" type="text/x-handlebars-template">
 	<tr id="folder_item_{{item_id}}" data-type="{{item_type}}" data-item-id="{{item_id}}">
 		<td>
-			<input type="checkbox" name="item[]" value="{{item_id}}"/>
+			<input type="checkbox" name="item[]" value="{{item_id}}"
+			       onchange="MaDnh.triggerEvent('file_manager_item_select_status_change', this)"/>
 		</td>
 		<td>
 			<img src="/img/filemanager/files/archive-v3.png" class="avatar">
@@ -148,7 +161,8 @@
 <script id="template_folder_content_folder" type="text/x-handlebars-template">
 	<tr id="folder_item_{{item_id}}" data-type="{{item_type}}" data-item-id="{{item_id}}">
 		<td>
-			<input type="checkbox" class="item-checkbox" name="item[]" value="{{item_id}}"/>
+			<input type="checkbox" class="item-checkbox" name="item[]" value="{{item_id}}"
+			       onchange="MaDnh.triggerEvent('file_manager_item_select_status_change', this);"/>
 		</td>
 		<td>
 			<img src="/img/filemanager/files/folder-v5.png" class="avatar">
@@ -297,47 +311,110 @@
 		return MaDnh.Template.render('folder_nav_item_nested', info);
 	});
 
-	MaDnhFileManager.loadFolderTree();
-	MaDnhFileManager.loadItems();
-
-	$("#folder_nav>ul").delegate('li>a.folder_name', "click", function (e) {
-		e.stopPropagation();
-		e.preventDefault();
-		$("#folder_nav>ul").find('li.curent').removeClass('curent');
-		$(this).parent().addClass('curent');
-		if ($(this).parent().data('folderid')) {
-			MaDnhFileManager.setCurrentFolder($(this).parent().data('folderid'));
-			MaDnhFileManager.loadItems($(this).parent().data('folderid'));
-		} else {
+	MaDnh.bindEvent('file_manager_init', function () {
+		console.log('file_manager_init');
+		MaDnh.bindEvent('file_manager_reload_content', function () {
+			MaDnhFileManager.loadFolderTree();
 			MaDnhFileManager.loadItems();
-		}
-	}).delegate('li>a.folder_arrow', 'click', function (e) {
-		if ($(this).parent().hasClass('expanded')) {
-			$(this).parent().removeClass('expanded').addClass('collapsed').children('ul').first().slideUp('slow');
-		} else if ($(this).parent().hasClass('collapsed')) {
-			$(this).parent().removeClass('collapsed').addClass('expanded').children('ul').first().slideDown('slow');
-		}
-		e.preventDefault();
+		});
 
-	});
+		MaDnh.bindEvent('file_manager_create_folder', function () {
+			MaDnhFileManager.createFolder();
+		});
 
-	/*
-	 Add click event to Main list item
-	 */
-	$('#folder_items').delegate('td a.item-name', 'click', function (e) {
-		e.stopPropagation();
-		var $this = $(this), row = $this.parents('tr').first(), id = row.data('item-id');
-		if (row.data('type') == 'folder' && id) {
+		MaDnh.bindEvent('file_manager_delete_content', function(){
+			MaDnhFileManager.deleteItems();
+		});
+		MaDnh.bindEvent('file_manager_item_select_status_change', function (checkbox) {
+			checkbox = $(checkbox);
+			var item = checkbox.parentsUntil('tr').parent();
+			var status = checkbox.prop('checked') || false;
+
+			var data = item.data();
+			data = _.extend({}, {type: 'file', 'itemId': 0}, data);
+
+			if (status) {
+				MaDnhFileManager.itemSelect(data.type, data['itemId']);
+			} else {
+				MaDnhFileManager.itemUnSelect(data.type, data['itemId']);
+			}
+		});
+
+		MaDnh.bindEvent('file_manager_redraw_items', function(){
+			$('#copy_button, #cut_button, #delete_button, #add_to_share_button').prop(
+				'disabled', true
+			);
+		});
+
+		MaDnh.bindEvent(['file_manager_select_item'], function () {
+			$('#copy_button, #cut_button, #delete_button, #add_to_share_button').prop(
+				'disabled', false
+			);
+		});
+
+		MaDnh.bindEvent(['file_manager_unselect_item', 'file_manager_redraw_items'], function () {
+			$('#copy_button, #cut_button, #delete_button, #add_to_share_button').prop(
+				'disabled', !MaDnhFileManager.hasItemSelect()
+			);
+		});
+
+
+		MaDnh.bindEvent('madnh_list_system_file_manager_share_content_change', function(){
+			if(MaDnh.isEmptyListType('file_manager_share_content')){
+				$('#refresh_share_button, #share_button, #share_content_count').prop('disabled', true);
+				$('#share_content_count').hide().html(0);
+			}else{
+				$('#refresh_share_button, #share_button, #share_content_count').prop('disabled', false);
+				$('#share_content_count').html(_.size(MaDnh.getListType('file_manager_share_content'))).show();
+			}
+		});
+
+
+		MaDnhFileManager.loadFolderTree();
+		MaDnhFileManager.loadItems();
+
+
+		$("#folder_nav>ul").delegate('li>a.folder_name', "click", function (e) {
+			e.stopPropagation();
 			e.preventDefault();
-			MaDnhFileManager.selectFolderTreeItem(id);
-			MaDnhFileManager.loadItems(id);
-		} else {
-			console.log('NO');
-		}
+			$("#folder_nav>ul").find('li.curent').removeClass('curent');
+			$(this).parent().addClass('curent');
+			if ($(this).parent().data('folderid')) {
+				MaDnhFileManager.setCurrentFolder($(this).parent().data('folderid'));
+				MaDnhFileManager.loadItems($(this).parent().data('folderid'));
+			} else {
+				MaDnhFileManager.loadItems();
+			}
+		}).delegate('li>a.folder_arrow', 'click', function (e) {
+			if ($(this).parent().hasClass('expanded')) {
+				$(this).parent().removeClass('expanded').addClass('collapsed').children('ul').first().slideUp('slow');
+			} else if ($(this).parent().hasClass('collapsed')) {
+				$(this).parent().removeClass('collapsed').addClass('expanded').children('ul').first().slideDown('slow');
+			}
+			e.preventDefault();
 
+		});
+
+		/*
+		 Add click event to Main list item
+		 */
+		$('#folder_items').delegate('td a.item-name', 'click', function (e) {
+			e.stopPropagation();
+			var $this = $(this), row = $this.parents('tr').first(), id = row.data('item-id');
+			if (row.data('type') == 'folder' && id) {
+				e.preventDefault();
+				MaDnhFileManager.selectFolderTreeItem(id);
+				MaDnhFileManager.loadItems(id);
+			} else {
+				console.log('NO');
+			}
+
+		});
+
+		$('#check_all').on('change', function () {
+			MaDnh.DOM.setTableCheckboxsStatus('.table-contents', $(this).prop('checked'))
+		});
 	});
 
-	$('#check_all').on('change', function () {
-		MaDnh.DOM.setTableCheckboxsStatus('.table-contents', $(this).prop('checked'))
-	});
+	MaDnh.triggerEvent('file_manager_init');
 </script>

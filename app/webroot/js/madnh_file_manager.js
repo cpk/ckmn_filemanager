@@ -14,6 +14,8 @@
     var __ = _;
 
     MaDnhFileManager.uploader = null;
+
+
     MaDnhFileManager._config = {
         fetch_item_url: '',
         folder_tree_url: '',
@@ -421,7 +423,7 @@
         $(MaDnhFileManager._config.folder_tree_selector).html(template);
     }
 
-    MaDnhFileManager.setCurrentFolder = function(id){
+    MaDnhFileManager.setCurrentFolder = function (id) {
         MaDnhFileManager._config.current_folder = id;
         MaDnhFileManager._config.send_data = {parent_id: id};
     };
@@ -455,9 +457,12 @@
                         $(MaDnhFileManager._config.container_selector).removeClass('loading');
                         $(MaDnhFileManager._config.folder_content_holder).html(content);
                     } else {
+                        $(MaDnhFileManager._config.folder_content_holder).html('');
                         $(MaDnhFileManager._config.container_selector).removeClass('loading');
                         $(MaDnhFileManager._config.container_selector).addClass('empty');
                     }
+                    MaDnhFileManager.refreshItemSelectList();
+                    MaDnh.triggerEvent('file_manager_redraw_items');
                 }
             },
             errorFunc: function () {
@@ -472,7 +477,7 @@
 
 
     MaDnhFileManager.createFolder = function () {
-        MaDnh.Helper.prompt('Tạo thư mục', '',function (value) {
+        MaDnh.Helper.prompt('Tạo thư mục', '', function (value) {
             if (value === false) {
                 return;
             }
@@ -545,7 +550,7 @@
             errorFunc: function () {
                 updateTree('');
             },
-            completeFunc: function(){
+            completeFunc: function () {
                 MaDnhFileManager.selectFolderTreeItem(MaDnhFileManager._config.current_folder);
             }
         });
@@ -557,17 +562,13 @@
         $("#folder_nav>ul").find('li.curent').removeClass('curent');
         folderNavItem.parent().addClass('curent');
         folderNavItem.parents('li').removeClass('collapsed').addClass('expanded');
-        if(folderNavItem){
+        if (folderNavItem) {
             MaDnhFileManager.setCurrentFolder(id);
         }
     };
 
     MaDnhFileManager.deleteItems = function () {
-
-        var checkboxs = $(MaDnhFileManager._config.folder_content_holder + ' input:checkbox:checked');
-
-
-        if (!checkboxs.length) {
+        if(!MaDnhFileManager.hasItemSelect()){
             return;
         }
 
@@ -578,15 +579,13 @@
             var folders = [];
             var files = [];
             var ajax = new MaDnh.AJAXWorker();
-            console.log('sadadad', checkboxs);
 
-            __.each(checkboxs, function (e) {
-                var row = $(e).parentsUntil('tr').parent();
-                if (row.data('type') && row.data('item-id')) {
-                    if (row.data('type') == 'folder') {
-                        folders.push(row.data('item-id'));
+            __.each(MaDnhFileManager.getItemSelect(), function (item) {
+                if (item['id']) {
+                    if (item['type'] == 'folder') {
+                        folders.push(item['id']);
                     } else {
-                        files.push(row.data('item-id'));
+                        files.push(item['id']);
                     }
                 }
             });
@@ -605,12 +604,12 @@
             });
             ajax.request();
         });
-    }
+    };
 
 
-    MaDnhFileManager.rename = function(type, id, old_name){
-        MaDnh.Helper.prompt('Nhập tên mới', old_name, function(data){
-            if(old_name != data){
+    MaDnhFileManager.rename = function (type, id, old_name) {
+        MaDnh.Helper.prompt('Nhập tên mới', old_name, function (data) {
+            if (old_name != data) {
                 var ajax = new MaDnh.AJAXWorker();
 
                 ajax.option({
@@ -618,19 +617,19 @@
                     requestData: {type: type, id: id, new_name: data},
                     requestType: 'POST',
                     successFunc: function (data) {
-                        if(MaDnh.Helper.isProcessResult(data)){
-                            if(!data.isError()){
-                                if(type == 'folder'){
+                        if (MaDnh.Helper.isProcessResult(data)) {
+                            if (!data.isError()) {
+                                if (type == 'folder') {
                                     MaDnhFileManager.loadFolderTree();
                                 }
                                 MaDnhFileManager.loadItems();
-                            }else{
-                                MaDnh.Helper.alert('Đổi tên không thành công', {type:'error'});
+                            } else {
+                                MaDnh.Helper.alert('Đổi tên không thành công', {type: 'error'});
                             }
                         }
                     },
                     errorFunc: function () {
-                        MaDnh.Helper.alert('Đổi tên không thành công',  {type:'error'});
+                        MaDnh.Helper.alert('Đổi tên không thành công', {type: 'error'});
                     }
                 });
                 ajax.request();
@@ -639,6 +638,125 @@
         }, {title: 'Đổi tên'});
 
     }
+
+
+    /*
+    * Select
+    * */
+
+    MaDnhFileManager.itemSelect = function (type, id) {
+        if(type != 'folder'){
+            type='file';
+        }
+        MaDnh.addToListType('file_manager_item_select', type + '_' + id, {type: type, id: id}, false);
+
+        MaDnh.triggerEvent('file_manager_select_item', {type: type, id: id});
+    };
+
+
+
+    MaDnhFileManager.itemUnSelect = function (type, id) {
+        if(type != 'folder'){
+            type='file';
+        }
+        MaDnh.removeFromListType('file_manager_item_select', type + '_' + id, {type: type, id: id});
+        MaDnh.triggerEvent('file_manager_unselect_item', {type: type, id: id});
+    };
+
+    MaDnhFileManager.isItemSelect = function (type, id) {
+        if(type != 'folder'){
+            type='file';
+        }
+        return MaDnh.inListType('file_manager_item_select', type + '_' + id);
+    };
+
+    MaDnhFileManager.getItemSelect = function(){
+        return MaDnh.getListType('file_manager_item_select');
+    };
+    MaDnhFileManager.hasItemSelect = function(){
+        return !MaDnh.isEmptyListType('file_manager_item_select');
+    };
+
+    MaDnhFileManager.refreshItemSelectList = function () {
+        MaDnh.resetListType('file_manager_item_select');
+
+        return MaDnh.triggerEvent('file_manager_refresh_item_select_list');
+    };
+
+    /*
+    * End select
+    * */
+
+
+
+
+
+    /*
+     * SHARE
+     * */
+
+
+    MaDnhFileManager.addShare = function (type, id) {
+        if(type != 'folder'){
+            type='file';
+        }
+
+        if(MaDnh.addToListType('file_manager_share_content', type + '_' + id, {type: type, id: id}, false)){
+            MaDnh.triggerEvent('file_manager_add_share_content', {type: type, id: id});
+        }
+    };
+
+    MaDnhFileManager.unShare = function (type, id) {
+        if(type != 'folder'){
+            type='file';
+        }
+        if(MaDnh.removeFromListType('file_manager_share_content', type + '_' + id)){
+            MaDnh.triggerEvent('file_manager_un_share_content', {type: type, id: id});
+        }
+    };
+
+    MaDnhFileManager.inShareList = function (type, id) {
+        if(type != 'folder'){
+            type='file';
+        }
+        return MaDnh.inListType('file_manager_share_content', type + '_' + id);
+    };
+
+    MaDnhFileManager.refreshShareList = function () {
+        MaDnh.resetListType('file_manager_share_content');
+
+        MaDnh.triggerEvent('file_manager_refresh_share_content');
+    };
+
+    MaDnhFileManager.getShareItems = function(){
+        return MaDnh.getListType('file_manager_share_content');
+    };
+    MaDnhFileManager.hasShareItem = function(){
+        return !MaDnh.isEmptyListType('file_manager_share_content');
+    };
+
+
+    MaDnhFileManager.addToShare = function(){
+        if(!MaDnhFileManager.hasItemSelect()){
+            return false;
+        }
+        var items = MaDnhFileManager.getItemSelect();
+
+        __.each(items, function(item){
+            MaDnhFileManager.addShare(item['type'], item['id']);
+        });
+    };
+    /*
+     * End Share
+     * */
+
+
+
+
+
+
+
+
 
 
 }).call(this);

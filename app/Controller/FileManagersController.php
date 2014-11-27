@@ -316,14 +316,14 @@ class FileManagersController extends AppController {
 
 
 		if ( empty( $type ) || empty( $id ) || empty( $name ) || ! is_string( $name ) ) {
-			$result->addInfo( 'Nội dung không đầy đủ', $result::PROCESS_ERROR );
+			$result->addInfo( 'Nội dung không đầy đủ', ProcessResult::PROCESS_ERROR );
 		}
 
 		if ( ! $result->hasWarning() ) {
 			if ( $type == 'folder' ) {
 				$folder = $this->Folder->findById( $id );
 				if ( ! $folder ) {
-					$result->addInfo( 'Thư mục không tồn tại', $result::PROCESS_ERROR );
+					$result->addInfo( 'Thư mục không tồn tại', ProcessResult::PROCESS_ERROR );
 				} else {
 					$this->Folder->set( 'id', $id );
 					if ( $this->Folder->save( array(
@@ -333,21 +333,21 @@ class FileManagersController extends AppController {
 						)
 					) {
 						$this->Folder->cacheFolderTree();
-						$result->addInfo( 'Đổi tên thư mục thành công', $result::PROCESS_SUCCESS );
+						$result->addInfo( 'Đổi tên thư mục thành công', ProcessResult::PROCESS_SUCCESS );
 					} else {
-						$result->addInfo( 'Đổi tên thư mục không thành công', $result::PROCESS_ERROR );
+						$result->addInfo( 'Đổi tên thư mục không thành công', ProcessResult::PROCESS_ERROR );
 					}
 				}
 			} else {
 				$file = $this->File->findById( $id );
 				if ( ! $file ) {
-					$result->addInfo( 'Nội dung không tồn tại', $result::PROCESS_ERROR );
+					$result->addInfo( 'Nội dung không tồn tại', ProcessResult::PROCESS_ERROR );
 				} else {
 					$this->File->set( 'id', $id );
 					if ( $this->File->save( array( 'file_name' => $name, 'file_modified_time' => time() ) ) ) {
-						$result->addInfo( 'Đổi tên nội dung thành công', $result::PROCESS_SUCCESS );
+						$result->addInfo( 'Đổi tên nội dung thành công', ProcessResult::PROCESS_SUCCESS );
 					} else {
-						$result->addInfo( 'Đổi tên nội dung không thành công', $result::PROCESS_ERROR );
+						$result->addInfo( 'Đổi tên nội dung không thành công', ProcessResult::PROCESS_ERROR );
 					}
 				}
 			}
