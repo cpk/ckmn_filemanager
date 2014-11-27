@@ -13,9 +13,6 @@
     root.MaDnh = MaDnh;
     var previousMaDnh = root.MaDnh;
     var __ = _;
-    MaDnh.events = {};
-    MaDnh.event_system_status = true;
-
 
     MaDnh.noConflict = function () {
         root.MaDnhApp = previousMaDnh;
@@ -164,17 +161,19 @@
         if (!__.isUndefined(func)) {
             if (typeof func == 'string') {
                 try {
-                    return window[func](data);
+                    window[func](data);
+                    return true;
                 } catch (e) {
                     try {
-                        return eval(func);
+                        eval(func);
                     } catch (e) {
                         return false;
                     }
                 }
             } else if (__.isFunction(func)) {
                 try {
-                    return func(data);
+                    func(data);
+                    return true;
                 } catch (e) {
                     return false;
                 }
@@ -419,7 +418,7 @@
      * @param option
      */
     MaDnh.Helper.prompt = function (title, old_value, callback, option) {
-        var form = '<p>' + title + '</p>' + '<input class="form-control" name="prompt_data" type="text" value="' + __.escape(old_value) + '"/>';
+        var form = '<p>' + title + '</p>' + '<input class="form-control" name="prompt_data" type="text" value="'+__.escape(old_value)+'"/>';
         MaDnh.Helper.formDialog(form, function (result) {
             if (__.has(result, 'prompt_data')) {
                 MaDnh.Helper.callFunctionDynamic(callback, result['prompt_data']);
@@ -558,7 +557,7 @@
         var checkboxs = $(table_selector + ' tr td input:checkbox' + check_status);
         console.log('Check status', check_status);
         checkboxs.each(function (index, el) {
-            $(el).prop('checked', status).trigger('change');
+            $(el).prop('checked', status);
         });
     };
 
@@ -838,298 +837,9 @@
         }
     };
 
-
-    MaDnh.cleanEvents = function (confirm) {
-        if (confirm === true) {
-            MaDnh.events = {};
-        }
-    };
-
-    MaDnh.eventStatus = function (status) {
-        if (__.isUndefined(status)) {
-            return true && MaDnh.event_system_status;
-        }
-        MaDnh.event_system_status = true && status;
-    };
-
-    MaDnh.hasEvent = function (event) {
-        return !__.isUndefined(event) && !__.isUndefined(MaDnh.events[event]);
-    };
-
-    MaDnh.bindEvent = function (event, callback, priority) {
-        if (!__.isArray(event)) {
-            if (__.isObject(event)) {
-                event = __.values(event);
-            } else {
-                event = [event];
-            }
-        }
-
-        __.each(event, function (event_name) {
-            if (!MaDnh.hasEvent(event_name)) {
-                MaDnh.events[event_name] = new MaDnh.Priority();
-            }
-            MaDnh.events[event_name].addContent(callback, priority);
-        });
-    };
-    MaDnh.bindEventUnique = function (event, callback, priority) {
-        if (!__.isArray(event)) {
-            if (__.isObject(event)) {
-                event = __.values(event);
-            } else {
-                event = [event];
-            }
-        }
-        __.each(event, function (event_name) {
-            if (!MaDnh.hasEvent(event_name)) {
-                MaDnh.events[event_name] = new MaDnh.Priority();
-                MaDnh.events[event_name].addContent(callback, priority);
-            } else if (!MaDnh.events[event_name].hasContent(callback)) {
-                MaDnh.events[event_name].addContent(callback, priority);
-            }
-        });
-
-    };
-
-
-    MaDnh.unBindEvent = function (event, callback) {
-        if (!__.isArray(event)) {
-            if (__.isObject(event)) {
-                event = __.values(event);
-            } else {
-                event = [event];
-            }
-        }
-        __.each(event, function (event_name) {
-            if (MaDnh.hasEvent(event_name)) {
-                if (__.isUndefined(callback)) {
-                    delete MaDnh.events[event_name];
-                } else {
-                    MaDnh.events[event_name].removeContent(callback);
-                }
-            }
-        });
-    };
-    MaDnh.triggerEvent = function (event, data) {
-        if (!MaDnh.eventStatus() || __.isUndefined(event) || __.isUndefined(MaDnh.events[event])) {
-            return false;
-        }
-        var callbacks = MaDnh.events[event].getContents();
-
-        if (__.isArray(callbacks)) {
-            __.each(callbacks, function (callback) {
-                MaDnh.Helper.callFunctionDynamic(callback, data);
-            });
-            return true;
-        }
-        return false;
-    };
-
-    MaDnh.triggerEventFilter = function (event, data) {
-        if (__.isUndefined(event)) {
-            return null;
-        }
-        if (!MaDnh.eventStatus() || __.isUndefined(MaDnh.events[event])) {
-            return data;
-        }
-
-        var callbacks = MaDnh.events[event].getContents();
-
-        if (__.isArray(callbacks)) {
-            __.each(callbacks, function (callback) {
-                data = MaDnh.Helper.callFunctionDynamic(callback, data);
-            });
-        }
-        return data;
-    };
-
-
     /********************************************************
      *  CLASSESS
      ********************************************************/
-
-    /*
-     * MaDnh List System
-     */
-    MaDnh.flags = {};
-
-
-    MaDnh.hasFlag = function (flag) {
-        return __.has(MaDnh.flags, flag);
-    };
-
-    MaDnh.setFlag = function (flag, status) {
-        if (__.isUndefined(status)) {
-            status = true;
-        }
-        MaDnh.flags[flag] = true && status;
-    };
-
-    MaDnh.getFlag = function (flag) {
-        if (MaDnh.hasFlag(flag)) {
-            return true && MaDnh.flags[flag];
-        }
-        return false;
-    };
-
-    /*
-     * End MaDnh List System
-     */
-    /*
-     * MaDnh List System
-     */
-
-
-    MaDnh.list_system = {};
-
-    MaDnh.triggerListSystemChange = function (type) {
-        if (!__.isUndefined(type)) {
-            MaDnh.triggerEvent('madnh_list_system_' + type + '_change');
-        }
-        MaDnh.triggerEvent('madnh_list_system_change');
-    };
-
-    MaDnh.createListType = function (type) {
-        MaDnh.list_system[type] = {};
-
-        MaDnh.triggerEvent('madnh_list_system_create_type', type);
-        MaDnh.triggerListSystemChange();
-    };
-    MaDnh.hasListType = function (type) {
-        return __.has(MaDnh.list_system, type);
-    };
-    MaDnh.removeListType = function (type) {
-        if (MaDnh.hasListType(type)) {
-            delete MaDnh.list_system[type];
-
-            MaDnh.triggerEvent('madnh_list_system_remove_type', type);
-            MaDnh.triggerListSystemChange();
-            return true;
-        }
-        return false;
-    };
-
-    MaDnh.resetListType = function (type) {
-        if (MaDnh.hasListType(type)) {
-            MaDnh.list_system[type] = {};
-
-            MaDnh.triggerEvent('madnh_list_system_reset_type', type);
-            MaDnh.triggerListSystemChange(type);
-            return true;
-        }
-        return false;
-    };
-
-    MaDnh.getListType = function (type) {
-        if (MaDnh.hasListType(type)) {
-            return MaDnh.list_system[type];
-        }
-        return false;
-    };
-
-    MaDnh.isEmptyListType = function (type) {
-        if (!__.isUndefined(type)) {
-            if (MaDnh.hasListType(type)) {
-                return __.isEmpty(MaDnh.getListType(type));
-            }
-            return true;
-        }
-        return __.isEmpty(MaDnh.list_system);
-    };
-
-
-    MaDnh.addToListType = function (type, name, data, override) {
-        if (__.isUndefined(override)) {
-            override = true;
-        }
-        if (!__.has(MaDnh.list_system, type)) {
-            MaDnh.createListType(type);
-        }
-        if (__.isNull(name)) {
-            name = __.uniqueId('list_item_') + '_' + __.now();
-        }
-        if (!__.has(MaDnh.list_system[type], name) || override) {
-            MaDnh.list_system[type][name] = data;
-
-            MaDnh.triggerEvent('madnh_list_system_' + type + '_add', {
-                name: name,
-                data: data
-            });
-            MaDnh.triggerListSystemChange(type);
-            return true;
-        }
-        return false;
-    };
-
-    MaDnh.removeFromListType = function (type, name, data) {
-        if (MaDnh.hasListType(type) && !__.isUndefined(name)) {
-            var result = false;
-
-            if (!__.isNull(name)) {
-                if (__.has(MaDnh.list_system[type], name)) {
-                    delete MaDnh.list_system[type][name];
-                    result = true;
-                }
-            } else {
-                MaDnh.list_system[type] = __.without(MaDnh.list_system[type], data);
-                result = true;
-            }
-
-            if (result) {
-                MaDnh.triggerEvent('madnh_list_system_remove_item', {
-                    type: type,
-                    name: name,
-                    data: data
-                });
-                MaDnh.triggerListSystemChange(type);
-            }
-            return true && result;
-        }
-
-        return false;
-    };
-
-    MaDnh.inListType = function (type, name, data) {
-        if (MaDnh.hasListType(type) && !__.isUndefined(name)) {
-            if (!__.isNull(name)) {
-                return __.has(MaDnh.list_system[type], name);
-            }
-            return __.contains(MaDnh.list_system[type], data);
-        }
-        return false;
-    };
-
-    MaDnh.findInListType = function (type, callback, not_found_value) {
-        if (MaDnh.hasListType(type)) {
-            return __.find(MaDnh.list_system[type], callback);
-        }
-        return not_found_value;
-    };
-
-    MaDnh.filterInListType = function (type, callback) {
-        if (MaDnh.hasListType(type)) {
-            return __.filter(MaDnh.list_system[type], callback);
-        }
-        return [];
-    };
-
-    MaDnh.whereInListType = function (type, properties) {
-        if (MaDnh.hasListType(type)) {
-            return __.where(MaDnh.list_system[type], properties);
-        }
-        return [];
-    };
-    MaDnh.findWhereInListType = function (type, properties) {
-        if (MaDnh.hasListType(type)) {
-            return __.findWhere(MaDnh.list_system[type], properties);
-        }
-        return [];
-    };
-
-
-    /*
-     * End MaDnh List System
-     */
 
 
     MaDnh.Priority = function () {
@@ -1274,8 +984,6 @@
             return contents;
         };
     };
-
-
     MaDnh.WaiterSystem = {
         waiters: {},
         addWaiter: function (runner, once, description) {

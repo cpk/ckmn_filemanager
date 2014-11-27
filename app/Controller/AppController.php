@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Application level Controller
  *
@@ -18,7 +19,6 @@
  * @since         CakePHP(tm) v 0.2.9
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
 App::uses('Controller', 'Controller');
 
 /**
@@ -31,6 +31,7 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+
     public $webroot;
     public $currentUser;
     public $currentTime;
@@ -49,17 +50,25 @@ class AppController extends Controller {
         'CSV',
         'Common'
     );
-    
+    public $notifyLink = array();
+    public $notifyMessage = array();
+    public $notifications;
+
     public function beforeFilter() {
         $this->Auth->authenticate = array('Custom');
         $this->currentUser = $this->Session->read('Auth.User');
         $this->set('currentUser', $this->currentUser);
-	    return true;
-        if(!$this->CheckPermission->checkPermission($this->currentUser['id'], $this->params['controller'], $this->params['action'])){
+        $this->getNotify();
+        $this->getNotifyDataType();
+        $this->set('notifyLink', $this->notifyLink);
+        $this->set('notifyMessage', $this->notifyMessage);
+        return true;
+        if (!$this->CheckPermission->checkPermission($this->currentUser['id'], $this->params['controller'], $this->params['action'])) {
             $this->redirect(array('controller' => 'home', 'action' => 'denied'));
         }
     }
-    function beforeRender() {        
+
+    function beforeRender() {
         $this->Auth->authenticate = array('Custom');
         $this->webroot = Router::url('/', true);
         $this->set('webroot', $this->webroot);
@@ -73,7 +82,64 @@ class AppController extends Controller {
         $this->set('action', $this->params['action']);
         if ($this->name == 'CakeError') {
             $this->layout = 'error';
-        }   
-        
+        }
     }
+    
+    function getNotifyDataType() {
+        $this->loadModel('NotificationType');
+        $notiesLink = $this->NotificationType->find('all');
+        foreach ($notiesLink as $data){
+            $this->notifyMessage[$data['NotificationType']['id']] = $data['NotificationType']['message'];
+            $this->notifyLink[$data['NotificationType']['id']] = $data['NotificationType']['controller'].'/'.$data['NotificationType']['action'];
+        }
+    }
+
+    function getNotify() {
+        $this->loadModel('Notification');
+        $this->loadModel('UsersNotification');
+        $options = array(
+            'conditions' => array(
+                'user_id' => $this->currentUser['id'],
+            ),
+        );
+        $usersNotifications = $this->UsersNotification->find('all', $options);
+        $notifications = array();
+        $notificationsUnread = array();
+        foreach ($usersNotifications as $key => $usersNotification) {
+            $options = array(
+                'joins' => array(
+                    array('table' => 'users', 'alias' => 'User', 'type' => 'inner',
+                        'conditions' => array('User.id = Notification.user_create')),
+                ),
+                'conditions' => array(
+                    'Notification.id' => $usersNotification['UsersNotification']['notification_id'],
+                ),
+                'order' => "Notification.date_create DESC",
+                'fields' => array('Notification.id', 'Notification.content', 'Notification.date_create',
+                    'Notification.type', 'Notification.status', 'User.first_name', 'User.last_name', 'User.id')
+            );
+            $notifications[] = $this->Notification->find('first', $options);
+            $options = array(
+                'joins' => array(
+                    array('table' => 'users', 'alias' => 'User', 'type' => 'inner',
+                        'conditions' => array('User.id = Notification.user_create')),
+                ),
+                'conditions' => array(
+                    'Notification.id' => $usersNotification['UsersNotification']['notification_id'],
+                    'Notification.status' => 0,
+                ),
+                'order' => "Notification.date_create DESC",
+                'fields' => array('Notification.id', 'Notification.content', 'Notification.date_create',
+                    'Notification.type', 'Notification.status', 'User.first_name', 'User.last_name', 'User.id')
+            );
+            $notificationUnread = $this->Notification->find('first', $options);
+            if(count($notificationUnread) > 0){
+                $notificationsUnread[] = $notificationUnread;
+            }
+        }
+        $this->notifications = $notifications;
+        $this->set('notifications', $notifications);
+        $this->set('newCount', count($notificationsUnread));
+    }
+
 }

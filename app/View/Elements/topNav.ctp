@@ -3,7 +3,10 @@
 
         <!-- Begin Logo brand -->
         <div class="logo-brand">
-            <a href="#"><img src="<?php echo $webroot; ?>/img/sentir-logo-primary.png" alt="Sentir logo"></a>
+            <a href="#">
+                <img height="100%" src="<?php echo $webroot; ?>/img/logo_02.png" alt="Sentir logo" class="float-left" style="margin-left: 50px;margin-right: 0px">
+                <span style="line-height: 10px">10010011<br/>ABC</span>
+            </a>
         </div><!-- /.logo-brand -->
         <!-- End Logo brand -->
 
@@ -32,7 +35,7 @@
             <ul class="nav-user navbar-right">
                 <li class="dropdown">
                     <a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?php echo $webroot; ?>/img/avatar/avatar-1.jpg" class="avatar img-circle" alt="Avatar">
+                        <img src="<?php echo $webroot; ?>/img/avatar/avatar-<?php echo $currentUser['id']; ?>.jpg" class="avatar img-circle" alt="Avatar">
                         Hi, <strong><?php echo $currentUser['username']; ?></strong>
                     </a>
                     <ul class="dropdown-menu square primary margin-list-rounded with-triangle">
@@ -58,64 +61,82 @@
                     <!-- Begin nav notification -->
                     <li class="dropdown">
                         <a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="badge badge-danger icon-count">7</span>
+                            <?php
+                            $max = count($notifications)>10?10:count($notifications);
+                            ?>
+                            <span class="badge badge-danger icon-count"><?php echo $newCount; ?></span>
                             <i class="fa fa-bell"></i>
                         </a>
                         <ul class="dropdown-menu square with-triangle">
                             <li>
                                 <div class="nav-dropdown-heading">
-                                    Notifications
+                                    Thông báo
                                 </div><!-- /.nav-dropdown-heading -->
                                 <div class="nav-dropdown-content scroll-nav-dropdown">
                                     <ul>
-                                        <li class="unread"><a href="#fakelink">
-                                                <img src="<?php echo $webroot; ?>/img/avatar/avatar-2.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                                <strong>Thomas White</strong> posted on your profile page
-                                                <span class="small-caps">17 seconds ago</span>
-                                            </a></li>
-                                        <li class="unread"><a href="#fakelink">
-                                                <img src="<?php echo $webroot; ?>/img/avatar/avatar-3.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                                <strong>Doina Slaivici</strong> uploaded photo
-                                                <span class="small-caps">10 minutes ago</span>
-                                            </a></li>
-                                        <li><a href="#fakelink">
-                                                <img src="<?php echo $webroot; ?>/img/avatar/avatar-4.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                                <strong>Harry Nichols</strong> commented on your post
-                                                <span class="small-caps">40 minutes ago</span>
-                                            </a></li>
-                                        <li class="unread"><a href="#fakelink">
-                                                <img src="<?php echo $webroot; ?>/img/avatar/avatar-5.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                                <strong>Mihaela Cihac</strong> send you a message
-                                                <span class="small-caps">2 hours ago</span>
-                                            </a></li>
-                                        <li class="unread"><a href="#fakelink">
-                                                <img src="<?php echo $webroot; ?>/img/avatar/avatar-6.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                                <strong>Harold Chavez</strong> change his avatar
-                                                <span class="small-caps">Yesterday</span>
-                                            </a></li>
-                                        <li class="unread"><a href="#fakelink">
-                                                <img src="<?php echo $webroot; ?>/img/avatar/avatar-7.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                                <strong>Elizabeth Owens</strong> posted on your profile page
-                                                <span class="small-caps">Yesterday</span>
-                                            </a></li>
-                                        <li class="unread"><a href="#fakelink">
-                                                <img src="<?php echo $webroot; ?>/img/avatar/avatar-8.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                                <strong>Frank Oliver</strong> commented on your post
-                                                <span class="small-caps">A week ago</span>
-                                            </a></li>
-                                        <li><a href="#fakelink">
-                                                <img src="<?php echo $webroot; ?>/img/avatar/avatar-9.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                                <strong>Mya Weastell</strong> send you a message
-                                                <span class="small-caps">April 15, 2014</span>
-                                            </a></li>
-                                        <li><a href="#fakelink">
-                                                <img src="<?php echo $webroot; ?>/img/avatar/avatar-10.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                                <strong>Carl Rodriguez</strong> joined your weekend party
-                                                <span class="small-caps">April 01, 2014</span>
-                                            </a></li>
+                                        <?php
+                                        
+                                        for($i=0; $i<$max; $i++){
+                                            $notification = $notifications[$i];
+                                        ?>                                        
+                                        <li class="<?php echo ($notification['Notification']['status'] == 0)? 'unread':'' ?>">
+                                            <a href="<?php echo $webroot.$notifyLink[$notification['Notification']['type']] ?>">
+                                                <img src="<?php echo $webroot; ?>/img/avatar/avatar-<?php echo $notification['User']['id']; ?>.jpg" class="absolute-left-content img-circle" alt="Avatar">
+                                                <strong><?php echo $notification['User']['first_name'].' '.$notification['User']['last_name']; ?>
+                                                    </strong> <?php echo $notifyMessage[$notification['Notification']['type']]; ?>
+                                                <span class="small-caps">
+                                                <?php
+                                                $today = strtotime(date('Y-m-d h:m:s'));
+                                                $dateCreate = strtotime($notification['Notification']['date_create']);
+                                                $todayYear = date('Y', $today);
+                                                $todayMonth = date('m', $today);
+                                                $todayDay = date('d', $today);
+                                                $todayHour = date('h', $today);
+                                                $todayMin = date('m', $today);
+                                                $todaySec = date('s', $today);
+                                                $dateCreateYear = date('Y', $dateCreate);
+                                                $dateCreateMonth = date('m', $dateCreate);
+                                                $dateCreateDay = date('d', $dateCreate);
+                                                $dateCreateyHour = date('h', $dateCreateDay);
+                                                $dateCreateMin = date('m', $dateCreate);
+                                                $dateCreateSec = date('s', $dateCreate);
+                                                $yearAgo = $todayYear - $dateCreateYear;
+                                                $monthAgo = $todayMonth - $dateCreateMonth;
+                                                $dayAgo = $todayDay - $dateCreateDay;
+                                                $hourAgo = $todayHour - $dateCreateyHour;
+                                                $minAgo = $todayMin - $dateCreateMin;
+                                                $secAgo = $todaySec - $dateCreateSec;
+                                                $timeAgo = '';
+                                                if($yearAgo > 0){
+                                                    $timeAgo .= $yearAgo.' năm ';
+                                                }
+                                                if($monthAgo > 0){
+                                                    $timeAgo .= $monthAgo.' tháng ';
+                                                }
+                                                if($dayAgo > 0){
+                                                    $timeAgo .= $dayAgo.' ngày ';
+                                                }
+                                                if($hourAgo > 0){
+                                                    $timeAgo .= $hourAgo.' giờ ';
+                                                }
+                                                if($minAgo > 0){
+                                                    $timeAgo .= $minAgo.' phút ';
+                                                }
+                                                if($secAgo > 0){
+                                                    $timeAgo .= $secAgo.' giây ';
+                                                }
+                                                $timeAgo .= ' trước';
+                                                echo $timeAgo;
+                                                ?>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <?php
+                                        }
+                                        ?>
                                     </ul>
                                 </div><!-- /.nav-dropdown-content scroll-nav-dropdown -->
-                                <button class="btn btn-primary btn-square btn-block">See all notifications</button>
+                                <a href="<?php echo $this->Html->url(array('controller' => 'notification', 'action' => 'index')); ?>" class="btn btn-primary btn-square btn-block">Xem tất cả thông báo</a>
                             </li>
                         </ul>
                     </li>
@@ -126,217 +147,42 @@
                             <span class="badge badge-warning icon-count">3</span>
                             <i class="fa fa-tasks"></i>
                         </a>
-                        <ul class="dropdown-menu square margin-list-rounded with-triangle">
+                        <ul class="dropdown-menu square with-triangle">
                             <li>
                                 <div class="nav-dropdown-heading">
-                                    Tasks
+                                    Nhắc nhở
                                 </div><!-- /.nav-dropdown-heading -->
                                 <div class="nav-dropdown-content scroll-nav-dropdown">
                                     <ul>
-                                        <li class="unread"><a href="#fakelink">
+                                        <li class="unread">
+                                            <a href="#fakelink">
                                                 <i class="fa fa-check-circle-o absolute-left-content icon-task completed"></i>
-                                                Creating documentation
-                                                <span class="small-caps">Completed : Yesterday</span>
-                                            </a></li>
-                                        <li><a href="#fakelink">
-                                                <i class="fa fa-clock-o absolute-left-content icon-task progress"></i>
-                                                Eating sands
-                                                <span class="small-caps">Deadline : Tomorrow</span>
-                                            </a></li>
-                                        <li><a href="#fakelink">
-                                                <i class="fa fa-clock-o absolute-left-content icon-task progress"></i>
-                                                Sending payment
-                                                <span class="small-caps">Deadline : Next week</span>
-                                            </a></li>
-                                        <li><a href="#fakelink">
-                                                <i class="fa fa-exclamation-circle absolute-left-content icon-task uncompleted"></i>
-                                                Uploading new version
-                                                <span class="small-caps">Deadline: 2 seconds ago</span>
-                                            </a></li>
-                                        <li><a href="#fakelink">
-                                                <i class="fa fa-exclamation-circle absolute-left-content icon-task uncompleted"></i>
-                                                Drinking coffee
-                                                <span class="small-caps">Deadline : 2 hours ago</span>
-                                            </a></li>
-                                        <li class="unread"><a href="#fakelink">
+                                                Báo cáo thuế.
+                                                <span class="small-caps">hôm nay</span>
+                                            </a>
+                                        </li>
+                                        <li class="unread">
+                                            <a href="#fakelink">
                                                 <i class="fa fa-check-circle-o absolute-left-content icon-task completed"></i>
-                                                Walking to nowhere
-                                                <span class="small-caps">Completed : over a year ago</span>
-                                            </a></li>
-                                        <li class="unread"><a href="#fakelink">
+                                                Thu quỹ.
+                                                <span class="small-caps">ngày mai</span>
+                                            </a>
+                                        </li>
+                                        <li class="unread">
+                                            <a href="#fakelink">
                                                 <i class="fa fa-check-circle-o absolute-left-content icon-task completed"></i>
-                                                Sleeping under bridge
-                                                <span class="small-caps">Completed : Dec 31, 2013</span>
-                                            </a></li>
-                                        <li class="unread"><a href="#fakelink">
-                                                <i class="fa fa-check-circle-o absolute-left-content icon-task completed"></i>
-                                                Buying some cigarettes
-                                                <span class="small-caps">Completed : 2 days ago</span>
-                                            </a></li>
+                                                Họp hội đồng.
+                                                <span class="small-caps">hôm mai</span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div><!-- /.nav-dropdown-content scroll-nav-dropdown -->
-                                <button class="btn btn-primary btn-square btn-block">See all notifications</button>
+                                <a href="#" class="btn btn-primary btn-square btn-block">Xem tất cả nhắc nhở</a>
                             </li>
                         </ul>
                     </li>
                     <!-- End nav task -->
-                    <!-- Begin nav message -->
-                    <li class="dropdown">
-                        <a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="badge badge-success icon-count">9</span>
-                            <i class="fa fa-envelope"></i>
-                        </a>
-                        <ul class="dropdown-menu square margin-list-rounded with-triangle">
-                            <li>
-                                <div class="nav-dropdown-heading">
-                                    Messages
-                                </div><!-- /.nav-dropdown-heading -->
-                                <div class="nav-dropdown-content scroll-nav-dropdown">
-                                    <ul>
-                                        <li class="unread"><a href="#fakelink">
-                                                <img src="<?php echo $webroot; ?>/img/avatar/avatar-25.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit
-                                                <span class="small-caps">17 seconds ago</span>
-                                            </a></li>
-                                        <li class="unread"><a href="#fakelink">
-                                                <img src="<?php echo $webroot; ?>/img/avatar/avatar-24.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                                Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat
-                                                <span class="small-caps">10 minutes ago</span>
-                                            </a></li>
-                                        <li><a href="#fakelink">
-                                                <img src="<?php echo $webroot; ?>/img/avatar/avatar-23.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                                I think so
-                                                <span class="small-caps">40 minutes ago</span>
-                                            </a></li>
-                                        <li class="unread"><a href="#fakelink">
-                                                <img src="<?php echo $webroot; ?>/img/avatar/avatar-22.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                                Yes, I'll be waiting
-                                                <span class="small-caps">2 hours ago</span>
-                                            </a></li>
-                                        <li class="unread"><a href="#fakelink">
-                                                <img src="<?php echo $webroot; ?>/img/avatar/avatar-21.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                                Thank you!
-                                                <span class="small-caps">Yesterday</span>
-                                            </a></li>
-                                        <li class="unread"><a href="#fakelink">
-                                                <img src="<?php echo $webroot; ?>/img/avatar/avatar-20.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                                No problem! I will never remember that
-                                                <span class="small-caps">Yesterday</span>
-                                            </a></li>
-                                        <li class="unread"><a href="#fakelink">
-                                                <img src="<?php echo $webroot; ?>/img/avatar/avatar-19.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                                Tak gepuk ndasmu sisan lho dab!
-                                                <span class="small-caps">A week ago</span>
-                                            </a></li>
-                                        <li><a href="#fakelink">
-                                                <img src="<?php echo $webroot; ?>/img/avatar/avatar-18.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                                Sorry bro, aku or atau sing jenenge ngono kui
-                                                <span class="small-caps">April 15, 2014</span>
-                                            </a></li>
-                                        <li><a href="#fakelink">
-                                                <img src="<?php echo $webroot; ?>/img/avatar/avatar-17.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                                Will you send me an invitation for your weeding party?
-                                                <span class="small-caps">April 01, 2014</span>
-                                            </a></li>
-                                    </ul>
-                                </div><!-- /.nav-dropdown-content scroll-nav-dropdown -->
-                                <button class="btn btn-primary btn-square btn-block">See all message</button>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- End nav message -->
-                    <!-- Begin nav friend requuest -->
-                    <li class="dropdown">
-                        <a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="badge badge-info icon-count">2</span>
-                            <i class="fa fa-users"></i>
-                        </a>
-                        <ul class="dropdown-menu square margin-list-rounded with-triangle">
-                            <li>
-                                <div class="nav-dropdown-heading">
-                                    Friend requests
-                                </div><!-- /.nav-dropdown-heading -->
-                                <div class="nav-dropdown-content static-list scroll-nav-dropdown">
-                                    <ul>
-                                        <li>
-                                            <img src="<?php echo $webroot; ?>/img/avatar/avatar-12.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                            <div class="row">
-                                                <div class="col-xs-6">
-                                                    <strong>Craig Dixon</strong>
-                                                    <span class="small-caps">2 murtual friends</span>
-                                                </div>
-                                                <div class="col-xs-6 text-right btn-action">
-                                                    <button class="btn btn-success btn-xs">Accept</button><button class="btn btn-danger btn-xs">Ignore</button>
-                                                </div><!-- /.col-xs-5 text-right btn-cation -->
-                                            </div><!-- /.row -->
-                                        </li>
-                                        <li>
-                                            <img src="<?php echo $webroot; ?>/img/avatar/avatar-13.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                            <div class="row">
-                                                <div class="col-xs-6">
-                                                    <strong>Mikayla King</strong>
-                                                    <span class="small-caps">20 murtual friends</span>
-                                                </div>
-                                                <div class="col-xs-6 text-right btn-action">
-                                                    <button class="btn btn-success btn-xs">Accept</button><button class="btn btn-danger btn-xs">Ignore</button>
-                                                </div><!-- /.col-xs-5 text-right btn-cation -->
-                                            </div><!-- /.row -->
-                                        </li>
-                                        <li>
-                                            <img src="<?php echo $webroot; ?>/img/avatar/avatar-14.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                            <div class="row">
-                                                <div class="col-xs-6">
-                                                    <strong>Richard Dixon</strong>
-                                                    <span class="small-caps">1 murtual friend</span>
-                                                </div>
-                                                <div class="col-xs-6 text-right btn-action">
-                                                    <button class="btn btn-success btn-xs">Accept</button><button class="btn btn-danger btn-xs">Ignore</button>
-                                                </div><!-- /.col-xs-5 text-right btn-cation -->
-                                            </div><!-- /.row -->
-                                        </li>
-                                        <li>
-                                            <img src="<?php echo $webroot; ?>/img/avatar/avatar-15.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                            <div class="row">
-                                                <div class="col-xs-6">
-                                                    <strong>Brenda Fuller</strong>
-                                                    <span class="small-caps">8 murtual friends</span>
-                                                </div>
-                                                <div class="col-xs-6 text-right btn-action">
-                                                    <button class="btn btn-success btn-xs">Accept</button><button class="btn btn-danger btn-xs">Ignore</button>
-                                                </div><!-- /.col-xs-5 text-right btn-cation -->
-                                            </div><!-- /.row -->
-                                        </li>
-                                        <li>
-                                            <img src="<?php echo $webroot; ?>/img/avatar/avatar-16.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                            <div class="row">
-                                                <div class="col-xs-6">
-                                                    <strong>Ryan Ortega</strong>
-                                                    <span class="small-caps">122 murtual friends</span>
-                                                </div>
-                                                <div class="col-xs-6 text-right btn-action">
-                                                    <button class="btn btn-success btn-xs">Accept</button><button class="btn btn-danger btn-xs">Ignore</button>
-                                                </div><!-- /.col-xs-5 text-right btn-cation -->
-                                            </div><!-- /.row -->
-                                        </li>
-                                        <li>
-                                            <img src="<?php echo $webroot; ?>/img/avatar/avatar-17.jpg" class="absolute-left-content img-circle" alt="Avatar">
-                                            <div class="row">
-                                                <div class="col-xs-6">
-                                                    <strong>Jessica Gutierrez</strong>
-                                                    <span class="small-caps">45 murtual friends</span>
-                                                </div>
-                                                <div class="col-xs-6 text-right btn-action">
-                                                    <button class="btn btn-success btn-xs">Accept</button><button class="btn btn-danger btn-xs">Ignore</button>
-                                                </div><!-- /.col-xs-5 text-right btn-cation -->
-                                            </div><!-- /.row -->
-                                        </li>
-                                    </ul>
-                                </div><!-- /.nav-dropdown-content scroll-nav-dropdown -->
-                                <button class="btn btn-primary btn-square btn-block">See all request</button>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- End nav friend requuest -->
+                    
                 </ul>
             </div><!-- /.navbar-collapse -->
             <!-- End Collapse menu nav -->

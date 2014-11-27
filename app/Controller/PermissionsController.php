@@ -20,11 +20,12 @@ class PermissionsController extends AppController {
         if (!$this->CheckPermission->checkAccessFull($this->fullAccess, $this->params['controller'], $this->params['action'])) {
             parent::beforeFilter();
         }
+        parent::beforeFilter();
     }
     
     public function index() {
         $this->layout = 'admin';
-        $this->set('heading', 'List Permissions');
+        $this->set('heading', 'Danh sách quyền truy cập');
         $this->set('subHeading', '');
         $this->loadModel('Permission');
         $permissions = $this->Permission->find('all',array('order' => "id ASC"));
