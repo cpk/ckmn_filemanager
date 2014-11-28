@@ -330,7 +330,7 @@
 		<div class="form-group">
 			<label for="share_users" class="col-sm-2 control-label">Người nhận</label>
 			<div class="col-sm-offset-2 col-sm-10">
-				<select data-placeholder="Danh sách người nhận" class="form-control chosen-select" multiple>
+				<select data-placeholder="Danh sách người nhận" class="form-control chosen-select" id="share_users" multiple>
 					<option value="Empty">&nbsp;</option>
 					<optgroup label="ADMIN">
 						<option value="1">Dallas Cowboys</option>

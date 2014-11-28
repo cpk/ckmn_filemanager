@@ -804,6 +804,14 @@
                 });
             }
             tmp_dialog.find('#share_items').html(content);
+
+            if($.fn.chosen){
+                tmp_dialog.find('#share_users').chosen({
+                    width:"100%",
+                    no_results_text:'Không tìm thấy thành viên'
+                });
+            }
+
         });
 
         dialog.show();
