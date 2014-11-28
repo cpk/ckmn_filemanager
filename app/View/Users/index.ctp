@@ -48,7 +48,21 @@
                                 </a><br/>
                             <?php } ?> 
                         </td>
-                        <td><?php echo $users[$i]['User']['actived'] ?></td>
+                        <td> 
+                            <?php 
+                                if($users[$i]['User']['actived'])
+                                {
+                                    ?>
+                                        <span class="label label-info">Active</span>
+                                    <?php
+                                }
+                                else 
+                                {
+                                    ?>
+                                        <span class="label label-danger">Inactive</span>
+                                    <?php
+                                }
+                            ?>
                         <td class="center">
                             <a class="btn btn-info btn-xs" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'edit', $users[$i]['User']['id'])); ?>"><i class="fa fa-edit"></i>Edit</a>
                             <a class="btn btn-danger btn-xs delete" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'delete', $users[$i]['User']['id'])); ?>" onclick="return confirm('Are you sure ?')"><i class="fa fa-trash-o"></i>Delete</a>

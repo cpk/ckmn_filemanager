@@ -43,7 +43,22 @@
                     <td>
                         <span>Status:</span>
                     </td>
-                    <td><?php echo $user['User']['actived'] ?></td>
+                    <td>
+                        <?php 
+                        if($user['User']['actived'])
+                            {
+                                ?>
+                                    <span class="label label-info">Active</span>
+                                <?php
+                            }
+                            else 
+                            {
+                                ?>
+                                    <span class="label label-danger">Inactive</span>
+                                <?php
+                            }
+                        ?>
+                    </td>
                 </tr>
                 <tr class="">
                     <td colspan="2">

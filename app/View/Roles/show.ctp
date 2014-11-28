@@ -45,7 +45,22 @@
                         <td>
                             <span>Actived:</span>
                         </td>
-                        <td><?php echo $role['Role']['actived'] ?></td>
+                        <td>
+                            <?php
+                            if($role['Role']['actived'])
+                                {
+                                    ?>
+                                        <span class="label label-info">Active</span>
+                                    <?php
+                                }
+                                else 
+                                {
+                                    ?>
+                                        <span class="label label-danger">Inactive</span>
+                                    <?php
+                                }
+                            ?>
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="2">
