@@ -370,6 +370,10 @@ class usersController extends AppController {
                 //$this->FlashMessage->error(__('Invalid username or password, try again'));
             }
         }
+        
+        if(isset($this->currentUser)) {
+            $this->redirect($this->Auth->loginRedirect);   
+        }
     }
 
     public function logout() {
