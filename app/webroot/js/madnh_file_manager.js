@@ -155,7 +155,7 @@
             case plupload.DONE:
                 $('#' + option.id + ' #' + file.id).addClass('success');
                 if (file.status == plupload.DONE) {
-                    $('#' + option.id + ' #' + file.id + " .status").html('<span class="label label-success">Thành công</span>');
+                    $('#' + option.id + ' #' + file.id + " .status").html('<span class="label label-success">Thành công </span>');
                 }
                 break;
             case plupload.FAILED:
