@@ -89,15 +89,15 @@ class PermissionsController extends AppController {
             $options = array('conditions' => array('Permission.id' => $id));
             $permission = $this->Permission->find('first', $options);
             $now = new DateTime();
+            
+            $permission['Permission']['name'] =$this->request->data['Permission']['name'];
+            $permission['Permission']['description'] =$this->request->data['Permission']['description'];
+            $permission['Permission']['section'] =$this->request->data['Permission']['section'];
+            $permission['Permission']['module'] =$this->request->data['Permission']['module'];
+            $permission['Permission']['actived'] =$this->request->data['Permission']['actived'];
+            $permission['Permission']['modified'] = $now->format('Y-m-d H:i:s');
           
-            $a = $permission['Permission']['id'];
-            $this->Permission->saveField('name', $this->request->data['Permission']['name']);
-            $this->Permission->saveField('description', $this->request->data['Permission']['description']);
-            $this->Permission->saveField('section', $this->request->data['Permission']['section']);
-            $this->Permission->saveField('module', $this->request->data['Permission']['module']);
-            $this->Permission->saveField('actived',$this->request->data['Permission']['actived']);
-            $this->Permission->saveField('modified',$now->format('Y-m-d H:i:s'));
-            if ($this->Permission->save()) {
+            if ($this->Permission->save($permission)) {
                  $this->redirect(array('action' => 'show', $this->Permission->id));
              }
         } else {
@@ -111,7 +111,7 @@ class PermissionsController extends AppController {
         if ($permissions == NULL) {
             $this->redirect(array('controller' => 'permissions', 'action' => 'index'));
         }
-        
+        $this->request->data =$permissions;
         $this->set('permission', $permissions);
         $activeds =  array(1=>'Actived',0=>'InActived');
         $this->set('activeds',$activeds);

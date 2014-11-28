@@ -121,14 +121,13 @@ class RolesController extends AppController {
             $role = $this->Role->find('first', $options);
             $now = new DateTime();
           
-            $a = $role['Role']['id'];
-            $this->Role->saveField('name', $this->request->data['Role']['name']);
-            $this->Role->saveField('level', $this->request->data['Role']['level']);
-            $this->Role->saveField('description', $this->request->data['Role']['description']);
-            $this->Role->saveField('actived',$this->request->data['Role']['actived']);
-            $this->Role->saveField('modified',$now->format('Y-m-d H:i:s'));
-            
-            if ($this->Role->save()) {
+           $role['Role']['name']= $this->request->data['Role']['name'];
+           $role['Role']['level']= $this->request->data['Role']['level'];
+           $role['Role']['description']= $this->request->data['Role']['description'];
+           $role['Role']['actived']= $this->request->data['Role']['actived'];
+           $role['Role']['modified']= $now->format('Y-m-d H:i:s');
+           
+            if ($this->Role->save($role)) {
                 $this->RolesPermission->deleteAll(array('RolesPermission.role_id'=>$id,false));
                 $role_id= $id;
                 $request = $this->request->data;
@@ -199,44 +198,7 @@ class RolesController extends AppController {
     }
     
     
-//     public function add() {
-//        $this->layout = 'admin';
-//        $this->loadModel('Role');
-//        $activeds =  array(1=>'Actived',0=>'InActived');
-//        $this->set('activeds',$activeds);
-//    }
-//    
-//    
-//     public function update($id) {
-//         
-//        $this->Role->id = $id;
-//        if (!$this->Role->exists()) {
-//            throw new NotFoundException(__('Invalid Role'));
-//        }
-//
-//        $this->layout = 'ajax';
-//        $this->autoRender = false;
-//        
-//        if ($this->request->is('post')|| $this->request->is('put')) {
-//            $this->loadModel('Role');
-//            $options = array('conditions' => array('Role.id' => $id));
-//            $role = $this->Role->find('first', $options);
-//
-//          
-//            $this->Role->id = $role['Role']['id'];
-//            $this->Role->saveField('name', $this->request->data['Role']['name']);
-//            $this->Role->saveField('level', $this->request->data['Role']['level']);
-//            $this->Role->saveField('description', $this->request->data['Role']['description']);
-//            $this->Role->saveField('actived',$this->request->data['Role']['actived']);
-//            
-//            if ($this->Role->save($this->request->data)) {
-//                //$this->FlashMessage->success(__('The Role has been saved'));
-//                $this->redirect(array('action' => 'show', $this->Role->id));
-//            } else {
-//               // $this->FlashMessage->error(__('The Role could not be saved. Please, try again.'));
-//            }
-//        }
-//    }
+//     
     
      public function create($id=null) {
          $this->layout = 'admin';

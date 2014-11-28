@@ -142,15 +142,16 @@ class usersController extends AppController {
 
         //save data
         if ($this->request->is('post') || $this->request->is('put')) {
-
-            $this->User->saveField('first_name', $this->request->data['User']['first_name']);
-            $this->User->saveField('last_name', $this->request->data['User']['last_name']);
-            $this->User->saveField('actived', $this->request->data['User']['actived']);
+            $options = array('conditions' => array('User.id' => $id));
+            $user = $this->User->find('first', $options);
+            $user['User']['first_name'] =$this->request->data['User']['first_name'];
+            $user['User']['last_name'] =$this->request->data['User']['last_name'];
+            $user['User']['actived'] = $this->request->data['User']['actived'];
             if ($this->request->data['User']['password'] != '') {
-                $this->User->saveField('password', $this->request->data['User']['password']);
+                $user['User']['password'] =$this->request->data['User']['password'];
             }
-            //cho nay la sao ta @@
-            if (!$this->User->save()) {
+            
+            if ($this->User->save($user)) {
                 //insert permission
                 $user_id = $this->User->id;
                 $request = $this->request->data;
