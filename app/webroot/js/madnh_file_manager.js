@@ -644,13 +644,13 @@
     * Select
     * */
 
-    MaDnhFileManager.itemSelect = function (type, id) {
+    MaDnhFileManager.itemSelect = function (type, id, data) {
         if(type != 'folder'){
             type='file';
         }
-        MaDnh.addToListType('file_manager_item_select', type + '_' + id, {type: type, id: id}, false);
+        MaDnh.addToListType('file_manager_item_select', type + '_' + id, {type: type, id: id, data: data}, false);
 
-        MaDnh.triggerEvent('file_manager_select_item', {type: type, id: id});
+        MaDnh.triggerEvent('file_manager_select_item', {type: type, id: id, data: data});
     };
 
 
@@ -696,13 +696,13 @@
      * */
 
 
-    MaDnhFileManager.addShare = function (type, id) {
+    MaDnhFileManager.addShare = function (type, id, data) {
         if(type != 'folder'){
             type='file';
         }
 
-        if(MaDnh.addToListType('file_manager_share_content', type + '_' + id, {type: type, id: id}, false)){
-            MaDnh.triggerEvent('file_manager_add_share_content', {type: type, id: id});
+        if(MaDnh.addToListType('file_manager_share_content', type + '_' + id, {type: type, id: id, data:data}, false)){
+            MaDnh.triggerEvent('file_manager_add_share_content', {type: type, id: id, data: data});
         }
     };
 
@@ -743,9 +743,78 @@
         var items = MaDnhFileManager.getItemSelect();
 
         __.each(items, function(item){
-            MaDnhFileManager.addShare(item['type'], item['id']);
+            MaDnhFileManager.addShare(item['type'], item['id'], item['data']);
         });
     };
+
+
+
+    MaDnhFileManager.share = function(){
+        if(!MaDnhFileManager.hasItemSelect()){
+            MaDnh.Helper.alert('Bạn chưa chọn nội dung chia sẻ');
+            return;
+        }
+        var func = function (info) {
+            MaDnh.Helper.alert('Chia sẻ thành công!');
+        };
+        var dialog = new MaDnh.BootstrapDialog();
+        var buttons = {
+            submit: {
+                label: 'Chia sẻ',
+                type: 'info',
+                handler: func,
+                is_default: false,
+                hide_modal: true,
+                on_hide: true
+            },
+            close: {
+                label: 'Đóng',
+                type: 'default',
+                is_default: true
+            }
+        };
+
+        dialog.option({
+            size: 'lg'
+        });
+
+        dialog.title = 'Chia sẻ nôi dung';
+        dialog.content = MaDnh.Template.render('share_container', {});
+
+        __.each(buttons, function(button, name){
+            dialog.addButton(name, button);
+        });
+
+        dialog.setModalEvent('shown', function(data){
+            var tmp_dialog = $('#'+data['modal_id']);
+            var items = MaDnhFileManager.getShareItems();
+
+            if(!tmp_dialog){
+                return;
+            }
+            var content = '';
+            if(items){
+                __.each(items, function(item){
+                    if(item.type == 'file'){
+                        content += MaDnh.Template.render('share_content_item', item.data);
+                    }else{
+                        content += MaDnh.Template.render('share_content_folder', item.data);
+                    }
+
+                });
+            }
+            tmp_dialog.find('#share_items').html(content);
+        });
+
+        dialog.show();
+
+    };
+
+
+
+
+
+
     /*
      * End Share
      * */

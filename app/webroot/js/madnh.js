@@ -1696,7 +1696,7 @@
      * - show       : Khi modal bắt đầu hiển thị
      * - shown      : Khi modal đã được hiển thị đầy đủ (sẽ chờ cho các CSS transition hoàn kết thúc)
      * - hide      : Khi modal bắt đầu đóng
-     * - shown      : Khi modal đã được đóng hoàn tất (sẽ chờ cho các CSS transition hoàn kết thúc)
+     * - hidden      : Khi modal đã được đóng hoàn tất (sẽ chờ cho các CSS transition hoàn kết thúc)
      *
      * ** Các
      * @constructor

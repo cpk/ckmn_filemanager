@@ -396,6 +396,18 @@ class FileManagersController extends AppController {
 		return MadnhJson::output( $result );
 	}
 
+	public function itemInfo() {
+		$this->autoRender = false;
+		$this->layout     = false;
+		$this->response->type( 'json' );
+
+		$this->Folder->user_id = $this->currentUser['id'];
+		$this->File->user_id   = $this->currentUser['id'];
+		$result                = new ProcessResult();
+
+
+	}
+
 	public function download( $key = null ) {
 		if ( empty( $key ) ) {
 			$this->response->location( '/' );

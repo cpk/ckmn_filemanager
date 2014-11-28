@@ -77,7 +77,7 @@
 					</button>
 					<button type="button" class="btn btn-warning" id="share_button" disabled="disabled"
 					        data-toggle="tooltip" title="Chia sẻ"
-					        onclick="MaDnh.triggerEvent('file_manager_share')">
+					        onclick="MaDnhFileManager.share();">
 						<i class="fa fa-send-o"></i>
 						<span class="badge badge-danger" id="share_content_count" style="display: none;">0</span>
 					</button>
@@ -128,7 +128,7 @@
 
 
 <script id="template_folder_content_item" type="text/x-handlebars-template">
-	<tr id="folder_item_{{item_id}}" data-type="{{item_type}}" data-item-id="{{item_id}}">
+	<tr id="folder_item_{{item_id}}" data-type="{{item_type}}" data-item-id="{{item_id}}"  data-item-name="{{item_name}}" data-create-time="{{item_human_create_time}}" data-size="{{item_human_size}}">
 		<td>
 			<input type="checkbox" name="item[]" value="{{item_id}}"
 			       onchange="MaDnh.triggerEvent('file_manager_item_select_status_change', this)"/>
@@ -159,7 +159,7 @@
 </script>
 
 <script id="template_folder_content_folder" type="text/x-handlebars-template">
-	<tr id="folder_item_{{item_id}}" data-type="{{item_type}}" data-item-id="{{item_id}}">
+	<tr id="folder_item_{{item_id}}" data-type="{{item_type}}" data-item-id="{{item_id}}" data-item-name="{{item_name}}" data-create-time="{{item_human_create_time}}" >
 		<td>
 			<input type="checkbox" class="item-checkbox" name="item[]" value="{{item_id}}"
 			       onchange="MaDnh.triggerEvent('file_manager_item_select_status_change', this);"/>
@@ -305,6 +305,151 @@
 </script>
 
 
+
+<script id="template_share_container" type="text/x-handlebars-template">
+	<form class="form-horizontal" role="form">
+		<div class="form-group">
+			<label for="share_title" class="col-sm-2 control-label" >Chủ đề</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="title" id="share_title">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="share_description" class="col-sm-2 control-label">Ghi chú</label>
+			<div class="col-sm-10">
+				<textarea class="form-control" rows="3" name="description" id="share_description"></textarea>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="share_password" class="col-sm-2 control-label">Mật khẩu</label>
+			<div class="col-sm-10">
+				<input type="password" class="form-control" name="password" id="share_password">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="share_users" class="col-sm-2 control-label">Người nhận</label>
+			<div class="col-sm-offset-2 col-sm-10">
+				<select data-placeholder="Danh sách người nhận" class="form-control chosen-select" multiple>
+					<option value="Empty">&nbsp;</option>
+					<optgroup label="ADMIN">
+						<option value="1">Dallas Cowboys</option>
+						<option value="1">New York Giants</option>
+						<option value="1">Philadelphia Eagles</option>
+						<option value="1">Washington Redskins</option>
+					</optgroup>
+					<optgroup label="USER">
+						<option value="1">Dallas Cowboys</option>
+						<option value="1">New York Giants</option>
+						<option value="1">Philadelphia Eagles</option>
+						<option value="1">Washington Redskins</option>
+					</optgroup>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="share_password" class="col-sm-2 control-label">Nội dung chia sẻ</label>
+			<div class="col-sm-10">
+				<table class="table table-th-block table-hover">
+					<thead>
+					<tr>
+						<th width="20">
+							<input type="checkbox" id="share_check_all"/>
+						</th>
+						<th>Tên</th>
+						<th>Size</th>
+						<th>Date</th>
+						<th>Action</th>
+					</tr>
+					</thead>
+					<tbody id="share_items">
+					<tr>
+						<td colspan="5">
+							<div class="progress no-rounded progress-striped active">
+								<div class="progress-bar progress-bar-info" role="progressbar" style="width: 100%"></div>
+							</div>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</form>
+</script>
+
+
+<script id="template_share_content_item" type="text/x-handlebars-template">
+	<tr id="share_content_item_{{itemId}}" data-type="{{type}}" data-item-id="{{itemId}}">
+		<td>
+			<input type="checkbox" name="share_content_item[]" value="{{itemId}}"/>
+		</td>
+		<td>
+			<img src="/img/filemanager/files/archive-v3.png" class="avatar">
+			<a href="javascript:;" class="item-name">{{{itemName}}}</a>
+		</td>
+		<td>
+			{{size}}
+		</td>
+		<td>{{createTime}}</td>
+		<td>
+			<div class="btn-group">
+				<button type="button" class="btn btn-info">
+					<i class="fa fa-trash-o"></i>
+				</button>
+			</div>
+		</td>
+	</tr>
+</script>
+
+<script id="template_share_content_folder" type="text/x-handlebars-template">
+	<tr id="share_content_item_{{itemId}}" data-type="{{type}}" data-item-id="{{itemId}}">
+		<td>
+			<input type="checkbox" name="share_content_item[]" value="{{itemId}}"/>
+		</td>
+		<td>
+			<img src="/img/filemanager/files/folder-v5.png" class="avatar">
+			<a href="javascript:;" class="item-name">{{{itemName}}}</a>
+		</td>
+		<td>
+			&nbsp;
+		</td>
+		<td>{{createTime}}</td>
+		<td>
+			<div class="btn-group">
+				<button type="button" class="btn btn-info">
+					<i class="fa fa-trash-o"></i>
+				</button>
+			</div>
+		</td>
+	</tr>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
 	MaDnh.Template.compileAll();
 	Handlebars.registerHelper('folderNavItemWithNested', function (info) {
@@ -334,7 +479,7 @@
 			data = _.extend({}, {type: 'file', 'itemId': 0}, data);
 
 			if (status) {
-				MaDnhFileManager.itemSelect(data.type, data['itemId']);
+				MaDnhFileManager.itemSelect(data.type, data['itemId'], data);
 			} else {
 				MaDnhFileManager.itemUnSelect(data.type, data['itemId']);
 			}
